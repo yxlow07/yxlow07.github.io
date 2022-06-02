@@ -24,8 +24,10 @@ $(document).ready(() => {
     });
 
     setTimeout(() => {
+      $(".removable").hide();
       $(this).append(
-        '<iframe src="https://streamable.com/e/qk4w6i?loop=0" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>'
+        // '<iframe src="https://streamable.com/e/qk4w6i?loop=0" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>'
+        `<div style="color: snow; text-align: center;"><h1>Thank you for providing us with your data</h1>${hacked}</div>`
       );
     }, 1000);
   });
