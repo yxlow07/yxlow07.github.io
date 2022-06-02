@@ -1,0 +1,71 @@
+:root {
+    --blue: #046ae4;
+}
+
+body {
+    background-color: rgb(57, 57, 57);
+    /* overflow: hidden; */
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.video {
+    width: 100vh;
+    height: 70vh;
+    transform: translate(-50%, -50%);
+    /* border: red solid; */
+}
+
+video {
+    width: 100vh;
+    height: 70vh;
+}
+
+a:visited {
+    color: snow;
+}
+
+a {
+    color: snow;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+}
+
+ul>li {
+    margin: auto;
+}
+
+ul>li.img {
+    margin-left: 0;
+}
+
+ul>li.icon {
+    border: solid 1px rgb(161, 161, 161);
+    border-radius: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    justify-content: right;
+}
+
+.video>img {
+    width: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video>img:hover {
+    width: 15%;
+    cursor: pointer;
+}
