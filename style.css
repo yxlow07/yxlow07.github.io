@@ -4,7 +4,10 @@
 
 body {
     background-color: rgb(57, 57, 57);
-    /* overflow: hidden; */
+    overflow: hidden;
+    zoom: 0.8; 
+    -moz-transform: scale(0.8); 
+    -moz-transform-origin: 0 0;
 }
 
 .center {
@@ -18,11 +21,6 @@ body {
     height: 70vh;
     transform: translate(-50%, -50%);
     /* border: red solid; */
-}
-
-video {
-    width: 100vh;
-    height: 70vh;
 }
 
 a:visited {
@@ -57,8 +55,16 @@ ul>li.icon {
     justify-content: right;
 }
 
-.video>img {
+.video>.img {
     width: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video>#img {
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
