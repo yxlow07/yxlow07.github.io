@@ -1,0 +1,13 @@
+{
+  "name": "yxlow07/purata-calculator",
+  "description": "Purata calculator for CLHS students",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Yxlow",
+      "email": "yxlow07@gmail.com"
+    }
+  ],
+  "require": {}
+}

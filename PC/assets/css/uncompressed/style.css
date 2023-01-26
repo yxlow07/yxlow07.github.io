@@ -1,0 +1,46 @@
+/* Smartphones ----------- */
+@media only screen and (max-width: 1000px) {
+    .keypad {
+        display: none;
+    }
+}
+
+/* .table {
+    zoom: 0.6;
+    -moz-transform: scale(0.6);
+    -moz-transform-origin: 0 0;
+} */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.wide {
+    width: 10rem;
+    text-align: center;
+    display: flex;
+}
+
+#purata-badge {
+    pointer-events: none;
+}
+
+.outline-white {
+    border: gray 1px solid;
+    background-color: aliceblue;
+    color: black;
+    cursor: pointer;
+}
+
+.outline-white:hover {
+    background-color: #414141;
+    color: aliceblue;
+}
