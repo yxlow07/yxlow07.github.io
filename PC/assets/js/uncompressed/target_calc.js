@@ -18,7 +18,7 @@ let marksAndPemberat = {
   Seni: [2, "x"],
   Ekon: [4, "x"],
   "Prisip Perakaunan": [4, "x"],
-  Koku: [3, "x"],
+  Koku: [5, "x"],
 };
 let errorToastCounter = 0;
 let actualTotalPemberat = 0;
