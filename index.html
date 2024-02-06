@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFC Attendance</title>
+    <title>Yu Xuan's Blog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         ::-webkit-scrollbar {
@@ -28,6 +28,28 @@
             background: #555;
         }
     </style>
+    <meta name="title" content="Class Ranking Checker" />
+    <meta
+      name="description"
+      content="Want to know your approximate ranking before school reveals it? Try this now!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yxlow07.github.io/" />
+    <meta property="og:title" content="Class Ranking Checker" />
+    <meta
+      property="og:description"
+      content="Want to know your approximate ranking before school reveals it? Try this now!"
+    />
+    <meta property="og:image" content="https://yxlow07.github.io/assets/rankingClassCalculator.png" />
+    <meta name="theme-color" content="#E0E0E0" />
+    <meta property="twitter:url" content="https://yxlow07.github.io/" />
+    <meta property="twitter:title" content="Class Ranking Checker" />
+    <meta
+      property="twitter:description"
+      content="Want to know your approximate ranking before school reveals it? Try this now!"
+    />
+    <meta property="twitter:image" content="https://yxlow07.github.io/assets/rankingClassCalculator.png" />
+    
 </head>
 
 <body class="min-h-screen dark:bg-slate-800 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
@@ -92,64 +114,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>
-        function returnClassNumber(ranking, adjustment = 0) {
-            ranking = ranking % 6;
-            if (ranking == 1 || ranking == 0) {
-                return 1+adjustment;
-            } else if (ranking == 2 || ranking == 5) {
-                return 2+adjustment;
-            } else {
-                return 3+adjustment;
-            }
-        }
-
-        function bClassRanking(ranking) {
-            if (ranking == 1 || ranking == 0) {
-                return 1;
-            } else if (ranking == 2 || ranking == 7) {
-                return 2;
-            } else if (ranking == 3 || ranking == 6) {
-                return 3;
-            }
-            return 4;
-        }
-
-        function calculateClass(ranking) {
-            const maxCapacityA13 = 38;
-            const maxCapacityA46 = 36;
-
-            if (ranking <= maxCapacityA13 * 3) {
-                // Classes A1 to A3
-                $('#predClass1').text('5SA' + returnClassNumber(ranking));
-            } else if (ranking <= (maxCapacityA13*3+maxCapacityA46*3)) {
-                // Classes A4 to A6
-                const adjustedRanking = ranking - (maxCapacityA13 * 3);
-                $('#predClass1').text('5SA' + returnClassNumber(adjustedRanking, 3));
-            } else {
-                const adjustedRanking = (ranking - (maxCapacityA13*3+maxCapacityA46*3)) % 8;
-                $('#predClass1').text('5SB' + bClassRanking(adjustedRanking));
-            }
-        }
-
-        $(document).ready(() => {
-            $("#sk-stream").on("input", function() {
-                let value = $(this).val();
-                let ranking = value % 4;
-                
-                if (value != 0 && (ranking == 0 || ranking == 1)) {
-                    $('#predClass2').text('5KB1 / 5SK1 / 5SE1');
-                } else {
-                    $('#predClass2').text('5KB2 / 5SK2 / 5SE2');
-                }
-            })
-
-            $("#sc-stream").on("input", function() {
-                let value = $(this).val();
-                if (value != 0) {
-                    calculateClass(value);
-                }   
-            })
-        })
+        const _0x270c35=_0x3d72;function _0x4b0a(){const _0x4c198b=['385AkxMjP','1972336ouMJaC','ready','18GSazPE','306zczgjG','input','#sk-stream','text','1882188ktlGTZ','val','#sc-stream','#predClass1','50372JGinIL','15cuZPBA','260WstmFe','5KB1\x20/\x205SK1\x20/\x205SE1','1180836uXaJsr','5SA','1750399bhMCIq','13220uapmPf','#predClass2','5SB','94516uBEvfY','5KB2\x20/\x205SK2\x20/\x205SE2'];_0x4b0a=function(){return _0x4c198b;};return _0x4b0a();}(function(_0x124c23,_0x2984b0){const _0x3d1558=_0x3d72,_0x463369=_0x124c23();while(!![]){try{const _0x399606=parseInt(_0x3d1558(0x187))/0x1*(-parseInt(_0x3d1558(0x178))/0x2)+-parseInt(_0x3d1558(0x182))/0x3+parseInt(_0x3d1558(0x186))/0x4*(-parseInt(_0x3d1558(0x188))/0x5)+-parseInt(_0x3d1558(0x17d))/0x6*(parseInt(_0x3d1558(0x174))/0x7)+-parseInt(_0x3d1558(0x17b))/0x8+-parseInt(_0x3d1558(0x17e))/0x9*(parseInt(_0x3d1558(0x175))/0xa)+parseInt(_0x3d1558(0x17a))/0xb*(parseInt(_0x3d1558(0x172))/0xc);if(_0x399606===_0x2984b0)break;else _0x463369['push'](_0x463369['shift']());}catch(_0x354c15){_0x463369['push'](_0x463369['shift']());}}}(_0x4b0a,0x646ce));function returnClassNumber(_0x463eb5,_0x538f5f=0x0){_0x463eb5=_0x463eb5%0x6;if(_0x463eb5==0x1||_0x463eb5==0x0)return 0x1+_0x538f5f;else return _0x463eb5==0x2||_0x463eb5==0x5?0x2+_0x538f5f:0x3+_0x538f5f;}function _0x3d72(_0x2f05a3,_0x2e1bb9){const _0x4b0a07=_0x4b0a();return _0x3d72=function(_0x3d7279,_0x1497b4){_0x3d7279=_0x3d7279-0x171;let _0x49af5a=_0x4b0a07[_0x3d7279];return _0x49af5a;},_0x3d72(_0x2f05a3,_0x2e1bb9);}function bClassRanking(_0x72cab4){if(_0x72cab4==0x1||_0x72cab4==0x0)return 0x1;else{if(_0x72cab4==0x2||_0x72cab4==0x7)return 0x2;else{if(_0x72cab4==0x3||_0x72cab4==0x6)return 0x3;}}return 0x4;}function calculateClass(_0x476abf){const _0x1ec995=_0x3d72,_0x4dec78=0x26,_0x3c608f=0x24;if(_0x476abf<=_0x4dec78*0x3)$(_0x1ec995(0x185))[_0x1ec995(0x181)]('5SA'+returnClassNumber(_0x476abf));else{if(_0x476abf<=_0x4dec78*0x3+_0x3c608f*0x3){const _0x7328d5=_0x476abf-_0x4dec78*0x3;$(_0x1ec995(0x185))['text'](_0x1ec995(0x173)+returnClassNumber(_0x7328d5,0x3));}else{const _0x18a2c6=(_0x476abf-(_0x4dec78*0x3+_0x3c608f*0x3))%0x8;$('#predClass1')['text'](_0x1ec995(0x177)+bClassRanking(_0x18a2c6));}}}$(document)[_0x270c35(0x17c)](()=>{const _0x25c3c7=_0x270c35;$(_0x25c3c7(0x180))['on'](_0x25c3c7(0x17f),function(){const _0x549c24=_0x25c3c7;let _0x5a90b8=$(this)[_0x549c24(0x183)](),_0x128756=_0x5a90b8%0x4;_0x5a90b8!=0x0&&(_0x128756==0x0||_0x128756==0x1)?$(_0x549c24(0x176))['text'](_0x549c24(0x171)):$('#predClass2')[_0x549c24(0x181)](_0x549c24(0x179));}),$(_0x25c3c7(0x184))['on'](_0x25c3c7(0x17f),function(){const _0x3b6802=_0x25c3c7;let _0x1d7215=$(this)[_0x3b6802(0x183)]();_0x1d7215!=0x0&&calculateClass(_0x1d7215);});});
     </script>
 </body>
 
