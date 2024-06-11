@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exam Timer</title>
+    <link rel="stylesheet" href="../resources/css/styles.css">
+</head>
+<body class="h-full flex flex-col bg-gray-100">
+
+<!-- ========== MAIN CONTENT ========== -->
+<div class="flex flex-col items-center justify-center flex-grow p-4 text-center h-screen">
+    <h1 class="text-4xl font-bold mb-4" id="public-title">Exam Timer</h1>
+    <div class="text-2xl font-bold">
+        <p><span id="time-to-from">00:00 to 00:00</span><span id="duration" class="ml-2 font-mono">(0 hours 0 minutes)</span></p>
+        <p><span id="time-left" class="font-mono">00 hours 00 minutes left</span></p>
+    </div>
+</div>
+<!-- ========== END MAIN CONTENT ========== -->
+
+<!-- ========== MODAL START =========== -->
+<div id="settings" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
+    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+        <div class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+            <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+                <h3 class="font-bold text-gray-800 dark:text-white">
+                    Settings
+                </h3>
+                <button type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700" data-hs-overlay="#settings">
+                    <span class="sr-only">Close</span>
+                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 overflow-y-auto">
+                <!-- Title -->
+                <div class="mb-4">
+                    <label for="title" class="block text-gray-700 font-semibold mb-2">Title</label>
+                    <input type="text" id="title" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter exam title">
+                </div>
+
+                <!-- Subject -->
+                <div class="mb-4">
+                    <label for="subject" class="block text-gray-700 font-semibold mb-2">Subject</label>
+                    <div class="flex space-x-4">
+                        <select id="subject" class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select subject</option>
+                            <option value="bahasa-cina">Bahasa Cina</option>
+                            <option value="bahasa-melayu">Bahasa Melayu</option>
+                            <option value="english">English</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="additional-mathematics">Additional Mathematics</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="science-computer">Science Computer</option>
+                            <option value="biology">Biology</option>
+                            <option value="moral">Moral</option>
+                            <option value="pjpk">PJPK</option>
+                            <option value="sejarah">Sejarah</option>
+                        </select>
+                        <select id="paper" class="w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select paper</option>
+                            <!-- Add more options here -->
+                            <option value="paper-1">Paper 1</option>
+                            <option value="paper-2">Paper 2</option>
+                            <option value="paper-3">Paper 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Time -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Time</label>
+                    <div class="flex space-x-2 items-center">
+                        <input type="number" id="hours" class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Hours">
+                        <span class="text-gray-700">:</span>
+                        <input type="number" id="minutes" class="w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Minutes">
+                    </div>
+                </div>
+
+                <!-- Start Time -->
+                <div class="mb-4">
+                    <label for="start-time" class="block text-gray-700 font-semibold mb-2">Start Time</label>
+                    <input type="time" id="start-time" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
+                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800" data-hs-overlay="#settings">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ========== MODAL END =========== -->
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-gray-100 text-gray-600 p-4 flex justify-between items-center fixed bottom-0 w-full">
+    <button class="text-gray-600 text-xl" data-hs-overlay="#settings">
+        <i class="fa-duotone fa-gear"></i>
+    </button>
+    <button id="fullscreen-btn" class="text-gray-600 text-xl">
+        <i class="fa-duotone fa-expand"></i>
+    </button>
+    <div id="current-time" class="text-gray-600 text-xl font-mono">00:00:00</div>
+</footer>
+<!-- ========== END FOOTER ========== -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="../node_modules/preline/dist/preline.js"></script>
+<script src="../resources/js/fontawesome.js"></script>
+<script>
+    function updateCurrentTime() {
+        let currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second: '2-digit'});
+        $('#current-time').text(currentTime);
+    }
+
+    $(document).ready(function () {
+        $('#paper, #subject').change(() => {
+            let sub = $('#subject option:selected').text();
+            let paper = $('#paper option:selected').text();
+            $('#title').val(sub + " " + paper)
+            $('#public-title').text(sub + " " + paper)
+        });
+
+        $('#hours, #minutes').keyup(() => {
+            let hours = $('#hours').val() || 0;
+            let mins = $('#minutes').val() || 0;
+
+            hours = parseInt(hours); mins = parseInt(mins);
+            let hourStr = hours === 1 ? 'hour' : 'hours';
+            let minuteStr = mins === 1 ? 'minute' : 'minutes';
+
+            let durationStr = '';
+            if (hours > 0) {
+                durationStr += hours + ' ' + hourStr;
+            }
+            if (mins > 0) {
+                if (hours > 0) {
+                    durationStr += ' ';
+                }
+                durationStr += mins + ' ' + minuteStr;
+            }
+
+            // Update the #duration element with the total duration
+            $('#duration').text('( ' + durationStr + ' )');
+        })
+
+        $('#hours, #minutes, #start-time').change(() => {
+            let hours = parseInt($('#hours').val()) || 0; // If value is empty or not a number, default to 0
+            let minutes = parseInt($('#minutes').val()) || 0; // If value is empty or not a number, default to 0
+
+            // Convert hours and minutes to minutes
+            let totalMinutes = hours * 60 + minutes;
+
+            // Get the value of the start time
+            let startTime = $('#start-time').val() || '00:00'; // If value is empty, default to '00:00'
+
+            // Split the start time into hours and minutes
+            let startTimeSplit = startTime.split(':');
+            let startHours = parseInt(startTimeSplit[0]) || 0; // If value is empty or not a number, default to 0
+            let startMinutes = parseInt(startTimeSplit[1]) || 0; // If value is empty or not a number, default to 0
+
+            // Add the total minutes to the start time
+            let endMinutes = startMinutes + totalMinutes;
+            let endHours = startHours + Math.floor(endMinutes / 60);
+            endMinutes %= 60;
+
+            // Format the end time
+            let endTime = ('0' + endHours).slice(-2) + ':' + ('0' + endMinutes).slice(-2);
+
+            // Update the #time-to-from element with the end time
+            $('#time-to-from').text(startTime + ' to ' + endTime);
+        })
+
+        setInterval(updateCurrentTime, 1000)
+    });
+</script>
+<script src="../resources/js/timer.js"></script>
+</body>
+</html>
