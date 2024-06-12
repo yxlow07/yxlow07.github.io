@@ -14,3 +14,35 @@
     border-radius: 5px 0 0 0;
     @apply bg-gray-300 dark:bg-slate-800
 }
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes breathing {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+#countdown-box {
+    animation: breathing 1s ease-in-out infinite;
+}

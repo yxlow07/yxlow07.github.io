@@ -1,3 +1,4 @@
+let countdownStarted = false;
 function saveFormData() {
     Cookies.set('title', $('#title').val());
     Cookies.set('subject', $('#subject').val());
@@ -8,11 +9,10 @@ function saveFormData() {
 }
 
 function updateTitle() {
-    let subject = $('#subject').val();
-    let paper = $('#paper').val();
-    if (subject && paper) {
-        $('#title').text(`${subject} ${paper}`);
-    }
+    let sub = $('#subject option:selected').text();
+    let paper = $('#paper option:selected').text();
+    $('#title').val(sub + " " + paper)
+    $('#public-title').text(sub + " " + paper)
 }
 
 // Update duration display
@@ -21,7 +21,7 @@ function updateDuration() {
     const minutes = parseInt($('#minutes').val()) || 0;
     const hoursText = hours === 1 ? 'hour' : 'hours';
     const minutesText = minutes === 1 ? 'minute' : 'minutes';
-    $('#duration').text(` ( ${hours} ${hoursText} ${minutes} ${minutesText} )`);
+    $('#duration').text(` (${hours} ${hoursText} ${minutes} ${minutesText})`);
 }
 
 function loadFormData() {
@@ -48,7 +48,7 @@ function loadFormData() {
 
     // Update the title based on subject and paper
     updateTitle();
-    
+
     // Update the duration display
     updateDuration();
     calculateStartTime();
@@ -111,15 +111,10 @@ function updateTimeLeft() {
         remainingMinutes = 0;
         remainingSeconds = 0;
         remainingTimeSeconds = 0;
-        let elem = document.getElementById('main');
-        elem.dispatchEvent(new Event('mousedown'));
     }
     
-    // Format the remaining time
-    let timeLeft = ('0' + remainingHours).slice(-2) + ' hours ' + ('0' + remainingMinutes).slice(-2) + ' minutes ' + ('0' + remainingSeconds).slice(-2) + " seconds left";
-    
-    // Update the #time-left element with the remaining time
-    $('#time-left').text(timeLeft);
+    $('#hour-left').text(('0' + remainingHours).slice(-2));
+    $('#min-left').text(('0' + remainingMinutes).slice(-2));
 
     // Calculate the color transition
     let elapsedTime = totalSeconds - remainingTimeSeconds;
@@ -133,14 +128,13 @@ function updateTimeLeft() {
     let color = 'rgb(' + red + ',' + green + ',' + blue + ')';
     
     // Apply the color to the #time-left element
-    $('#time-left').css('color', color);
+    $('#time-left-div').css('color', color);
+
+    if (remainingTimeSeconds === 60 || (remainingTimeSeconds <= 60 && countdownStarted === false && remainingTimeSeconds > 0)) {
+        startCountdown(remainingTimeSeconds);
+    }
 }
 
-document.querySelector("#main").addEventListener("click", function (e) {
-    party.confetti(this, {
-        count: party.variation.range(20, 40),
-    })
-})
 function calculateStartTime() {
     let hours = parseInt($('#hours').val()) || 0; // If value is empty or not a number, default to 0
     let minutes = parseInt($('#minutes').val()) || 0; // If value is empty or not a number, default to 0
@@ -167,32 +161,43 @@ function calculateStartTime() {
     // Update the #time-to-from element with the end time
     $('#time-to-from').text(startTime + ' to ' + endTime);
 }
+function startCountdown(seconds) {
+    let countdown = seconds;
+    countdownStarted = true;
+    $('#countdown-box').removeClass('hidden');
+    $('#countdown-timer').text(countdown);
+
+    console.log("Its happening")
+
+    let countdownInterval = setInterval(() => {
+        countdown--;
+        $('#countdown-timer').text(countdown);
+
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            $('#countdown-box').addClass('hidden');
+            let confetti = setInterval(function () {
+                party.confetti(document.body, {
+                    count: party.variation.range(30, 50),
+                    shapes: ["star", "roundedSquare", "rectangle", "circle", "square", "roundedRectangle"],
+                    size: party.variation.range(0.5, 4),
+                });
+            }, 250);
+            setTimeout(function () {
+                clearInterval(confetti)
+            }, 5000);
+            countdownStarted = false;
+        }
+    }, 1000);
+}
 
 $(document).ready(function () {
     loadFormData();
 
-    $('#title, #subject, #paper, #hours, #minutes, #start-time').on('input change keyup', function() {
-        saveFormData();
-    });
-
-    // Handle changes to subject and paper to update the title
-    $('#subject, #paper').change(function() {
-        updateTitle();
-    });
-
-    // Handle changes to hours and minutes to update the duration
-    $('#hours, #minutes').keyup(function() {
-        updateDuration();
-    });
-
-    $('#paper, #subject').change(() => {
-        let sub = $('#subject option:selected').text();
-        let paper = $('#paper option:selected').text();
-        $('#title').val(sub + " " + paper)
-        $('#public-title').text(sub + " " + paper)
-    });
-
+    $('#title, #subject, #paper, #hours, #minutes, #start-time').on('input change keyup', saveFormData);
+    $('#paper, #subject').change(updateTitle);
     $('#hours, #minutes').keyup(() => {
+        updateDuration();
         let hours = $('#hours').val() || 0;
         let mins = $('#minutes').val() || 0;
 
@@ -212,16 +217,14 @@ $(document).ready(function () {
         }
 
         // Update the #duration element with the total duration
-        $('#duration').text('( ' + durationStr + ' )');
+        $('#duration').text('(' + durationStr + ')');
     })
 
     $('#hours, #minutes, #start-time').change(calculateStartTime)
 
     $('#fullscreen').click(function() {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(function(err) {
-                console.log(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-            });
+            document.documentElement.requestFullscreen();
         } else {
             document.exitFullscreen();
         }
