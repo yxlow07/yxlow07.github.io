@@ -46,3 +46,7 @@
 #countdown-box {
     animation: breathing 1s ease-in-out infinite;
 }
+
+.card-image {
+    max-width: 400px;
+}

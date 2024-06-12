@@ -182,7 +182,7 @@ function startCountdown(seconds) {
                     shapes: ["star", "roundedSquare", "rectangle", "circle", "square", "roundedRectangle"],
                     size: party.variation.range(0.5, 4),
                 });
-            }, 250);
+            }, 500);
             setTimeout(function () {
                 clearInterval(confetti)
             }, 5000);
