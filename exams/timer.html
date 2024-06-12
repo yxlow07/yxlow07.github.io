@@ -30,14 +30,15 @@
         }
     </style>
 </head>
-<body class="h-full flex flex-col bg-gray-100 no-select">
+<body class="h-full flex flex-col bg-gray-100 dark:bg-gray-700 no-select">
+<div class='loading h-2 w-[0%] bg-red-500 transition-all duration-200 absolute z-40 top-0 '></div>
 <div id="countdown-box" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-red-600 text-white bg-opacity-100" style="z-index: 100">
     <div class="text-white text-9xl font-bold" id="countdown-timer">60</div>
 </div>
 
 <!-- ========== MAIN CONTENT ========== -->
 <div class="flex flex-col items-center justify-center flex-grow p-4 text-center h-screen" id="main">
-    <h1 class="text-6xl font-bold mb-4 text-blue-500" id="public-title">Exam Timer</h1>
+    <h1 class="font-bold mb-4" id="public-title">Exam Timer</h1>
     <div class="text-4xl font-bold">
         <p class="my-5"><span id="time-to-from">00:00 to 00:00</span></p>
         <p class="my-5"><span id="duration" class="ml-2">(0 hour 0 minute)</span></p>
@@ -55,7 +56,7 @@
 <div id="settings"
      class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-        <div class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+        <div class="w-full flex text-black flex-col border shadow-sm rounded-xl pointer-events-auto bg-white dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
                 <h3 class="font-bold text-gray-800 dark:text-white">
                     Settings
@@ -134,6 +135,12 @@
                     <input type="time" id="start-time"
                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
+
+                <!-- Color BG -->
+                <div class="mb-4">
+                    <label for="bg-color" class="block text-sm font-medium mb-2 dark:text-white">Background Color picker</label>
+                    <input type="color" class="p-1 h-10 w-full block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700" id="bg-color" value="#F3F4F6" title="Choose your color">
+                </div>
             </div>
             <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
                 <button type="button"
@@ -149,14 +156,14 @@
 
 
 <!-- ========== FOOTER ========== -->
-<footer class="bg-gray-100 text-gray-600 p-4 flex justify-between items-center fixed bottom-0 w-full text-3xl">
-    <button class="text-gray-600" data-hs-overlay="#settings">
+<footer class=" p-4 flex justify-between items-center fixed bottom-0 w-full text-3xl">
+    <button class="" data-hs-overlay="#settings">
         <i class="fa-duotone fa-gear"></i>
     </button>
-    <button id="fullscreen" class="text-gray-600 text-3xl">
+    <button id="fullscreen" class=" text-3xl">
         <i class="fa-duotone fa-expand"></i>
     </button>
-    <div id="current-time" class="text-gray-600 text-3xl font-mono">00:00:00</div>
+    <div id="current-time" class=" text-3xl font-mono">00:00:00</div>
 </footer>
 <!-- ========== END FOOTER ========== -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

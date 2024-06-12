@@ -50,3 +50,11 @@
 .card-image {
     max-width: 400px;
 }
+
+#public-title {
+    font-size: 5vw;
+}
+
+p {
+    font-size: 3vw;
+}
