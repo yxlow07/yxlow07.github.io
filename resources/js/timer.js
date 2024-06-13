@@ -1,4 +1,7 @@
 let countdownStarted = false;
+let examStarted = false;
+let unsafe = false;
+
 function saveFormData() {
     Cookies.set('title', $('#title').val());
     Cookies.set('subject', $('#subject').val());
@@ -7,6 +10,8 @@ function saveFormData() {
     Cookies.set('minutes', $('#minutes').val());
     Cookies.set('startTime', $('#start-time').val());
     Cookies.set('bg', $('#bg-color').val());
+    Cookies.set('disturbing-effects', $('#disturbingEffects').is(':checked'));
+    Cookies.set('pin', $('#pin').val());
 }
 
 function updateTitle() {
@@ -48,6 +53,12 @@ function loadFormData() {
     if (Cookies.get('bg')) {
         $('#bg-color').val(Cookies.get('bg'));
     }
+    if (Cookies.get('disturbing-effects')) {
+        $('#disturbingEffects').prop('checked', Cookies.get('disturbing-effects') === "true");
+    }
+    if (Cookies.get('pin')) {
+        $('#pin').val(Cookies.get('pin'));
+    }
 
     updateDuration();
     calculateStartTime();
@@ -65,77 +76,75 @@ function updateTimeLeft() {
     let hours = parseInt($('#hours').val()) || 0;
     let minutes = parseInt($('#minutes').val()) || 0;
     let seconds = parseInt($('#seconds').val()) || 0;
-    
+
     // Convert hours, minutes, and seconds to total seconds
     let totalSeconds = hours * 3600 + minutes * 60 + seconds;
-    
+
     // Get the value of the start time
-    let startTime = $('#start-time').val() || '00:00:00';
-    
+    let startTimeStr = $('#start-time').val() || '00:00:00';
+
     // Split the start time into hours, minutes, and seconds
-    let startTimeSplit = startTime.split(':');
+    let startTimeSplit = startTimeStr.split(':');
     let startHours = parseInt(startTimeSplit[0]) || 0;
     let startMinutes = parseInt(startTimeSplit[1]) || 0;
     let startSeconds = parseInt(startTimeSplit[2]) || 0;
-    
+
     // Convert start time to total seconds
     let startTimeSeconds = startHours * 3600 + startMinutes * 60 + startSeconds;
-    
-    // Calculate end time in total seconds
-    let endTimeSeconds = startTimeSeconds + totalSeconds;
-    
-    // Convert end time back to hours, minutes, and seconds
-    let endHours = Math.floor(endTimeSeconds / 3600);
-    let endMinutes = Math.floor((endTimeSeconds % 3600) / 60);
-    let endSeconds = endTimeSeconds % 60;
-    
+
     // Get the current time
     let now = new Date();
     let currentHours = now.getHours();
     let currentMinutes = now.getMinutes();
     let currentSeconds = now.getSeconds();
-    
+
     // Convert current time to total seconds
     let currentTimeSeconds = currentHours * 3600 + currentMinutes * 60 + currentSeconds;
-    
-    // Calculate the remaining time in total seconds
-    let remainingTimeSeconds = endTimeSeconds - currentTimeSeconds;
-    
-    // Convert remaining time back to hours, minutes, and seconds
-    let remainingHours = Math.floor(remainingTimeSeconds / 3600);
-    let remainingMinutes = Math.floor((remainingTimeSeconds % 3600) / 60);
-    let remainingSeconds = remainingTimeSeconds % 60;
-    
-    // Adjust remaining time if negative
-    if (remainingTimeSeconds < 0) {
-        remainingHours = 0;
-        remainingMinutes = 0;
-        remainingSeconds = 0;
-        remainingTimeSeconds = 0;
-    }
-    
-    $('#hour-left').text(('0' + remainingHours).slice(-2));
-    $('#min-left').text(('0' + remainingMinutes).slice(-2));
 
-    // Calculate the color transition
+    // Calculate remaining time based on current time and start time
+    let remainingTimeSeconds;
+    if (currentTimeSeconds < startTimeSeconds) {
+        // Calculate time left until start time
+        remainingTimeSeconds = startTimeSeconds - currentTimeSeconds;
+        $('#time-left').text('Time until start:');
+        $('#time-left-div').css('color', 'blue');
+        examStarted = false;
+    } else {
+        // Calculate time left until exam ends
+        remainingTimeSeconds = totalSeconds - (currentTimeSeconds - startTimeSeconds);
+        $('#time-left').text('Time left:');
+        if (!examStarted) {
+            $('#wishes').removeClass('hidden');
+            setTimeout(() => {
+                $('#wishes').addClass('hidden');
+            }, 1)
+            examStarted = true;
+        }
+    }
+
+    $('#hour-left').text(('0' + Math.max(Math.floor(remainingTimeSeconds / 3600), 0)).slice(-2));
+    $('#min-left').text(('0' + Math.max(Math.floor((remainingTimeSeconds % 3600) / 60), 0)).slice(-2));
+
+    // Clamp remaining time to 0 if it goes negative
+    remainingTimeSeconds = Math.max(remainingTimeSeconds, 0);
+
+    // Calculate the color transition (example: from black to red)
     let elapsedTime = totalSeconds - remainingTimeSeconds;
     let percentage = (elapsedTime / totalSeconds);
-
-    // Interpolate color from black to red
     let red = Math.floor(255 * percentage);
     let green = 0;
     let blue = 0;
-    
     let color = 'rgb(' + red + ',' + green + ',' + blue + ')';
-    let loading = $('.loading').css('width', `${percentage*100}%`);
-    
+
     // Apply the color to the #time-left element
     $('#time-left-div').css('color', color);
 
-    if (remainingTimeSeconds === 60 || (remainingTimeSeconds <= 60 && countdownStarted === false && remainingTimeSeconds > 0)) {
+    // Start countdown if less than 1 minute left or if countdown hasn't started yet
+    if ((remainingTimeSeconds === 60 || (remainingTimeSeconds <= 60 && !countdownStarted && remainingTimeSeconds > 0)) && examStarted) {
         startCountdown(remainingTimeSeconds);
     }
 }
+
 
 function calculateStartTime() {
     let hours = parseInt($('#hours').val()) || 0; // If value is empty or not a number, default to 0
@@ -163,6 +172,66 @@ function calculateStartTime() {
     // Update the #time-to-from element with the end time
     $('#time-to-from').text(startTime + ' to ' + endTime);
 }
+
+function randomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+
+    let rHex = r.toString(16).padStart(2, '0');
+    let gHex = g.toString(16).padStart(2, '0');
+    let bHex = b.toString(16).padStart(2, '0');
+
+    // Construct the CSS rgb() color string
+    return `#${rHex}${gHex}${bHex}`;
+}
+
+function showVideo() {
+        $('#vid-end').removeClass('hidden').addClass('block');
+        let video = $('#end').get(0);
+        video.play();
+
+        // Full-screen functionality
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { /* Firefox */
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { /* IE/Edge */
+            video.msRequestFullscreen();
+        }
+
+        video.addEventListener('ended', () => {
+            $('#vid-end').addClass('hidden').removeClass('block');
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
+        })
+}
+
+async function hashCheck() {
+    let pin = $('#pin').val();
+
+    async function calculateHash(input) {
+        const msgUint8 = new TextEncoder().encode(input);                           // encode as (utf-8) Uint8Array
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);         // hash the message
+        const hashArray = Array.from(new Uint8Array(hashBuffer));                   // convert buffer to byte array
+        // convert bytes to hex string
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    let hash = await calculateHash(pin);
+    let precalculated = "4757d468ea4e280dbf687b7ce054797249104aed10588bf4839e6da0e02376af"
+    return hash === precalculated
+}
+
 function startCountdown(seconds) {
     let countdown = seconds;
     countdownStarted = true;
@@ -173,22 +242,49 @@ function startCountdown(seconds) {
 
     let countdownInterval = setInterval(() => {
         countdown--;
-        $('#countdown-timer').text(countdown);
+        let countdownTimer = $('#countdown-timer');
+        let audio = $('#audio')[0];
+        countdownTimer.text(countdown);
+
+        if ($('#disturbingEffects').is(':checked')) {
+            let animations = ['pulse', 'breathe', 'rotate3d', 'bounce', 'swivel', 'fade-in', 'shake', 'floating', 'rotate', 'pulsate', 'slide-in', 'zoom-in', 'flash', 'spin', 'heartbeat'];
+            let randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+            let randomBgColor = randomColor();
+            let textColor = invertColor(randomBgColor, true);
+            countdownTimer.removeClass().addClass(randomAnimation);
+            countdownTimer.addClass('text-9xl').addClass('font-bold');
+            $('#countdown-box').css('background-color', randomBgColor);
+            countdownTimer.css('color', textColor);
+        }
 
         if (countdown <= 0) {
+            countdownTimer.text('End of Exam!!');
             clearInterval(countdownInterval);
-            $('#countdown-box').addClass('hidden');
+            setTimeout(() => {
+                $('#countdown-box').addClass('hidden');
+            }, 5000);
             let confetti = setInterval(function () {
                 party.confetti(document.body, {
                     count: party.variation.range(30, 50),
                     shapes: ["star", "roundedSquare", "rectangle", "circle", "square", "roundedRectangle"],
                     size: party.variation.range(0.5, 4),
                 });
-            }, 500);
+            }, 1500);
+            if (examStarted) {
+                audio.play();
+            }
             setTimeout(function () {
                 clearInterval(confetti)
-            }, 5000);
+            }, 60000);
             countdownStarted = false;
+            hashCheck().then((res) => {
+                    if (res) {
+                        console.log("Video will be played")
+                        setTimeout(showVideo, 150000)
+                    }
+                }
+            )
+            examStarted = false;
         }
     }, 1000);
 }
@@ -237,7 +333,7 @@ function changeBgColor() {
 $(document).ready(function () {
     loadFormData();
 
-    $('#title, #subject, #paper, #hours, #minutes, #start-time, #bg-color').on('input change keyup', saveFormData);
+    $('#title, #subject, #paper, #hours, #minutes, #start-time, #bg-color, #disturbingEffects, #pin').on('input change keyup', saveFormData);
     $('#title').keyup(() => {
         $('#public-title').text($('#title').val());
     })
@@ -280,4 +376,27 @@ $(document).ready(function () {
     setInterval(updateTimeLeft, 1000)
 
     $('#bg-color').change(changeBgColor);
+    $('#current-date').text(() => {
+        let date = new Date();
+        let options = { timeZone: 'Asia/Kuala_Lumpur', day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('en-GB', options);
+    })
+
+    $('#pin').keyup(async () => {
+        let pin = $('#pin').val();
+
+        async function calculateHash(input) {
+            const msgUint8 = new TextEncoder().encode(input);                           // encode as (utf-8) Uint8Array
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);         // hash the message
+            const hashArray = Array.from(new Uint8Array(hashBuffer));                   // convert buffer to byte array
+            // convert bytes to hex string
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        let hash = await calculateHash(pin);
+        let precalculated = "4757d468ea4e280dbf687b7ce054797249104aed10588bf4839e6da0e02376af"
+        if (hash === precalculated) {
+            unsafe = true;
+        }
+    })
 });
