@@ -117,7 +117,7 @@ function updateTimeLeft() {
             $('#wishes').removeClass('hidden');
             setTimeout(() => {
                 $('#wishes').addClass('hidden');
-            }, 1)
+            }, 3000)
             examStarted = true;
         }
     }
