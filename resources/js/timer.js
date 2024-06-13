@@ -28,7 +28,6 @@ function updateDuration() {
 function loadFormData() {
     if (Cookies.get('title')) {
         $('#title').val(Cookies.get('title'));
-        $('#public-title').text(Cookies.get('title'));
     }
     if (Cookies.get('subject')) {
         $('#subject').val(Cookies.get('subject')).trigger('change');
@@ -50,14 +49,10 @@ function loadFormData() {
         $('#bg-color').val(Cookies.get('bg'));
     }
 
-    // Update the title based on subject and paper
-    updateTitle();
-
-    // Update the duration display
     updateDuration();
     calculateStartTime();
-
     changeBgColor();
+    $('#public-title').text(Cookies.get('title'));
 }
 
 function updateCurrentTime() {
@@ -243,6 +238,9 @@ $(document).ready(function () {
     loadFormData();
 
     $('#title, #subject, #paper, #hours, #minutes, #start-time, #bg-color').on('input change keyup', saveFormData);
+    $('#title').keyup(() => {
+        $('#public-title').text($('#title').val());
+    })
     $('#paper, #subject').change(updateTitle);
     $('#hours, #minutes').keyup(() => {
         updateDuration();
