@@ -116,8 +116,8 @@ function updateTimeLeft() {
         if (!examStarted) {
             $('#wishes').removeClass('hidden');
             setTimeout(() => {
-                $('#wishes').addClass('hidden');
-            }, 3000)
+                $('#wishes').remove();
+            }, 2000)
             examStarted = true;
         }
     }
@@ -258,6 +258,7 @@ function startCountdown(seconds) {
         }
 
         if (countdown <= 0) {
+            $('#wishes').addClass('hidden');
             countdownTimer.text('End of Exam!!');
             clearInterval(countdownInterval);
             setTimeout(() => {
