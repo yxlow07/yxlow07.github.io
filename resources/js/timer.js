@@ -271,7 +271,7 @@ function startCountdown(seconds) {
                     size: party.variation.range(0.5, 4),
                 });
             }, 1500);
-            if (examStarted && $('#disturbingEffects').is(':checked')) {
+            if (examStarted) {
                 audio.play();
             }
             setTimeout(function () {
