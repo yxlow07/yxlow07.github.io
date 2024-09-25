@@ -3,30 +3,42 @@ const spreadsheetId = '1qc1R9nMFnwVtIm1pFsdEh_sYPu5hCCogmbzzdlhLw8A';
 const range = 'Sheet1!B2:D52'; // Specify the range of data
 const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
 
+let tableData = {};
+
 let result = {};
 let currentStream = null;
+
+function renderTable() {
+    let tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+
+    for (const [subject, value] of Object.entries(tableData)) {
+        let marks = value['marks'] === null ? '' : `value="${value['marks']}"`;
+        let input = `<input type="number" class="marks form-control" id="${subject}" ${marks} min="1" max="100">`;
+        let rowData = `<tr><td>${subject}</td><td class="weightage">${value['weightage']}</td><td>${input}</td></tr>`;
+        tbody.innerHTML += rowData;
+    }
+
+    updateMarksEventListener();
+}
 
 function addRow() {
     let subject = prompt('Enter subject name:');
     let weightage = prompt('Enter weightage:');
-    let input = `<input type="number" id="${subject}" min="1" max="100">`;
-    let row = `<tr><td>${subject}</td><td>${weightage}</td><td>${input}</td></tr>`;
     if (subject && weightage) {
-        document.getElementById('tbody').innerHTML += row;
+        tableData[subject] = { weightage: weightage, marks: null };
+        renderTable();
     }
 }
 
-function updateTable(streamSelect) {
+function updateStream(streamSelect) {
     let selectedStream = streamSelect.value;
-    document.getElementById('tbody').innerHTML = '';
-
+    tableData = [];
     // Create a table for user to input the marks and inject into the #tbody
     for (const [subject, weightage] of Object.entries(result[selectedStream])) {
-        let input = `<input type="number" id="${subject}" min="1" max="100" class="marks form-control">`;
-        let row = `<tr><td>${subject}</td><td class="weightage">${weightage}</td><td>${input}</td></tr>`;
-
-        document.getElementById('tbody').innerHTML += row;
+        tableData[subject] = { weightage: weightage, marks: null };
     }
+    renderTable();
 }
 
 function getAllTableDataAndCalculate() {
@@ -40,7 +52,13 @@ function getAllTableDataAndCalculate() {
 
     for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
-        let marks = row.getElementsByTagName('input')[0].value || null;
+        let marks = row.getElementsByTagName('input')[0].value || null;  
+        let subject = row.getElementsByTagName('td')[0].textContent || "";      
+
+        if (tableData[subject] !== undefined) {
+            tableData[subject]['marks'] = marks;
+        }
+
         let weightage = parseInt(row.getElementsByClassName('weightage')[0].textContent);
         if (marks !== null) {
             totalMarksWithPemberat += marks * weightage;
@@ -65,8 +83,21 @@ function calculateTarget(purata, target, totalPemberat, ignoredPemberat) {
     let total = totalPemberat + ignoredPemberat;
     let targetSum = total * target;
     let targetPurata = (targetSum - purata * totalPemberat) / ignoredPemberat;
+    let displayBadge = document.getElementById('target-badge');
+    displayBadge.classList.remove('btn-success');
+    displayBadge.classList.remove('btn-danger');
+    displayBadge.classList.remove('btn-warning');
 
-    document.getElementById('targetpurata').innerHTML = targetPurata.toFixed(2);
+    // Changing colors based on target
+    if (targetPurata > 100) {
+        displayBadge.classList.add('btn-danger');
+    } else if (targetPurata > 90) {
+        displayBadge.classList.add('btn-warning');
+    } else {
+        displayBadge.classList.add('btn-success');
+    }
+
+    document.getElementById('targetpurata').innerHTML = Math.max(0,targetPurata.toFixed(2));
 }
 
 fetch(url)
@@ -96,13 +127,7 @@ fetch(url)
         });
 
         streamSelect.addEventListener('change', () => {
-            updateTable(streamSelect);
-            let elements = document.getElementsByClassName('marks');
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].addEventListener('keyup', () => {
-                    getAllTableDataAndCalculate();
-                });
-            }
+            updateStream(streamSelect);
         });
     })
     .catch(error => {
@@ -110,11 +135,25 @@ fetch(url)
         alert("Error occured, contact admin");
     });
 
-document.getElementById('addRow').addEventListener('click', () => {
+document.getElementById('addRow').addEventListener('click', (e) => {
+    e.preventDefault();
     addRow();
 });
-document.getElementById('target').addEventListener('keyup', () => {
+
+function calcTargetEvent() {
     let data = getAllTableDataAndCalculate();
     let target = document.getElementById('target').value;
     calculateTarget(data["purata"] || 0, target, data["totalPemberat"], data["ignoredPemberat"]);
-});
+}
+
+// Combine both event listeners into one
+document.getElementById('target').addEventListener('keyup', calcTargetEvent);
+document.getElementById('calculate').addEventListener('click', calcTargetEvent);
+
+
+function updateMarksEventListener() {
+    let elements = document.getElementsByClassName('marks');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('keyup', calcTargetEvent);
+    }
+}

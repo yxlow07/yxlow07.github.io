@@ -27,17 +27,19 @@
 <body class="h-100 text-center text-white bg-dark">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
-            <div class="text-black fw-bolder d-flex">
-              <img src="./assets/purataCalculator.ico" alt="Icon" width="30px" class="d-inline-block align-text-top" />
-              Purata Calculator
-            </div>
+            <a href="http://localhost:4000/" class="text-decoration-none">
+                <div class="text-black fw-bolder d-flex">
+                    <img src="./assets/purataCalculator.ico" alt="Icon" width="30px" class="d-inline-block align-text-top" />
+                    Purata Calculator
+                </div>
+            </a>
           </div>
         </nav>            
         
     <div class="container p-5">
         <div class="align-content-md-center mb-3 text-capitalize fw-bolder text-wrap fs-3">
             <span class="badge btn-success btn" id="purata-badge">Your Purata: <span id="purata"></span></span>
-            <span class="badge btn-success btn" id="purata-badge">The Rest: <span id="targetpurata"></span></span>              
+            <span class="badge btn-success btn" id="target-badge">The Rest: <span id="targetpurata"></span></span>              
         </div>
         <div class="row">
             <div class="col">
@@ -63,6 +65,7 @@
         </table>
 
         <button id="addRow" class="btn btn-info mb-4">Add Row</button>
+        <button id="calculate" class="btn btn-success mb-4">Calculate!</button>
     </div>
 
     <script src="assets/js/purata-calculator.js"></script>
