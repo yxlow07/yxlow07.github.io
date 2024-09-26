@@ -12,12 +12,56 @@ let tableData = {};
 let result = {};
 let currentStream = null;
 
+function sanitizeAndStringify(obj) {
+    const sanitizedObj = {};
+    
+    // Loop over the object keys
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const validKey = String(key); // Ensure the key is a string
+            sanitizedObj[validKey] = obj[key]; // Copy the value to the sanitized object
+        }
+    }
+    
+    // Now stringify the sanitized object
+    return JSON.stringify(sanitizedObj);
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);  // Trim leading spaces
+        
+        if (c.indexOf(nameEQ) === 0) {
+            const cookieValue = decodeURIComponent(c.substring(nameEQ.length, c.length));
+            try {
+                return JSON.parse(cookieValue);
+            } catch (e) {
+                return cookieValue;
+            }
+        }
+    }
+    return null;
+}
+
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    const val = typeof value === 'object' ? sanitizeAndStringify(value) : value;
+    document.cookie = name + "=" + encodeURIComponent(val) + ";" + expires + ";path=/";
+}
+
 function renderTable() {
     let tbody = document.getElementById('tbody');
     tbody.innerHTML = '';
 
     for (const [subject, value] of Object.entries(tableData)) {
-        let marks = value['marks'] === null ? '' : `value="${value['marks']}"`;
+        let marks = value['marks'] === -1 ? '' : `value="${value['marks']}"`;
         let input = `<input type="number" class="marks form-control" id="${subject}" ${marks} min="1" max="100">`;
         let rowData = `<tr><td>${subject}</td><td class="weightage">${value['weightage']}</td><td>${input}</td></tr>`;
         tbody.innerHTML += rowData;
@@ -30,18 +74,34 @@ function addRow() {
     let subject = prompt('Enter subject name:');
     let weightage = prompt('Enter weightage:');
     if (subject && weightage) {
-        tableData[subject] = { weightage: weightage, marks: null };
+        tableData[subject] = { weightage: weightage, marks: -1 };
         renderTable();
     }
 }
 
-function updateStream(streamSelect) {
-    let selectedStream = streamSelect.value;
-    tableData = [];
+function updateStream(streamSelect, providedStream=false, provided="") {
+    let selectedStream = providedStream ? provided : streamSelect.value;
+    setCookie('stream', selectedStream, 365*5);
+    
+    let seen = [];
+    console.log(tableData);
+    
     // Create a table for user to input the marks and inject into the #tbody
     for (const [subject, weightage] of Object.entries(result[selectedStream])) {
-        tableData[subject] = { weightage: weightage, marks: null };
+        if (tableData[subject] != undefined) {
+            seen.push(subject);
+        } else {
+            tableData[subject] = { weightage: weightage, marks: -1 };
+            seen.push(subject);
+        }
     }
+
+    for (const subject of Object.keys(tableData)) {
+        if (!seen.includes(subject)) {
+            delete tableData[subject];
+        }
+    }
+    
     renderTable();
 }
 
@@ -56,7 +116,7 @@ function getAllTableDataAndCalculate() {
 
     for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
-        let marks = row.getElementsByTagName('input')[0].value || null;  
+        let marks = row.getElementsByTagName('input')[0].value || -1;  
         let subject = row.getElementsByTagName('td')[0].textContent || "";      
 
         if (tableData[subject] !== undefined) {
@@ -64,7 +124,7 @@ function getAllTableDataAndCalculate() {
         }
 
         let weightage = parseInt(row.getElementsByClassName('weightage')[0].textContent);
-        if (marks !== null) {
+        if (marks !== -1 && marks !== null) {
             totalMarksWithPemberat += marks * weightage;
             totalPemberat += weightage;
         } else {
@@ -79,6 +139,7 @@ function getAllTableDataAndCalculate() {
         purata = 0.00;
     }
     document.getElementById('purata').innerHTML = purata.toFixed(2);
+    setCookie('tableData', tableData, 10);
 
     return { totalPemberat: totalPemberat, ignoredPemberat: ignoredPemberat, purata: purata };
 }
@@ -133,10 +194,18 @@ fetch(url)
         streamSelect.addEventListener('change', () => {
             updateStream(streamSelect);
         });
+
+        tableData = getCookie('tableData') || {};
+        let stream = getCookie('stream') || null; 
+
+        if (stream) {
+            streamSelect.value = stream;
+            updateStream(streamSelect, true, stream);
+        }
     })
     .catch(error => {
         console.error('Error fetching data:', error);
-        alert("Error occured, contact admin");
+        // alert("Error occured, contact admin");
     });
 
 document.getElementById('addRow').addEventListener('click', (e) => {
