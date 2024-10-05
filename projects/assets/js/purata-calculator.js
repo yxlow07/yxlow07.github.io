@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyCrICNWoviyvvrZllYP-UPNwPviCH3K4XE';
 const spreadsheetId = '1qc1R9nMFnwVtIm1pFsdEh_sYPu5hCCogmbzzdlhLw8A';
-const range = 'Sheet1!B2:D52'; // Specify the range of data
+const range = 'Sheet1!B2:D100'; // Specify the range of data
 const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
 
 // Bootstrap 5 new requirement to init tooltips
