@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hover-effect:hover {
+            filter: brightness(0.9);
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        .hover-effect:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="font-bold text-xl">Symptom Searcher</div>
+            <div class="w-full max-w-lg">
+                <input type="text" placeholder="Enter your symptoms..."
+                    class="w-full p-2 rounded bg-gray-700 focus:outline-none focus:bg-gray-600">
+            </div>
+            <div>Profile</div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex flex-col items-center justify-center">
+        <div class="container mx-auto text-left mb-8">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Symptom Searcher</h1>
+            <p class="text-gray-600">Search for your symptoms and find out what you might be suffering from. To get
+                started, select your symptoms from the grid.</p>
+            <!-- Add on a breadcrumb navigation -->
+            <nav class="flex items-center mt-4">
+                <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Step 1</a>
+                <span class="mx-2">></span>
+                <span class="text-gray-500">Step 2</span>
+                <span class="mx-2">></span>
+                <span class="text-gray-500">Step 3</span>
+                <span class="mx-2">></span>
+                <span class="text-gray-500">Step 4</span>
+                <span class="mx-2">></span>
+                <span class="text-gray-500">Step 5</span>
+            </nav>
+        </div>
+        <!-- Current symptoms -->
+        <div class="container mx-auto flex flex-wrap gap-4 p-4">
+            <!-- Generated pills -->
+
+            <!-- Generated pills -->
+        </div>
+        <div class="container mx-auto grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4" id="grid">
+            <!-- Generated cards -->
+        </div>
+        <!-- Add a next button -->
+        <div class="container mx-auto flex justify-end">
+            <a href="#" class="bg-green-500 text-white p-4 px-5 rounded-lg shadow hover-effect">Next</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+                <h4 class="font-semibold mb-2">Section 1</h4>
+                <ul>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 1</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 2</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-2">Section 2</h4>
+                <ul>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 3</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 4</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-2">Section 3</h4>
+                <ul>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 5</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 6</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-2">Section 4</h4>
+                <ul>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 7</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Link 8</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const current_symptoms = ["Cough", "Eczema", "Heart pain", "Migraine"];
+        const categories = {
+            "Constitutional": {
+                "Fever": false,
+                "Fatigue": false,
+                "Weight loss or gain": false,
+                "Chills": false,
+                "Night sweats": false,
+                "Weakness": false,
+                "Generalized malaise": false,
+            },
+            "Eyes": {
+                "Blurred vision": false,
+                "Eye pain": false,
+                "Redness": false,
+                "Itching": false,
+                "Watery eyes": false,
+                "Sensitivity to light (photophobia)": false,
+                "Double vision (diplopia)": false,
+            },
+            "Face": {
+                "Swelling (facial edema)": false,
+                "Pain in the jaw or cheeks": false,
+                "Drooping on one side of the face (facial palsy)": false,
+                "Numbness or tingling": false,
+                "Rashes or discoloration": false,
+            },
+            "Nose": {
+                "Nasal congestion": false,
+                "Runny nose (rhinorrhea)": false,
+                "Nosebleeds (epistaxis)": false,
+                "Loss of smell (anosmia)": false,
+                "Postnasal drip": false,
+                "Sinus pain or pressure": false,
+            },
+            "Mouth": {
+                "Sore throat": false,
+                "Ulcers or sores in the mouth": false,
+                "Dry mouth (xerostomia)": false,
+                "Bleeding gums": false,
+                "Difficulty swallowing (dysphagia)": false,
+                "Bad breath (halitosis)": false,
+            },
+            "Cardiovascular": {
+                "Chest pain": false,
+                "Palpitations (irregular or rapid heartbeat)": false,
+                "Shortness of breath on exertion": false,
+                "Swelling in the legs or ankles (edema)": false,
+                "Dizziness or lightheadedness": false,
+                "Fainting (syncope)": false,
+            },
+            "Respiratory": {
+                "Cough (dry or productive)": false,
+                "Shortness of breath (dyspnea)": false,
+                "Wheezing": false,
+                "Chest tightness": false,
+                "Coughing up blood (hemoptysis)": false,
+                "Frequent upper respiratory infections": false,
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const gridContainer = document.querySelector("#grid");
+            const pillsContainer = gridContainer.previousElementSibling;
+
+            const renderPill = (symptom) => {
+            const pill = document.createElement("div");
+            pill.className = "bg-gray-200 text-gray-800 p-2 rounded flex items-center";
+            pill.innerHTML = `
+                <span>${symptom}</span>
+                <button class="ml-2 delete-btn">&times;</button>
+            `;
+            pill.querySelector(".delete-btn").addEventListener("click", () => {
+                const index = current_symptoms.indexOf(symptom);
+                if (index > -1) {
+                current_symptoms.splice(index, 1);
+                }
+                pill.remove();
+            });
+            pillsContainer.appendChild(pill);
+            };
+
+            const renderGrid = (items, isCategory = true) => {
+            gridContainer.innerHTML = ''; // Clear the grid container
+
+            if (!isCategory) {
+                const backButton = document.createElement("button");
+                backButton.className = "bg-red-500 text-white p-4 rounded shadow hover-effect";
+                backButton.textContent = "Back";
+                backButton.addEventListener("click", () => renderGrid(Object.keys(categories)));
+                gridContainer.appendChild(backButton);
+            }
+
+            items.forEach(item => {
+                const element = document.createElement("div");
+                element.className = isCategory ? "bg-blue-500 text-white p-8 rounded shadow text-center hover-effect" : "bg-gray-200 text-gray-800 p-4 rounded shadow text-center hover-effect align-middle";
+                element.textContent = item;
+                element.dataset.item = item;
+                element.addEventListener("click", (e) => {
+                const item = e.target.dataset.item;
+                if (isCategory) {
+                    renderGrid(Object.keys(categories[item]), false);
+                } else {
+                    if (!current_symptoms.includes(item)) {
+                    current_symptoms.push(item);
+                    renderPill(item);
+                    }
+                }
+                });
+                gridContainer.appendChild(element);
+            });
+            };
+
+            renderGrid(Object.keys(categories));
+
+            current_symptoms.forEach(symptom => renderPill(symptom));
+        });
+    </script>
+</body>
+
+</html>

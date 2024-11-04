@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Search Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+    <!-- Search Bar with Search Button and Modal Trigger -->
+    <div class="flex justify-center items-center my-6 space-x-4">
+        <div class="relative w-full sm:w-2/3 lg:w-1/2">
+            <input type="text" placeholder="Search symptoms..." class="w-full p-3 rounded-md border border-gray-300 pl-10 pr-12">
+            <svg class="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l6-6m0 0a9 9 0 111.415-1.415A9 9 0 0110 14z"/>
+            </svg>
+            <button class="absolute top-1/2 right-3 transform -translate-y-1/2 bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <button onclick="toggleModal()" class="bg-green-600 text-white px-4 py-3 rounded-md hover:bg-green-700">Select Symptoms</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="categoryModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-3xl p-6 overflow-auto h-3/4">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold">Select Symptoms</h2>
+                <button onclick="toggleModal()" class="text-gray-600 hover:text-gray-800">&times;</button>
+            </div>
+            <!-- Category Panels within Modal -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Example Category Panel -->
+                <!-- Category Panels with Checkboxes -->
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Constitutional</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Fever</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Fatigue</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Weight loss or gain</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Chills</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Night sweats</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Weakness</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Generalized malaise</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Eyes</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Blurred vision</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Eye pain</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Redness</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Itching</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Watery eyes</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Sensitivity to light (photophobia)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Double vision (diplopia)</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Face</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Swelling (facial edema)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Pain in the jaw or cheeks</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Drooping on one side of the face (facial palsy)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Numbness or tingling</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Rashes or discoloration</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Nose</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Nasal congestion</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Runny nose (rhinorrhea)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Nosebleeds (epistaxis)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Loss of smell (anosmia)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Postnasal drip</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Sinus pain or pressure</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Mouth</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Sore throat</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Ulcers or sores in the mouth</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Dry mouth (xerostomia)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Bleeding gums</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Difficulty swallowing (dysphagia)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Bad breath (halitosis)</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Cardiovascular</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Chest pain</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Palpitations (irregular or rapid heartbeat)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Shortness of breath on exertion</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Swelling in the legs or ankles (edema)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Dizziness or lightheadedness</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Fainting (syncope)</span></label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h2 class="text-lg font-semibold mb-3">Respiratory</h2>
+                    <div class="space-y-2">
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Cough (dry or productive)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Shortness of breath (dyspnea)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Wheezing</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Chest tightness</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Coughing up blood (hemoptysis)</span></label>
+                        <label class="flex items-center"><input type="checkbox" class="form-checkbox text-blue-600"> <span class="ml-2">Frequent upper respiratory infections</span></label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Modal Footer -->
+            <div class="mt-6 flex justify-end">
+                <button onclick="toggleModal()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('categoryModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+    </script>
+</body>
+</html>
