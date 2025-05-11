@@ -12,7 +12,7 @@ description = "A web application built using a custom MVC framework in PHP, desi
 tags = ["PHP", "MVC", "SQL", "Tailwindcss"]
 image = "maker-kehadiran.png"
 showSource = true
-sourceUrl = "https://github.com/yourusername/cp-trainer"
+sourceUrl = "https://github.com/yxlow07/maker-kehadiran/"
 showDemo = false
 
 [[projects]]

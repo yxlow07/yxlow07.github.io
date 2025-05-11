@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }} | {{ .Site.Title }}</title>
-    <meta name="description" content="{{.Site.Params.description}}">
-    <link rel="icon" href="{{ .Site.Params.favicon }}" type="image/png">
-    {{ partial "css.html" . }}
-</head>
-<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
-    {{ partial "header.html" . }}
+{{ define "main" }}
+  <main>
     {{ partial "hero.html" . }}
     {{ partial "about.html" . }}
     {{ partial "education.html" . }}
     {{ partial "certification.html" . }}
     {{ partial "projects.html" . }}
     {{ partial "achievements.html" . }}
+    {{ partial "blogs.html" . }}
     {{ partial "contact.html" . }}
-    {{ partial "footer.html" . }}
-    <main>
-        {{ block "main" . }}{{ end }}
-    </main>
-</body>
-</html>
+  </main>
+{{ end }}

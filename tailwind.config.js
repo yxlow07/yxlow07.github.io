@@ -1,6 +1,9 @@
 export default {content: [
-    './**/*.html',
-    './layouts/**/*.{html,css,js}',
+    './**/*.{html,css,js,md}',
+    './layouts/**/*.{html,css,js,md}',
+  ],
+  plugins: [
+    require('@tailwindcss/typography'),
   ],
   theme: {
     extend: {

@@ -1,0 +1,118 @@
+{{ define "main" }}
+<main class="bg-white">
+  <!-- Hero section with featured image -->
+  <div class="relative h-[40vh] min-h-[300px] w-full bg-slate-900">
+    {{ if .Params.image }}
+    <img
+      src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
+      alt="{{ .Title }}"
+      class="absolute inset-0 h-full w-full object-cover opacity-60"
+    />
+    {{ end }}
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+    <div class="container relative mx-auto flex h-full flex-col items-center justify-end px-4 pb-16 text-center md:px-8">
+      <a
+        href="{{ $.Site.BaseURL }}/blog"
+        class="mb-8 inline-flex items-center self-start rounded-full bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+      >
+        <i class="fa-solid fa-arrow-left mr-2"></i>
+        Back to all posts
+      </a>
+      <h1 class="max-w-4xl text-3xl font-bold text-white md:text-5xl">
+        {{ .Title }}
+      </h1>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-white/80">
+        {{ if .Date }}
+        <div class="flex items-center">
+          <i class="fa-solid fa-calendar mr-2"></i>
+          {{ .Date.Format "January 2, 2006" }}
+        </div>
+        {{ end }}
+        <div class="flex items-center">
+          <i class="fa-solid fa-clock mr-2"></i>
+          {{ .ReadingTime }} min read
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog content -->
+  <div class="container mx-auto px-4 py-12 md:px-8">
+    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-[1fr_250px]">
+      <!-- Main content -->
+      <div>
+        <div class="blog-content text-slate-800 leading-relaxed space-y-6">
+          {{ .Content }}
+        </div>
+        <!-- Tags -->
+        {{ if .Params.tags }}
+        <div class="mt-12">
+          <h3 class="mb-4 text-lg font-semibold">Tags</h3>
+          <div class="flex flex-wrap gap-2">
+            {{ range .Params.tags }}
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">
+              {{ . }}
+            </span>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        <!-- Author info (mobile only) -->
+        {{ if .Params.author }}
+        <div class="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-6 md:hidden">
+          <div class="flex items-center">
+            {{ if .Params.authorImage }}
+            <img
+              src="{{ $.Site.Params.staticImagePath }}/{{ .Params.authorImage }}"
+              alt="{{ .Params.author }}"
+              class="h-12 w-12 rounded-full object-cover"
+            />
+            {{ end }}
+            <div class="ml-4">
+              <div class="text-sm text-slate-500">Written by</div>
+              <div class="font-semibold">{{ .Params.author }}</div>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="hidden space-y-8 md:block">
+        <!-- Author info -->
+        {{ if .Params.author }}
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <h3 class="mb-4 text-lg font-semibold">Authored By:</h3>
+          <div class="flex items-center">
+            {{ if .Params.authorImage }}
+            <img
+              src="{{ $.Site.Params.staticImagePath }}/{{ .Params.authorImage }}"
+              alt="{{ .Params.author }}"
+              class="h-12 w-12 rounded-full object-cover"
+            />
+            {{ end }}
+            <div class="ml-4 font-semibold">{{ .Params.author }}</div>
+          </div>
+        </div>
+        {{ end }}
+
+        <!-- Share and bookmark -->
+<!--        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">-->
+<!--          <h3 class="mb-4 text-lg font-semibold">Share this post</h3>-->
+<!--          <div class="flex items-center gap-4">-->
+<!--            <button class="flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-700">-->
+<!--              <i class="fa-solid fa-share mr-2"></i>-->
+<!--              Share-->
+<!--            </button>-->
+<!--            <button class="flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-slate-50">-->
+<!--              <i class="fa-solid fa-bookmark mr-2"></i>-->
+<!--              Save-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+</main>
+{{ end }}

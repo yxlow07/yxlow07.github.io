@@ -4,3 +4,15 @@ i {
     font-style: normal;
     @apply font-mono
 }
+
+.blog-content {
+    h1 {
+        @apply text-3xl font-bold mb-4
+    }
+    h2 {
+        @apply text-2xl font-bold mb-4
+    }
+    ul {
+        @apply list-disc list-inside mb-4
+    }
+}
