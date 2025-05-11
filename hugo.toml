@@ -22,7 +22,7 @@ title = "Yu Xuan's Portfolio"
     inquiryLink = "mailto:yuxuanlow013@gmail.com?subject=Mentorship%20Inquiry"
 
 [permalinks]
-  blog = "/blog/:contentbasename/"
+  blog = "/blog/:filename/"
 
 [taxonomies]
     tag = "tags"
