@@ -8,18 +8,18 @@
 
   <div class="container relative mx-auto px-4 md:px-8">
     <div class="mx-auto max-w-3xl text-center">
-      <div class="inline-flex animate-fade-in-up items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm text-blue-400 backdrop-blur-sm">
-        <!-- TrophyIcon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
-        <span>{{ $.Site.Data.hero.achievement }}</span>
-      </div>
       <div class="flex mt-6 justify-center animate-fade-in-up">
-        <img src="/images/profile.png" alt="Profile picture" class="h-32 w-32 rounded-full border-4 border-blue-500 shadow-lg object-cover" />
+        <img src="/images/profile.png" alt="Profile picture" class="h-48 w-48 rounded-full shadow-lg object-cover" />
       </div>
       <h1 class="animate-fade-in-up bg-gradient-to-r leading-snug from-white via-blue-100 to-white bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-6xl [text-wrap:balance] dark:text-white">
         {{ $.Site.Data.hero.headline }}
       </h1>
-      <p class="mt-6 animate-fade-in-up text-lg text-blue-100">{{ .Site.Data.hero.description }}</p>
+      <div class="mt-1 inline-flex animate-fade-in-up items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm text-blue-400 backdrop-blur-sm">
+        <!-- TrophyIcon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        <span>{{ $.Site.Data.hero.achievement }}</span>
+      </div>
+      <p class="mt-3 animate-fade-in-up text-lg text-blue-100">{{ .Site.Data.hero.description }}</p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <!--   Download resume     -->
         <a href="{{ $.Site.Data.hero.cvLink }}" class="group relative inline-flex animate-fade-in-up items-center overflow-hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
