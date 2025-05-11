@@ -1,0 +1,44 @@
+name = "Portfolio Site"
+homepage = "https://yxlow07.github.io/"
+languageCode = "en-us"
+title = "Yu Xuan's Portfolio"
+
+[params]
+  staticPath = ""
+  staticImagePath = "/images"
+  assetPath = ""
+  favicon = "images/codeforces.png"
+  [params.social]
+    github = "https://github.com/yxlow07"
+    linkedin = "https://linkedin.com/in/low-yu-xuan/"
+    email = "yuxuanlow013@gmail.com"
+    instagram = "https://www.instagram.com/_yu_xuan_07/"
+  [params.contact]
+    formAction = "https://formspree.io/f/mrbqlvkj"
+  [params.contact.mentorship]
+    title = "Coding Mentorship"
+    description = "I offer mentorship for aspiring competitive programmers. Whether you're just starting or looking to improve your skills, I can help guide your learning journey."
+    buttonText = "Inquire about Mentorship"
+    inquiryLink = "mailto:yuxuanlow013@gmail.com?subject=Mentorship%20Inquiry"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "#about"
+    weight = 10
+#  [[menu.main]]
+#    name = "Skills"
+#    url = "#skills"
+#    weight = 20
+  [[menu.main]]
+    name = "Projects"
+    url = "#projects"
+    weight = 30
+  [[menu.main]]
+    name = "Achievements"
+    url = "#achievements"
+    weight = 40
+  [[menu.main]]
+    name = "Contact"
+    url = "#contact"
+    weight = 50

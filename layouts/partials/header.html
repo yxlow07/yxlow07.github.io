@@ -1,0 +1,72 @@
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+  <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+    <div class="flex items-center gap-2">
+      <!-- CodeIcon SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-blue-600"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      <span class="text-xl font-bold">{{ .Site.Params.logoText | default .Site.Title }}</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:block">
+      <ul class="flex items-center space-x-8">
+        {{ range .Site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}" class="text-sm font-medium hover:text-blue-600">
+            {{ .Name }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="inline-flex items-center justify-center md:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+      <!-- MenuIcon SVG -->
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <!-- XIcon SVG (hidden by default) -->
+      <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-menu" class="hidden border-b border-slate-200 bg-white md:hidden">
+    <ul class="container mx-auto flex flex-col px-4 py-4">
+      {{ range .Site.Menus.main }}
+      <li>
+        <a href="{{ .URL }}" class="block py-2 text-sm font-medium hover:text-blue-600 mobile-nav-link">
+          {{ .Name }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const xIcon = document.getElementById('x-icon');
+
+    if (menuButton && mobileMenu && menuIcon && xIcon) {
+      menuButton.addEventListener('click', () => {
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+        menuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        xIcon.classList.toggle('hidden');
+      });
+
+      const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          xIcon.classList.add('hidden');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,27 @@
+[[competitions]]
+name = "Codeforces"
+achievement = "Specialist (1429 rating)"
+year = "Current"
+description = "Reached Specialist Rank. Participated in various contests and solved problems in competitive programming."
+icon = "fa-duotone fa-solid fa-code"
+
+[[competitions]]
+name = "Malaysia Artificial Intelligence Olympiad (MAIO)"
+achievement = "Gold Medal"
+year = "2025"
+description = "Solve problem regarding the use of artificial intelligence such as image processing, natural language processing, etc."
+icon = "fa-duotone fa-solid fa-microchip-ai"
+
+[[competitions]]
+name = "Malaysia Computing Olympiad (MCO)"
+achievement = "Silver Medal"
+year = "2025"
+description = "Solved problems involving dynamic connectivity, fibonacci sequences and dynamic programming."
+icon = "fa-duotone fa-solid fa-award"
+
+[[competitions]]
+name = "California Informatics Competition (CALICO)"
+achievement = "Silver Medal"
+year = "Fall 2024"
+description = "Solved 5+ problems regarding euler tour, binary search and dynamic programming."
+icon = "fa-duotone fa-solid fa-award"

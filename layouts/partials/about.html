@@ -1,0 +1,37 @@
+<section id="about" class="bg-white py-16 md:py-24">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        {{ $.Site.Data.about.title }}
+      </h2>
+    </div>
+    <div class="mt-16">
+      <div class="rounded-lg border border-slate-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 shadow-sm">
+        <div class="flex items-center">
+          <div class="inline-flex h-8 w-8 items-center justify-center text-amber-500">
+            <i class="{{ $.Site.Data.about.current.icon }}" style="font-size: 1.75rem; display: flex; align-items: center; justify-content: center;"></i>
+          </div>
+          <h3 class="ml-4 text-xl font-semibold">
+            {{ $.Site.Data.about.current.title }}
+          </h3>
+        </div>
+        <p class="mt-4 text-slate-700">
+          {{ $.Site.Data.about.current.description | safeHTML }}
+        </p>
+      </div>
+    </div>
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {{ range $.Site.Data.about.features }}
+      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <i class="{{ .icon }}" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+        </div>
+        <h3 class="mb-2 text-xl font-semibold">{{ .title }}</h3>
+        <p class="text-slate-600">
+          {{ .description | safeHTML }}
+        </p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

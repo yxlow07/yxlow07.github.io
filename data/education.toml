@@ -1,0 +1,23 @@
+[[education]]
+degree = "Sijil Pelajaran Malaysia (SPM)"
+school = "Chung Ling High School"
+location = "Penang, Malaysia"
+period = "2020 - 2024"
+achievements = [
+  "9A+, 1A",
+  "Yearly Ranking Top 2",
+  "Best Student Graduate Award"
+]
+extracurricular = [
+  "Chief Executive of International Student Camp",
+  "Vice President of i-CreatorZ (Maker's Club)",
+  "Secretary of Graduation Magazine"
+]
+
+[[education]]
+degree = "Cambridge A Levels"
+school = "INTI International College Penang"
+location = "Penang, Malaysia"
+period = "2025 - 2026"
+achievements = []
+extracurricular = ["Intake Representative"]

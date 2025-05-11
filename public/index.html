@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.147.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu Xuan&#39;s Portfolio | Yu Xuan&#39;s Portfolio</title>
+    <meta name="description" content="">
+    <link rel="icon" href="images/codeforces.png" type="image/png">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone.css"/>
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/brands.css"/>
+
+
+<link rel="stylesheet" href="/css/out.min.47cbc9c2b6e3a053f57e7756dd5792499245ecb1e190408788cd237c2ca99bab.css">
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+  <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+    <div class="flex items-center gap-2">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-blue-600"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      <span class="text-xl font-bold">Yu Xuan&#39;s Portfolio</span>
+    </div>
+
+    
+    <nav class="hidden md:block">
+      <ul class="flex items-center space-x-8">
+        
+        <li>
+          <a href="#about" class="text-sm font-medium hover:text-blue-600">
+            About
+          </a>
+        </li>
+        
+        <li>
+          <a href="#projects" class="text-sm font-medium hover:text-blue-600">
+            Projects
+          </a>
+        </li>
+        
+        <li>
+          <a href="#achievements" class="text-sm font-medium hover:text-blue-600">
+            Achievements
+          </a>
+        </li>
+        
+        <li>
+          <a href="#contact" class="text-sm font-medium hover:text-blue-600">
+            Contact
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+
+    
+    <button id="mobile-menu-button" class="inline-flex items-center justify-center md:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+      
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      
+      <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  
+  <nav id="mobile-menu" class="hidden border-b border-slate-200 bg-white md:hidden">
+    <ul class="container mx-auto flex flex-col px-4 py-4">
+      
+      <li>
+        <a href="#about" class="block py-2 text-sm font-medium hover:text-blue-600 mobile-nav-link">
+          About
+        </a>
+      </li>
+      
+      <li>
+        <a href="#projects" class="block py-2 text-sm font-medium hover:text-blue-600 mobile-nav-link">
+          Projects
+        </a>
+      </li>
+      
+      <li>
+        <a href="#achievements" class="block py-2 text-sm font-medium hover:text-blue-600 mobile-nav-link">
+          Achievements
+        </a>
+      </li>
+      
+      <li>
+        <a href="#contact" class="block py-2 text-sm font-medium hover:text-blue-600 mobile-nav-link">
+          Contact
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const xIcon = document.getElementById('x-icon');
+
+    if (menuButton && mobileMenu && menuIcon && xIcon) {
+      menuButton.addEventListener('click', () => {
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+        menuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        xIcon.classList.toggle('hidden');
+      });
+
+      const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          xIcon.classList.add('hidden');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>
+    <section class="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 py-20 md:py-28">
+  
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -left-4 top-1/4 h-16 w-16 animate-float rounded-full bg-blue-500/10 backdrop-blur-xl"></div>
+    <div class="absolute right-1/4 top-1/3 h-24 w-24 animate-float-delayed rounded-full bg-indigo-500/10 backdrop-blur-xl"></div>
+    <div class="absolute bottom-1/4 right-1/3 h-20 w-20 animate-float rounded-lg bg-cyan-500/10 backdrop-blur-xl"></div>
+  </div>
+
+  <div class="container relative mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="inline-flex animate-fade-in-up items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm text-blue-400 backdrop-blur-sm">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        <span>Specialist at Codeforces</span>
+      </div>
+      <h1 class="mt-6 animate-fade-in-up bg-gradient-to-r leading-snug from-white via-blue-100 to-white bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-6xl [text-wrap:balance]">
+        Yu Xuan Low
+      </h1>
+      <p class="mt-6 animate-fade-in-up text-lg text-blue-100">Competitive programmer and software developer specializing in algorithms, data structures, and backend development.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        
+        <a href="/CV_Low_Yu_Xuan.pdf" class="group relative inline-flex animate-fade-in-up items-center overflow-hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
+          <span class="relative z-10">Download CV</span>
+          <div class="absolute inset-0 -z-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
+          <i class="fa-duotone fa-solid fa-download ml-2 mt-1"></i>
+        </a>
+        <a href="#projects" class="group relative inline-flex animate-fade-in-up items-center overflow-hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
+          <span class="relative z-10">View Projects</span>
+          <div class="absolute inset-0 -z-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
+          <i class="fa-duotone fa-solid fa-arrow-right-to-arc ml-2 mt-1"></i>
+        </a>
+        <a href="#contact" class="group inline-flex animate-fade-in-up items-center rounded-md border border-blue-500/30 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-transform hover:scale-105">
+          Get in Touch
+          <i class="fa-duotone fa-solid fa-phone-rotary ml-2 mt-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="about" class="bg-white py-16 md:py-24">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        About Me
+      </h2>
+    </div>
+    <div class="mt-16">
+      <div class="rounded-lg border border-slate-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 shadow-sm">
+        <div class="flex items-center">
+          <div class="inline-flex h-8 w-8 items-center justify-center text-amber-500">
+            <i class="fa-duotone fa-solid fa-clock" style="font-size: 1.75rem; display: flex; align-items: center; justify-content: center;"></i>
+          </div>
+          <h3 class="ml-4 text-xl font-semibold">
+            My Current Focus
+          </h3>
+        </div>
+        <p class="mt-4 text-slate-700">
+          I am currently working on enhancing my competitive programming skills, exploring novel ways to solve problems using machine learning and contributing my knowledge to teach others. I am a <b>Code In Place 2025 Section Leader</b>, where I teach Python to students from all around the globe. I am also a student at <b>INTI International College Penang</b> where I am studying Cambridge A-Level.
+        </p>
+      </div>
+    </div>
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      
+      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <i class="fa-duotone fa-solid fa-code" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+        </div>
+        <h3 class="mb-2 text-xl font-semibold">Competitive Coder</h3>
+        <p class="text-slate-600">
+          Active participant in programming contests on platforms like CodeForces, Atcoder. Currently a <i>Specialist</i> on Codeforces, with a rating of <i>1429</i>, <i>6 Kyu</i> on Atcoder, with a rating of <i>810</i>.
+        </p>
+      </div>
+      
+      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <i class="fa-duotone fa-solid fa-laptop-code" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+        </div>
+        <h3 class="mb-2 text-xl font-semibold">Software Developer</h3>
+        <p class="text-slate-600">
+          Leveraging my skills to build solutions, specialising in backend development. Some of my proficient programming languages include <i>Python</i>, <i>C++</i>, <i>PHP</i>, <i>Dart</i> and <i>JavaScript</i>. I have experience in using frameworks like <i>Django</i>, <i>Laravel</i>, and <i>Flutter</i> for building web and mobile applications.
+        </p>
+      </div>
+      
+      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <i class="fa-duotone fa-solid fa-microchip-ai" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+        </div>
+        <h3 class="mb-2 text-xl font-semibold">Machine Learning Enthusiast</h3>
+        <p class="text-slate-600">
+          I am passionate about machine learning and artificial intelligence. I have experience in using libraries like <i>TensorFlow</i>, <i>PyTorch</i>, and <i>Scikit-learn</i>. I am currently exploring the field of <i>Open World Generalization</i>.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+    <section id="education" class="relative overflow-hidden bg-white py-16 md:py-24">
+  
+  <div class="absolute inset-0">
+    <div class="absolute right-0 top-0 h-[500px] w-[500px] translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-50/50"></div>
+    <div class="absolute bottom-0 left-0 h-[300px] w-[300px] -translate-x-1/2 translate-y-1/2 rounded-full bg-indigo-50/50"></div>
+  </div>
+  <div class="container relative mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+        Education
+      </h2>
+    </div>
+    <div class="mt-16 space-y-8">
+      
+      <div class="group relative rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
+        <div class="absolute right-0 top-0 h-32 w-32 -translate-y-1/4 translate-x-1/4 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50 transition-transform duration-300 group-hover:scale-110"></div>
+        <div class="relative">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-slate-900">
+                Sijil Pelajaran Malaysia (SPM)
+              </h3>
+              <div class="mt-2 flex flex-wrap gap-4">
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-graduation-cap mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>Chung Ling High School</span>
+                </div>
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-location-dot mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>Penang, Malaysia</span>
+                </div>
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-calendar mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>2020 - 2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="flex flex-wrap gap-2">
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-award mr-1.5 h-3.5 w-3.5"></i>
+                9A&#43;, 1A
+              </div>
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-award mr-1.5 h-3.5 w-3.5"></i>
+                Yearly Ranking Top 2
+              </div>
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-award mr-1.5 h-3.5 w-3.5"></i>
+                Best Student Graduate Award
+              </div>
+              
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-person mr-1.5 h-3.5 w-3.5"></i>
+                Chief Executive of International Student Camp
+              </div>
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-person mr-1.5 h-3.5 w-3.5"></i>
+                Vice President of i-CreatorZ (Maker&#39;s Club)
+              </div>
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-person mr-1.5 h-3.5 w-3.5"></i>
+                Secretary of Graduation Magazine
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
+        <div class="absolute right-0 top-0 h-32 w-32 -translate-y-1/4 translate-x-1/4 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50 transition-transform duration-300 group-hover:scale-110"></div>
+        <div class="relative">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-slate-900">
+                Cambridge A Levels
+              </h3>
+              <div class="mt-2 flex flex-wrap gap-4">
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-graduation-cap mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>INTI International College Penang</span>
+                </div>
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-location-dot mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>Penang, Malaysia</span>
+                </div>
+                <div class="flex items-center text-slate-600">
+                  <i class="fa-duotone fa-solid fa-calendar mr-2 h-4 w-4 text-blue-600"></i>
+                  <span>2025 - 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="flex flex-wrap gap-2">
+              
+              
+              <div class="flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-700">
+                <i class="fa-duotone fa-solid fa-person mr-1.5 h-3.5 w-3.5"></i>
+                Intake Representative
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+    <section class="relative overflow-hidden bg-slate-50 py-16 md:py-24">
+  <div class="absolute inset-0">
+    <div class="absolute left-0 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-100/25"></div>
+    <div class="absolute right-0 top-0 h-96 w-96 translate-x-1/3 -translate-y-1/3 rounded-full bg-indigo-100/25"></div>
+  </div>
+  <div class="container relative mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+        Certifications & Courses
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Certifications from verified and reputable sources, including online platforms and universities
+      </p>
+    </div>
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      
+      <div class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="absolute right-0 top-0 h-32 w-32 -translate-y-1/4 translate-x-1/4 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50 transition-transform duration-300 group-hover:scale-110"></div>
+        <div class="relative flex gap-4">
+          <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+            <img
+              src="https://images.unsplash.com/photo-1644088379091-d574269d422f?q=80&amp;w=1993&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Neural Networks and Deep Learning badge"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="text-lg font-semibold text-slate-900">
+                Neural Networks and Deep Learning
+              </h3>
+              
+              <a href="https://www.coursera.org/account/accomplishments/verify/OY5LWS79RBNR" target="_blank" rel="noopener noreferrer">
+                <i class="fa-duotone fa-solid fa-arrow-up-right-from-square h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-600"></i>
+              </a>
+              
+            </div>
+            <div class="mt-1 flex items-center gap-2 text-sm text-slate-600">
+              <span>DeepLearning.ai</span>
+              <span class="text-slate-300">•</span>
+              <span>2025</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Neural Networks
+              </span>
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Mathematical Modelling
+              </span>
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Differential Equations
+              </span>
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Machine Learning
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        <div class="absolute right-0 top-0 h-32 w-32 -translate-y-1/4 translate-x-1/4 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50 transition-transform duration-300 group-hover:scale-110"></div>
+        <div class="relative flex gap-4">
+          <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Information Technology and Computer Science badge"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="text-lg font-semibold text-slate-900">
+                Information Technology and Computer Science
+              </h3>
+              
+              <a href="https://drive.google.com/file/d/1283xJAvUTkVjPDSqctuQoPsTbxDP1dDG/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                <i class="fa-duotone fa-solid fa-arrow-up-right-from-square h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-600"></i>
+              </a>
+              
+            </div>
+            <div class="mt-1 flex items-center gap-2 text-sm text-slate-600">
+              <span>MCKL College</span>
+              <span class="text-slate-300">•</span>
+              <span>2024</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Networking
+              </span>
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Computer Systems
+              </span>
+              
+              <span class="flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
+                <i class="fa-duotone fa-solid fa-circle-check mr-1 h-3 w-3 text-blue-600"></i>
+                Internet of Things
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+    <section id="projects" class="relative overflow-hidden bg-white md:py-24">
+  
+  <div class="absolute inset-0">
+    <div class="absolute left-0 top-0 -translate-x-1/2 translate-y-[-30%]">
+      <div class="h-[400px] w-[400px] rounded-full bg-blue-50/50"></div>
+    </div>
+    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-[30%]">
+      <div class="h-[400px] w-[400px] rounded-full bg-indigo-50/50"></div>
+    </div>
+  </div>
+  <div class="container relative mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="bg-gradient-to-r leading-snug from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+        Projects
+      </h2>
+    </div>
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      
+      <div class="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div class="relative h-48 overflow-hidden">
+          <img src="/images/guide-shark.png" alt="GUIDE-SHARK" class="h-full w-full transform object-contain object-center transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        </div>
+        <div class="relative p-6">
+          <h3 class="text-xl font-semibold transition-colors group-hover:text-blue-600">
+            GUIDE-SHARK
+          </h3>
+          <p class="mt-2 text-slate-600">Short for Generative User Interface for Differential Evaluation via Symptom Analysis and Record Keeping, applied machine learning algorithms to provide faster diagnoses for patients in a rush.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Flutter
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Django
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Machine Learning
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              REST API
+            </span>
+            
+          </div>
+          <div class="mt-6 flex items-center gap-3">
+            
+            <a href="https://github.com/yxlow07/guide-shark-frontend" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fab fa-github mr-1 mt-1 h-4 w-4"></i>
+              Source Code
+            </a>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div class="relative h-48 overflow-hidden">
+          <img src="/images/maker-kehadiran.png" alt="Maker Kehadiran" class="h-full w-full transform object-contain object-center transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        </div>
+        <div class="relative p-6">
+          <h3 class="text-xl font-semibold transition-colors group-hover:text-blue-600">
+            Maker Kehadiran
+          </h3>
+          <p class="mt-2 text-slate-600">A web application built using a custom MVC framework in PHP, designed for managing attendance records. It allows users to create, read, update, and delete attendance data efficiently.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              PHP
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              MVC
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              SQL
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Tailwindcss
+            </span>
+            
+          </div>
+          <div class="mt-6 flex items-center gap-3">
+            
+            <a href="https://github.com/yourusername/cp-trainer" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fab fa-github mr-1 mt-1 h-4 w-4"></i>
+              Source Code
+            </a>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+      <div class="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div class="relative h-48 overflow-hidden">
+          <img src="/images/double-pendulum.jpg" alt="Double Pendulum Balancer (WiP)" class="h-full w-full transform object-contain object-center transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        </div>
+        <div class="relative p-6">
+          <h3 class="text-xl font-semibold transition-colors group-hover:text-blue-600">
+            Double Pendulum Balancer (WiP)
+          </h3>
+          <p class="mt-2 text-slate-600">Implemented a double pendulum system using C&#43;&#43; and OpenGL, simulating the physics of a double pendulum and applying reinforcement learning to balance it.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              C&#43;&#43;
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Machine Learning
+            </span>
+            
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              Physics Simulation
+            </span>
+            
+          </div>
+          <div class="mt-6 flex items-center gap-3">
+            
+            <a href="https://github.com/yxlow07/double-pendulum-balancer" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fab fa-github mr-1 mt-1 h-4 w-4"></i>
+              Source Code
+            </a>
+            
+            
+            <a href="//double-pendulum-balancer" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fa-arrow-up-right-from-square mt-1 mr-1 h-4 w-4"></i>
+              Read more
+            </a>
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+    <section id="achievements" class="bg-slate-50 py-16 md:py-24">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        Achievements
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Awards and recognition from various competitions and academic achievements
+      </p>
+    </div>
+    <div class="mt-16">
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="grid gap-8 md:grid-cols-2">
+          
+          <div class="flex items-start gap-4 rounded-lg border border-slate-100 bg-white p-4 shadow-sm">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <i class="fa-duotone fa-solid fa-code" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+            </div>
+            <div class="w-full">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold">Codeforces</h3>
+                <span class="text-xs text-slate-500">
+                  Current
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-blue-600">
+                Specialist (1429 rating)
+              </p>
+              <p class="mt-2 text-sm text-slate-600">
+                Reached Specialist Rank. Participated in various contests and solved problems in competitive programming.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4 rounded-lg border border-slate-100 bg-white p-4 shadow-sm">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <i class="fa-duotone fa-solid fa-microchip-ai" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+            </div>
+            <div class="w-full">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold">Malaysia Artificial Intelligence Olympiad (MAIO)</h3>
+                <span class="text-xs text-slate-500">
+                  2025
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-blue-600">
+                Gold Medal
+              </p>
+              <p class="mt-2 text-sm text-slate-600">
+                Solve problem regarding the use of artificial intelligence such as image processing, natural language processing, etc.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4 rounded-lg border border-slate-100 bg-white p-4 shadow-sm">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <i class="fa-duotone fa-solid fa-award" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+            </div>
+            <div class="w-full">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold">Malaysia Computing Olympiad (MCO)</h3>
+                <span class="text-xs text-slate-500">
+                  2025
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-blue-600">
+                Silver Medal
+              </p>
+              <p class="mt-2 text-sm text-slate-600">
+                Solved problems involving dynamic connectivity, fibonacci sequences and dynamic programming.
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4 rounded-lg border border-slate-100 bg-white p-4 shadow-sm">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <i class="fa-duotone fa-solid fa-award" style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"></i>
+            </div>
+            <div class="w-full">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold">California Informatics Competition (CALICO)</h3>
+                <span class="text-xs text-slate-500">
+                  Fall 2024
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-blue-600">
+                Silver Medal
+              </p>
+              <p class="mt-2 text-sm text-slate-600">
+                Solved 5&#43; problems regarding euler tour, binary search and dynamic programming.
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="contact" class="bg-white py-16 md:py-24">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        Get In Touch
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Interested in hiring me or collaborating with me?
+      </p>
+    </div>
+    <div class="mt-16 grid gap-8 md:grid-cols-2">
+      <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <h3 class="mb-6 text-xl font-semibold">Send Me a Message</h3>
+        <form action="https://formspree.io/f/mrbqlvkj" method="POST">
+          <div class="mb-4">
+            <label for="name" class="mb-2 block text-sm font-medium text-slate-700">
+              Name
+            </label>
+            <input type="text" id="name" name="name" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your name" required />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="mb-2 block text-sm font-medium text-slate-700">
+              Email
+            </label>
+            <input type="email" id="email" name="email" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="your.email@example.com" required />
+          </div>
+          <div class="mb-4">
+            <label for="message" class="mb-2 block text-sm font-medium text-slate-700">
+              Message
+            </label>
+            <textarea id="message" name="message" rows="4" class="w-full rounded-md border border-slate-300 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Your message here..." required></textarea>
+          </div>
+          <button type="submit" class="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+            Send Message
+          </button>
+        </form>
+      </div>
+      <div>
+        <div class="mb-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="mb-6 text-xl font-semibold">
+            Contact Information
+          </h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i class="fa-duotone fa-solid fa-envelope mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <a href="mailto:yuxuanlow013@gmail.com" class="text-slate-700 hover:text-blue-600">
+                yuxuanlow013@gmail.com
+              </a>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-duotone fab fa-solid fa-github mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <a href="https://github.com/yxlow07" target="_blank" class="text-slate-700 hover:text-blue-600">
+                https://github.com/yxlow07
+              </a>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-duotone fab fa-solid fa-linkedin mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <a href="https://linkedin.com/in/low-yu-xuan/" target="_blank" class="text-slate-700 hover:text-blue-600">
+                https://linkedin.com/in/low-yu-xuan/
+              </a>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-duotone fab fa-solid fa-instagram mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <a href="https://www.instagram.com/_yu_xuan_07/" target="_blank" class="text-slate-700 hover:text-blue-600">
+                https://www.instagram.com/_yu_xuan_07/
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-lg border border-slate-200 bg-gradient-to-r from-slate-50 to-blue-50 p-6 shadow-sm">
+          <h3 class="mb-4 text-xl font-semibold">Coding Mentorship</h3>
+          <p class="text-slate-700">
+            I offer mentorship for aspiring competitive programmers. Whether you&#39;re just starting or looking to improve your skills, I can help guide your learning journey.
+          </p>
+          <a href="mailto:yuxuanlow013@gmail.com?subject=Mentorship%20Inquiry" class="mt-4 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+            Inquire about Mentorship
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <footer class="border-t border-slate-200 bg-white">
+  <div class="container mx-auto px-4 py-8 md:px-8">
+    <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+      <div class="flex items-center gap-2">
+        <i class="fa-duotone fa-solid fa-code h-5 w-5 mt-2 text-blue-600"></i>
+        <span class="font-bold">Yu Xuan&#39;s Portfolio</span>
+      </div>
+      <div class="text-center text-sm text-slate-500 md:text-left">
+        © 2025 All rights reserved.
+      </div>
+      <div class="flex space-x-4">
+        
+        <a href="https://github.com/yxlow07" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fa-solid fab fa-github h-5 w-5 text-2xl"></i>
+        </a>
+        
+        
+        <a href="https://linkedin.com/in/low-yu-xuan/" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fab fa-solid fa-linkedin size-5 h-5 w-5 text-2xl"></i>
+        </a>
+        
+        
+        <a href="https://www.instagram.com/_yu_xuan_07/" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fab fa-solid fa-instagram size-5 h-5 w-5 text-2xl"></i>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+    <main>
+        
+    </main>
+</body>
+</html>

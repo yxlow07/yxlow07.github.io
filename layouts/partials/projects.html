@@ -1,0 +1,56 @@
+<section id="projects" class="relative overflow-hidden bg-white md:py-24">
+  <!-- Decorative background -->
+  <div class="absolute inset-0">
+    <div class="absolute left-0 top-0 -translate-x-1/2 translate-y-[-30%]">
+      <div class="h-[400px] w-[400px] rounded-full bg-blue-50/50"></div>
+    </div>
+    <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-[30%]">
+      <div class="h-[400px] w-[400px] rounded-full bg-indigo-50/50"></div>
+    </div>
+  </div>
+  <div class="container relative mx-auto px-4 md:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="bg-gradient-to-r leading-snug from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
+        Projects
+      </h2>
+    </div>
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {{ range $.Site.Data.projects.projects }}
+      <div class="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div class="relative h-48 overflow-hidden">
+          <img src="{{ $.Site.Params.staticImagePath }}/{{ .image }}" alt="{{ .title }}" class="h-full w-full transform object-contain object-center transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        </div>
+        <div class="relative p-6">
+          <h3 class="text-xl font-semibold transition-colors group-hover:text-blue-600">
+            {{ .title }}
+          </h3>
+          <p class="mt-2 text-slate-600">{{ .description }}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {{ range .tags }}
+            <span class="rounded-full bg-gradient-to-r from-slate-50 to-blue-50 px-3 py-1 text-xs text-slate-800">
+              {{ . }}
+            </span>
+            {{ end }}
+          </div>
+          <div class="mt-6 flex items-center gap-3">
+            {{ if .showSource }}
+            <a href="{{ .sourceUrl }}" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fab fa-github mr-1 mt-1 h-4 w-4"></i>
+              Source Code
+            </a>
+            {{ end }}
+            {{ if .showBlog }}
+            <a href="{{ $.Site.Params.blogPath }}/{{ .blogUrl }}" class="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800">
+              <i class="fa-duotone fa-solid fa-arrow-up-right-from-square mt-1 mr-1 h-4 w-4"></i>
+              Read more
+            </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

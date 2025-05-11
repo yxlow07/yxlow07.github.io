@@ -1,0 +1,30 @@
+<footer class="border-t border-slate-200 bg-white">
+  <div class="container mx-auto px-4 py-8 md:px-8">
+    <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+      <div class="flex items-center gap-2">
+        <i class="fa-duotone fa-solid fa-code h-5 w-5 mt-2 text-blue-600"></i>
+        <span class="font-bold">{{ .Site.Title }}</span>
+      </div>
+      <div class="text-center text-sm text-slate-500 md:text-left">
+        © {{ now.Format "2006" }} All rights reserved.
+      </div>
+      <div class="flex space-x-4">
+        {{ with .Site.Params.social.github }}
+        <a href="{{ . }}" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fa-solid fab fa-github h-5 w-5 text-2xl"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.social.linkedin }}
+        <a href="{{ . }}" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fab fa-solid fa-linkedin size-5 h-5 w-5 text-2xl"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.social.instagram }}
+        <a href="{{ . }}" target="_blank" class="text-slate-400 hover:text-blue-600">
+          <i class="fa-duotone fab fa-solid fa-instagram size-5 h-5 w-5 text-2xl"></i>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</footer>

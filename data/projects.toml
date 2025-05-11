@@ -1,0 +1,26 @@
+[[projects]]
+title = "GUIDE-SHARK"
+description = "Short for Generative User Interface for Differential Evaluation via Symptom Analysis and Record Keeping, applied machine learning algorithms to provide faster diagnoses for patients in a rush."
+tags = ["Flutter", "Django", "Machine Learning", "REST API"]
+image = "guide-shark.png"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/guide-shark-frontend"
+
+[[projects]]
+title = "Maker Kehadiran"
+description = "A web application built using a custom MVC framework in PHP, designed for managing attendance records. It allows users to create, read, update, and delete attendance data efficiently."
+tags = ["PHP", "MVC", "SQL", "Tailwindcss"]
+image = "maker-kehadiran.png"
+showSource = true
+sourceUrl = "https://github.com/yourusername/cp-trainer"
+showDemo = false
+
+[[projects]]
+title = "Double Pendulum Balancer (WiP)"
+description = "Implemented a double pendulum system using C++ and OpenGL, simulating the physics of a double pendulum and applying reinforcement learning to balance it."
+tags = ["C++", "Machine Learning", "Physics Simulation"]
+image = "double-pendulum.jpg"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/double-pendulum-balancer"
+showBlog = true
+blogUrl = "/double-pendulum-balancer"
