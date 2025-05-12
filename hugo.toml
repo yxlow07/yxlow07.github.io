@@ -8,6 +8,7 @@ title = "Yu Xuan's Portfolio"
   staticImagePath = "/images"
   assetPath = ""
   favicon = "images/codeforces.png"
+  blogPath = "/blog/"
   [params.social]
     github = "https://github.com/yxlow07"
     linkedin = "https://linkedin.com/in/low-yu-xuan/"

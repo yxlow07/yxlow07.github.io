@@ -15,4 +15,13 @@ i {
     ul {
         @apply list-disc list-inside mb-4
     }
+    ol {
+        @apply list-decimal list-inside mb-4 font-bold text-xl
+    }
+    pre {
+        @apply p-3
+    }
+    blockquote {
+        @apply border-l-4 pl-4 italic text-gray-600
+    }
 }

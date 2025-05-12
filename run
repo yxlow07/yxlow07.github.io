@@ -9,7 +9,7 @@ PID1=$!
 
 # Start Tailwind watcher in the background
 echo "Starting Tailwind watcher..."
-tailwindcss -i ./assets/css/main.css -o ./assets/css/out.css --watch &
+npx tailwindcss -i ./assets/css/main.css -o ./assets/css/out.css --watch &
 
 PID2=$!
 

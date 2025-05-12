@@ -2,7 +2,7 @@
 title = "GUIDE-SHARK"
 description = "Short for Generative User Interface for Differential Evaluation via Symptom Analysis and Record Keeping, applied machine learning algorithms to provide faster diagnoses for patients in a rush."
 tags = ["Flutter", "Django", "Machine Learning", "REST API"]
-image = "guide-shark.png"
+image = "guide-shark.jpg"
 showSource = true
 sourceUrl = "https://github.com/yxlow07/guide-shark-frontend"
 
