@@ -24,4 +24,7 @@ i {
     blockquote {
         @apply border-l-4 pl-4 italic text-gray-600
     }
+    a {
+        @apply text-blue-500 hover:text-blue-700 hover:underline 
+    }
 }

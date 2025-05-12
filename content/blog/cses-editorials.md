@@ -3,7 +3,7 @@ title: "CSES Editorials"
 date: 2025-05-11T12:00:00-00:00
 draft: false
 description: "A collection of editorials for CSES Problemset."
-image: "double-pendulum.jpg"
+image: "cp.webp"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
 tags: ["algorithms", "competitive programming", "dynamic programming", "graph theory", "ad hoc"]
@@ -42,7 +42,7 @@ signed main()
 ## Introductory Problems
 1. Weird Algorithm
 
-This problem is fairly simple, just apply the algorithm as stated and output the result. This problem is the Collatz Conjecture, which states that for any positive integer n, the sequence will eventually reach 1. The sequence is defined as follows:
+This problem is fairly simple, just apply the algorithm as stated and output the result. This problem is the [Collatz Conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture), which states that for any positive integer n, the sequence will eventually reach 1. The sequence is defined as follows:
 - If n is even, divide it by 2.
 - If n is odd, multiply it by 3 and add 1.
 

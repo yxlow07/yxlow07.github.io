@@ -1388,6 +1388,19 @@ i {
     color: var(--color-gray-600);
     font-style: italic;
   }
+  a {
+    color: var(--color-blue-500);
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-blue-700);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
 }
 @property --tw-translate-x {
   syntax: "*";
