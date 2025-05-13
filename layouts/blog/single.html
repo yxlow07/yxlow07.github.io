@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="bg-white">
   <!-- Hero section with featured image -->
-  <div class="relative h-[40vh] min-h-[300px] w-full bg-slate-900">
+  <div class="relative h-[40vh] min-h-[300px] bg-slate-900">
     {{ if .Params.image }}
     <img
       src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
@@ -38,10 +38,10 @@
 
   <!-- Blog content -->
   <div class="container mx-auto px-4 py-12 md:px-8">
-    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-[1fr_250px]">
+    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols">
       <!-- Main content -->
       <div>
-        <div class="blog-content text-slate-800 leading-relaxed space-y-6">
+        <div class="blog-content text-slate-800 leading-relaxed space-y-6 break-words">
           {{ .Content }}
         </div>
         <!-- Tags -->
@@ -96,22 +96,24 @@
           </div>
         </div>
         {{ end }}
-
-        <!-- Share and bookmark -->
-<!--        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">-->
-<!--          <h3 class="mb-4 text-lg font-semibold">Share this post</h3>-->
-<!--          <div class="flex items-center gap-4">-->
-<!--            <button class="flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-700">-->
-<!--              <i class="fa-solid fa-share mr-2"></i>-->
-<!--              Share-->
-<!--            </button>-->
-<!--            <button class="flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-slate-50">-->
-<!--              <i class="fa-solid fa-bookmark mr-2"></i>-->
-<!--              Save-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
+    </div>
+    <div class="mx-auto max-w-3xl">
+      <script src="https://giscus.app/client.js"
+        data-repo="yxlow07/yxlow07.github.io"
+        data-repo-id="R_kgDOOn_g4g"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOOn_g4s4CqFs2"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async></script>
     </div>
   </div>
 </main>

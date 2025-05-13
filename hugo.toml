@@ -34,10 +34,11 @@ codeFences = true
 guessSyntax = false
 hl_Lines = ""
 lineNoStart = 1
-lineNos = false
-lineNumbersInTable = true
-noClasses = true
+lineNos = true
+lineNumbersInTable = false
+noClasses = false
 tabWidth = 2
+style = "monokai"
 
 [menu]
   [[menu.main]]

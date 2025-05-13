@@ -35,6 +35,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-2xl: 42rem;
     --container-3xl: 48rem;
     --container-4xl: 56rem;
     --text-xs: 0.75rem;
@@ -519,6 +520,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
   }
   .max-w-3xl {
     max-width: var(--container-3xl);
@@ -1020,6 +1024,15 @@
   .\[text-wrap\:balance\] {
     text-wrap: balance;
   }
+  .break-words {
+    overflow-wrap: break-word;
+  }
+  .wrap-break-word {
+    overflow-wrap: break-word;
+  }
+  .break-all {
+    word-break: break-all;
+  }
   .text-amber-500 {
     color: var(--color-amber-500);
   }
@@ -1188,13 +1201,6 @@
       }
     }
   }
-  .hover\:bg-slate-50 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-slate-50);
-      }
-    }
-  }
   .hover\:bg-slate-200 {
     &:hover {
       @media (hover: hover) {
@@ -1271,6 +1277,11 @@
       outline-style: none;
     }
   }
+  .sm\:px-6 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+  }
   .md\:block {
     @media (width >= 48rem) {
       display: block;
@@ -1286,14 +1297,14 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  .md\:grid-cols-\[1fr_250px\] {
-    @media (width >= 48rem) {
-      grid-template-columns: 1fr 250px;
-    }
-  }
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .md\:p-6 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 6);
     }
   }
   .md\:px-8 {
@@ -1339,6 +1350,11 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
+  .lg\:px-8 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 8);
+    }
+  }
   .dark\:text-white {
     @media (prefers-color-scheme: dark) {
       color: var(--color-white);
@@ -1373,13 +1389,6 @@ i {
     margin-bottom: calc(var(--spacing) * 4);
     list-style-position: inside;
     list-style-type: decimal;
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
-  pre {
-    padding: calc(var(--spacing) * 3);
   }
   blockquote {
     border-left-style: var(--tw-border-style);
@@ -1399,6 +1408,25 @@ i {
       @media (hover: hover) {
         text-decoration-line: underline;
       }
+    }
+  }
+  pre {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+}
+a.highlightedLinks {
+  color: var(--color-blue-600);
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-blue-800);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      text-decoration-line: underline;
     }
   }
 }

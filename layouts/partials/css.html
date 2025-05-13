@@ -5,5 +5,8 @@
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone.css"/>
 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/brands.css"/>
 
+{{ $style := resources.Get "css/chroma.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
 {{ $style := resources.Get "css/out.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">

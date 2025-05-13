@@ -16,10 +16,7 @@ i {
         @apply list-disc list-inside mb-4
     }
     ol {
-        @apply list-decimal list-inside mb-4 font-bold text-xl
-    }
-    pre {
-        @apply p-3
+        @apply list-decimal list-inside mb-4
     }
     blockquote {
         @apply border-l-4 pl-4 italic text-gray-600
@@ -27,4 +24,11 @@ i {
     a {
         @apply text-blue-500 hover:text-blue-700 hover:underline 
     }
+    pre {
+        @apply rounded-md overflow-x-auto whitespace-pre-wrap break-words;
+    }
+}
+
+a.highlightedLinks {
+    @apply text-blue-600 hover:text-blue-800 hover:underline
 }

@@ -28,7 +28,7 @@ int fibonacci(int n) {
     // Base cases
     if (n <= 1) return n;
     
-    // Create an array to store Fibonacci numbers
+    // Memo Table
     int dp[n+1];
     dp[0] = 0;
     dp[1] = 1;
