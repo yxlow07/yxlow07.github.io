@@ -36,9 +36,9 @@ hl_Lines = ""
 lineNoStart = 1
 lineNos = true
 lineNumbersInTable = false
-noClasses = false
+noClasses = true
 tabWidth = 2
-style = "monokai"
+style = "onedark"
 
 [menu]
   [[menu.main]]
