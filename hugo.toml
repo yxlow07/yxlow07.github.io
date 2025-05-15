@@ -9,6 +9,7 @@ title = "Yu Xuan's Portfolio"
   assetPath = ""
   favicon = "images/codeforces.png"
   blogPath = "/blog/"
+  math = false
   [params.social]
     github = "https://github.com/yxlow07"
     linkedin = "https://linkedin.com/in/low-yu-xuan/"
@@ -39,6 +40,15 @@ lineNumbersInTable = false
 noClasses = true
 tabWidth = 2
 style = "onedark"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
 
 [menu]
   [[menu.main]]

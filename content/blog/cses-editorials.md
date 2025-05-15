@@ -6,6 +6,7 @@ description: "A collection of editorials for CSES Problemset."
 image: "cp.webp"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
+math: true
 tags: ["algorithms", "competitive programming", "dynamic programming", "graph theory", "ad hoc"]
 ---
 
@@ -59,3 +60,37 @@ void solve() {
 }
 ```
 > Note the use of `ll` which represents `long long`, if you use `int`, the number will overflow and cause WA. 
+
+## Mathematics
+2. Exponentiation
+If the algorithm is done naively, the multiplication will take `O(nb)` time, where `n` is the number of test cases and `b` is the number of exponentiation needed to be done on `a`. We can do better. 
+We can do better.  
+
+\(a^{b+c} = a^b \cdot a^c\) is a simple bit of exponentiation math, and we can make \(a^{2b} = a^b \cdot a^b = (a^b)^2\). Then we can apply the following algorithm:
+
+$$
+a^n = \begin{cases}
+1 &\text{if } n == 0 \\
+\left(a^{\frac{n}{2}}\right)^2 &\text{if } n > 0 \text{ and } n \text{ even}\\
+\left(a^{\frac{n - 1}{2}}\right)^2 \cdot a &\text{if } n > 0 \text{ and } n \text{ odd}\\
+\end{cases}
+$$
+
+The solution is as follows:
+```cpp
+int MOD = 1e9+7;
+
+int fastExp(int a, int b) {
+    if (b == 0) return 1;
+    int res = fastExp(a, b/2);
+    int res_square = (res * res) % MOD;
+    if (b % 2 == 0) return res_square;
+    else return (res_square * a) % MOD;
+}
+
+void solve() {
+    int a, b; cin >> a >> b;
+    cout << fastExp(a,b) << nl;
+}
+```
+> Note that `MOD` is used after every multiplication process, you can read more about it [here](https://en.wikipedia.org/wiki/Modular_arithmetic#Basic_properties).

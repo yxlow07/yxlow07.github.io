@@ -12,5 +12,8 @@
     {{ partial "header.html" . }}
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
+    {{ if .Params.math }} 
+        {{ partialCached "math.html" . }}
+    {{ end }}
 </body>
 </html>

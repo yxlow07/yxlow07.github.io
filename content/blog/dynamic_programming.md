@@ -6,6 +6,7 @@ description: "A beginner-friendly introduction to dynamic programming concepts a
 image: "fibonacci.png"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
+math: true
 tags: ["algorithms", "programming", "tutorial"]
 ---
 
