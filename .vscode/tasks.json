@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Hugo Serve",
+        "type": "shell",
+        "command": "hugo serve",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "auto": true
+      },
+      {
+        "label": "Run TailwindCSS",
+        "type": "shell",
+        "command": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/out.css --watch",
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        },
+        "auto": true
+      }
+    ]
+  }
+  
