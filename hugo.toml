@@ -2,6 +2,7 @@ name = "Portfolio Site"
 homepage = "https://yxlow07.github.io/"
 languageCode = "en-us"
 title = "Yu Xuan's Portfolio"
+enableGitInfo = true
 
 [params]
   staticPath = ""
@@ -44,6 +45,7 @@ style = "onedark"
 [markup]
   [markup.goldmark]
     [markup.goldmark.extensions]
+      tasklist = true
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]

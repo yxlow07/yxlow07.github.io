@@ -14,7 +14,7 @@ tags: ["mathematics", "creativity", "problem solving", "integration", "calculus"
 Integration is a core part of calculus, often presenting unique challenges that require creative ways to solve. In this post, I will share some of the interesting integration problems I have encountered, along with their solutions. Take some time to try them out before checking out my solutions!
 
 ### Problem 1
-Evaluate the integral:
+Evaluate the integral within **30 seconds**:
 <div class="text-2xl">
 \[
 \int x^\frac{1}{\ln(x)} \, dx

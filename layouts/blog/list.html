@@ -18,7 +18,12 @@
     <div class="mx-auto max-w-3xl">
       <!-- Posts list -->
       <div class="divide-y divide-slate-100">
-        {{ range .Pages.ByDate.Reverse }}
+        {{ $pages := .Pages }}
+        {{ $sortedPages := sort $pages "Lastmod" "desc" }}
+        {{ if eq (index $sortedPages 0).Lastmod.Unix 0 }}
+          {{ $sortedPages = sort $pages "Date" "desc" }}
+        {{ end }}
+        {{ range $sortedPages }}
         <article class="py-6">
           <div class="flex items-center gap-2 text-sm text-slate-500">
             <time>{{ .Date.Format "January 2, 2006" }}</time>

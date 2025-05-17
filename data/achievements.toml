@@ -25,3 +25,31 @@ achievement = "Silver Medal"
 year = "Fall 2024"
 description = "Solved 5+ problems regarding euler tour, binary search and dynamic programming."
 icon = "fa-duotone fa-solid fa-award"
+
+[[competitions]]
+name = "Kuiz Kimia Kebangsaan"
+achievement = "Cemerlang"
+year = "2024"
+description = "Solved problems related to chemistry"
+icon = "fa-duotone fa-solid fa-atom-simple"
+
+[[competitions]]
+name = "Malaysia Computing Challenge (MCC)"
+achievement = "Gold Medal (2024), Bronze Medal (2023)"
+year = "2024, 2023"
+description = "Participated in an online computing competition testing computational and algorithmic thinking."
+icon = "fa-duotone fa-solid fa-award"
+
+[[competitions]]
+name = "Kangaroo Math Competition"
+achievement = "Gold Medal (2024), Silver Medal (2023)"
+year = "2024, 2023"
+description = "Participated in an mathematics competition focusing on logical combination and problem-solving."
+icon = "fa-duotone fa-solid fa-calculator"
+
+[[competitions]]
+name = "Singapore & Asians Math Olympiad (SASMO)"
+achievement = "Silver Medal (2024), Bronze Medal (2023), Bronze Medal (2022)"
+year = "2024, 2023, 2022"
+description = "Participated in a large mathematics Olympiad in Asia aimed at enhancing math skills and higher-order thinking."
+icon = "fa-duotone fa-solid fa-calculator"

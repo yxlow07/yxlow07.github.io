@@ -155,7 +155,7 @@ void solve() {
 }
 ```
 
-## Mathematics
+## Mathematics Problems
 
 2. **Exponentiation**
 
