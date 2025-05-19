@@ -36,6 +36,12 @@ i {
     code:not(pre code) {
         @apply bg-gray-200 text-gray-800 rounded-md px-1 py-0.5
     }
+    table {
+        @apply border-collapse border border-slate-900 mb-4 p-3
+    }
+    td, th {
+        @apply border border-slate-900 p-3 font-medium
+    }
 }
 
 a.highlightedLinks {

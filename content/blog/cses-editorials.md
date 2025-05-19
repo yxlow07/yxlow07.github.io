@@ -155,6 +155,52 @@ void solve() {
 }
 ```
 
+6. **Number Spiral**
+
+This problem starts to get tricky and needed a little bit of observation. If you draw out the first few numbers as such:
+<div class="flex justify-center">
+
+| 1 | 2 | 9 | 10 | 25 |
+|---|---|---|----|----|
+| 4 | 3 | 8 | 11 | 24 |
+| 5 | 6 | 7 | 12 | 23 |
+| 16 | 15 | 14 | 13 | 22 |
+| 17 | 18 | 19 | 20 | 21 |
+
+</div>
+
+**Observation 1**: Notice the pattern, for each number, it is always in the square of its larger square number closest to it. For example, `3`'s closest greater square is `4`, and you can find `3` on Row `2` and Column `2`. Similarly, `5`'s closest greater square is `9`, and you can find `5` on Row `3` and Column `1`.
+
+Since we are given the `x` and `y` coordinates, we can find the maximum of `x` and `y`, and find the inner square of it. This means we find the starting point of our square, a quick example: if we are given `x = 3` and `y = 2`, the maximum is `3`, and the inner square is \((3-1)^2 = 4\). We start the search from `5`, since the inner square contains numbers up to `4`. 
+
+**Observation 2**: The numbers starts either from the column downwards or the row to the right. If it is even (0-based indexing), it starts from the row to the right, otherwise it starts from the column downwards. An example would be `x = 3` and `y = 2`, `x-1` is even, so it starts from the row to the right. 
+
+After we know its starting point, just add the difference between the coordinate and the starting point. 
+
+```cpp
+void solve() {
+    ll y, x; 
+    cin >> y >> x;
+    ll n = max(y, x);
+    if (n % 2 == 0) {
+        // even layer
+        if (y == n) {
+            cout << n*n - (x - 1) << nl;
+        } else {
+            cout << (n - 1)*(n - 1) + y << nl;
+        }
+    } else {
+        // odd layer
+        if (x == n) {
+            cout << n*n - (y - 1) << nl;
+        } else {
+            cout << (n - 1)*(n - 1) + x << nl;
+        }
+    }
+}
+```
+
+
 ## Mathematics Problems
 
 2. **Exponentiation**
