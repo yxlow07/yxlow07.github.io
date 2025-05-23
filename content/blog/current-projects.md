@@ -14,3 +14,4 @@ tags:
 - CNN Based Malaysian Traditional Cakes Image Classification
 - Artificial Intelligence with Reprompting and Code Execution for Problem Solving
 - Double Pendulum Simulator and Balancer in Unity
+- AI-Powered Workout App
