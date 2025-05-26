@@ -19,8 +19,8 @@
       <!-- Posts list -->
       <div class="divide-y divide-slate-100">
         {{ $pages := .Pages }}
-        {{ $sortedPages := sort $pages "Lastmod" "desc" }}
-        {{ if eq (index $sortedPages 0).Lastmod.Unix 0 }}
+        {{ $sortedPages := sort $pages ".Params.lastMod" "desc" }}
+        {{ if eq (index $sortedPages 0).Params.lastMod 0 }}
           {{ $sortedPages = sort $pages "Date" "desc" }}
         {{ end }}
         {{ range $sortedPages }}
@@ -42,6 +42,10 @@
               {{ .Summary | truncate 160 }}
             {{ end }}
           </p>
+          <br>
+          {{ if .Params.lastMod }}
+            <p class="mt-2 text-sm text-slate-500 italic">Last updated: {{ .Params.lastMod.Format "January 2, 2006" }}</p>
+          {{ end }}
           <div class="mt-4 flex items-center justify-between">
             <div class="flex flex-wrap gap-2">
               {{ range .Params.tags }}

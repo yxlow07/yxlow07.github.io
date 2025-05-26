@@ -1,4 +1,5 @@
 ---
+lastMod: "2025-05-15T20:55:15+08:00"
 title: "Getting Started with Dynamic Programming"
 date: 2025-05-10T12:00:00-00:00
 draft: false

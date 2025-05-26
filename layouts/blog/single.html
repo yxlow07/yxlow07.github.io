@@ -28,10 +28,10 @@
           Published on {{ .Date.Format "January 2, 2006" }}
         </div>
         {{ end }}
-        {{ if ne .Date .Lastmod }}
+        {{ if .Params.lastMod }}
         <div class="flex items-center mx-3">
           <i class="fa-solid fa-pen-to-square mr-2"></i>
-          Updated on {{ .Lastmod.Format "January 2, 2006" }}
+          Updated on {{ .Params.lastMod.Format "January 2, 2006" }}
         </div>
         {{ end }}
         <div class="flex items-center">

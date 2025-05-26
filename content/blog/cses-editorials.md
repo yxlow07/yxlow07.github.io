@@ -1,4 +1,5 @@
 ---
+lastMod: "2025-05-19T20:51:12+08:00"
 title: "CSES Editorials"
 date: 2025-05-11T12:00:00-00:00
 draft: false

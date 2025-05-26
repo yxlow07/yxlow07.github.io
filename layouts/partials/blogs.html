@@ -11,7 +11,7 @@
     <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {{ $posts := where site.RegularPages "Section" "blog" }}
       {{ if gt (len $posts) 0 }}
-        {{ range first 3 (sort $posts "Lastmod" "desc") }}
+        {{ range first 3 (sort $posts ".Params.lastMod" "desc") }}
           <article
                   class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
@@ -37,7 +37,7 @@
                         <i class="fa-solid fa-clock h-4 w-4 mt-1"></i>
                         {{ .ReadingTime }} min read
                       </span>
-                      <span>Updated {{ .Lastmod.Format "Jan 2, 2006" }}</span>
+                      <span>Updated {{ .Params.lastMod.Format "Jan 2, 2006" }}</span>
               </div>
               <a href="{{ .RelPermalink }}">
                 <h3 class="mt-4 text-xl font-semibold leading-tight text-slate-900 group-hover:text-blue-600">

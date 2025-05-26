@@ -15,6 +15,12 @@ i {
     h3 {
         @apply text-2xl font-bold mb-4
     }
+    h4 {
+        @apply text-xl font-bold mb-4
+    }
+    h5 {
+        @apply text-lg font-bold mb-4
+    }
     ul {
         @apply list-disc list-inside mb-4
     }
