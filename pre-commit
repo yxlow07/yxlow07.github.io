@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Run the script to inject the last modification dates into specific files before staging
+./lastModInjector.sh
+
+# Check if the script executed successfully
+if [ $? -ne 0 ]; then
+  echo "Script failed, aborting commit."
+  exit 1
+fi
+
+# Continue with the commit if the script succeeds
+echo "Script success, commit."
+exit 0
