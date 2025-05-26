@@ -1,5 +1,5 @@
 ---
-lastMod: "2025-05-15T20:55:15+08:00"
+lastMod: "2025-05-26T21:10:19+08:00"
 title: "Double Pendulum Balancer"
 date: 2025-05-11T12:00:00-00:00
 draft: false
