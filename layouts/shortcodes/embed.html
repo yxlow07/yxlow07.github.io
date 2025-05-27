@@ -1,0 +1,3 @@
+{{ $file := .Get "src" }}
+{{ $embedContent := readFile (printf "static/embeds/%s" $file) }}
+{{ $embedContent | safeHTML }}

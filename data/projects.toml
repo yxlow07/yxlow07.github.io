@@ -5,6 +5,8 @@ tags = ["Flutter", "Django", "Machine Learning", "REST API"]
 image = "guide-shark.jpg"
 showSource = true
 sourceUrl = "https://github.com/yxlow07/guide-shark-frontend"
+showBlog = true
+blogUrl = "/current-projects#3-generative-user-interface-for-differential-evaluation-via-symptom-analysis-and-record-keeping"
 
 [[projects]]
 title = "Maker Kehadiran"

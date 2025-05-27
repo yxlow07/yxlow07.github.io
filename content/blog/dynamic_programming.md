@@ -1,5 +1,5 @@
 ---
-lastMod: "2025-05-26T21:10:19+08:00"
+lastMod: "2025-05-10T12:00:00"
 title: "Getting Started with Dynamic Programming"
 date: 2025-05-10T12:00:00-00:00
 draft: false
