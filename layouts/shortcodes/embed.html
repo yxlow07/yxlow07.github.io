@@ -1,3 +1,5 @@
 {{ $file := .Get "src" }}
+<div class="flex items-center justify-center w-full">
 {{ $embedContent := readFile (printf "static/embeds/%s" $file) }}
 {{ $embedContent | safeHTML }}
+</div>

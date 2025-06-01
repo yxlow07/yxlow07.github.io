@@ -1,5 +1,5 @@
 ---
-lastMod: "2025-05-27T17:29:55"
+lastMod: "2025-06-01T11:25:20"
 title: "Projects List"
 date: 2025-05-16T12:00:00-00:00
 draft: false
@@ -14,7 +14,8 @@ tags:
 ### Projects List (In Progress / Ideation Stage)
 - Double Pendulum Simulator and Balancer in Unity
 - AI-Powered Workout App
-- AI-Powered Doom Scroller for A Levels (Improve Your Exams!)
+- [AI-Powered Doom Scroller for A Levels](/blog/a-level-doom-scroller/)
+- Task Assignment based on Availability
 
 <div class="py-4">
 </div>
@@ -50,7 +51,7 @@ To improve its performance, ... *(will be released after competition ends)*
 
 This project is based on the issue of overcrowding in hospitals, especially Emergency Departments (ED). The goal is to create a generative user interface that allows patients to input their symptoms and receive a preliminary diagnosis, as well as a record of their symptoms for future reference. This can help reduce the workload of doctors and nurses in EDs, allowing them to focus on more critical cases. **Research** of this project is currently ongoing, and the project has an initial prototype powered by Google's Gemini API. Backend code is currently **private** as more research is needed to improve the accuracy of the diagnosis.
 
+**Source code here: [GUIDE-SHARK](https://github.com/yxlow07/guide-shark-frontend)**
+
 **Video for More Info**
 {{< embed src="guide-shark-reel.html" >}}
-
-**Source code here: [GUIDE-SHARK](https://github.com/yxlow07/guide-shark-frontend)**
