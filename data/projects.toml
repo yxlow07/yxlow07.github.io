@@ -9,6 +9,16 @@ showBlog = true
 blogUrl = "/current-projects#3-generative-user-interface-for-differential-evaluation-via-symptom-analysis-and-record-keeping"
 
 [[projects]]
+title = "Study Scroll"
+description = "Social Media, but it helps you revise A Levels"
+tags = ["Flutter", "education", "app development", "social media", "AI"]
+image = "a-levels.jpg"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/study-scroll"
+showBlog = true
+blogUrl = "/study-scroll"
+
+[[projects]]
 title = "Maker Kehadiran"
 description = "A web application built using a custom MVC framework in PHP, designed for managing attendance records. It allows users to create, read, update, and delete attendance data efficiently."
 tags = ["PHP", "MVC", "SQL", "Tailwindcss"]
@@ -16,13 +26,3 @@ image = "maker-kehadiran.png"
 showSource = true
 sourceUrl = "https://github.com/yxlow07/maker-kehadiran/"
 showDemo = false
-
-[[projects]]
-title = "Double Pendulum Balancer (WiP)"
-description = "Implemented a double pendulum system using C++ and OpenGL, simulating the physics of a double pendulum and applying reinforcement learning to balance it."
-tags = ["C++", "Machine Learning", "Physics Simulation"]
-image = "double-pendulum.jpg"
-showSource = true
-sourceUrl = "https://github.com/yxlow07/double-pendulum-balancer"
-showBlog = true
-blogUrl = "/double-pendulum-balancer"
