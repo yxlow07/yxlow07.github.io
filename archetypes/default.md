@@ -1,8 +1,8 @@
 ---
 date: '{{ .Date }}'
-draft: true
-title: '{{ replace .File:contentbasename "-" " " | title }}'
-lastMod: "{{ .Date }}"
+draft: false
+title: '{{ replace .File.ContentBaseName "-" " " | title }}'
+lastMod: '{{ .Date }}'
 description: ""
 image: ""
 author: "Yu Xuan Low"
