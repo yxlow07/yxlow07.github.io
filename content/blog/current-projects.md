@@ -13,9 +13,10 @@ tags:
 
 ### Projects List (In Progress / Ideation Stage)
 - Double Pendulum Simulator and Balancer in Unity
-- AI-Powered Workout App
+- ~~AI-Powered Workout App~~
 - [AI-Powered Doom Scroller for A Levels](/blog/a-level-doom-scroller/)
 - Task Assignment based on Availability
+- Group Games VS AI
 
 <div class="py-4">
 </div>
