@@ -9,7 +9,7 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:block">
+    <nav class="hidden lg:block">
       <ul class="flex items-center space-x-8">
         {{ range .Site.Menus.main }}
         <li>
@@ -22,7 +22,7 @@
     </nav>
 
     <!-- Mobile Menu Button -->
-    <button id="mobile-menu-button" class="inline-flex items-center justify-center md:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+    <button id="mobile-menu-button" class="inline-flex items-center justify-center lg:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
       <!-- MenuIcon SVG -->
       <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       <!-- XIcon SVG (hidden by default) -->
@@ -31,7 +31,7 @@
   </div>
 
   <!-- Mobile Navigation -->
-  <nav id="mobile-menu" class="hidden border-b border-slate-200 bg-white md:hidden">
+  <nav id="mobile-menu" class="hidden border-b border-slate-200 bg-white lg:hidden">
     <ul class="container mx-auto flex flex-col px-4 py-4">
       {{ range .Site.Menus.main }}
       <li>

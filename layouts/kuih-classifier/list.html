@@ -1,0 +1,187 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-4">{{ .Title }}</h1>
+    <p class="text-center text-lg text-slate-600 mb-8">Point your camera at a kuih and press capture to identify it!</p>
+
+    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <div id="camera-container" class="relative">
+            <video id="camera-feed" class="w-full h-full object-cover" autoplay playsinline></video>
+            <canvas id="frozen-frame" class="w-full h-full object-cover hidden"></canvas>
+            <div id="loading-spinner" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+                <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white"></div>
+            </div>
+        </div>
+
+        <div class="p-6 text-center flex justify-center gap-4">
+            <button id="freeze-camera-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                Close Camera
+            </button>
+            <button id="capture-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                Capture
+            </button>
+        </div>
+
+        <div id="result-container" class="p-6 border-t border-slate-200 text-center hidden">
+            <h2 class="text-2xl font-semibold mb-2">Result:</h2>
+            <p id="result-text" class="text-xl text-slate-800"></p>
+        </div>
+    </div>
+
+    <div id="error-container" class="max-w-lg mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded-lg hidden">
+        <p id="error-text"></p>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('camera-feed');
+    const frozenFrame = document.getElementById('frozen-frame');
+    const freezeCameraBtn = document.getElementById('freeze-camera-btn');
+    const captureBtn = document.getElementById('capture-btn');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const resultContainer = document.getElementById('result-container');
+    const resultText = document.getElementById('result-text');
+    const errorContainer = document.getElementById('error-container');
+    const errorText = document.getElementById('error-text');
+
+    const apiUrl = 'https://yuxuanlow013.pythonanywhere.com/';
+    let cameraStream = null;
+    let isFrozen = false;
+
+    freezeCameraBtn.addEventListener('click', () => {
+        if (isFrozen) {
+            isFrozen = false;
+            video.classList.remove('hidden');
+            frozenFrame.classList.add('hidden');
+            freezeCameraBtn.textContent = 'Close Camera';
+            startCamera();
+        } else {
+            if (!video.srcObject) return; // Don't freeze if camera isn't running
+            isFrozen = true;
+            const context = frozenFrame.getContext('2d');
+            frozenFrame.width = video.videoWidth;
+            frozenFrame.height = video.videoHeight;
+            context.drawImage(video, 0, 0, frozenFrame.width, frozenFrame.height);
+            video.classList.add('hidden');
+            frozenFrame.classList.remove('hidden');
+            freezeCameraBtn.textContent = 'Open Camera';
+            stopCamera(); // Release the camera
+        }
+    });
+
+    function stopCamera() {
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            cameraStream = null;
+        }
+    }
+
+    async function startCamera() {
+        stopCamera(); // Ensure any previous stream is stopped
+        errorContainer.classList.add('hidden');
+
+        const constraints1 = { video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } } };
+        const constraints2 = { video: { width: { ideal: 1920 }, height: { ideal: 1080 } } };
+        const constraints3 = { video: true };
+
+        try {
+            cameraStream = await navigator.mediaDevices.getUserMedia(constraints1);
+        } catch (err1) {
+            console.warn(`Failed to get rear camera (${err1.name}), trying front camera...`);
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia(constraints2);
+            } catch (err2) {
+                console.warn(`Failed to get 1080p camera (${err2.name}), trying any camera...`);
+                try {
+                    cameraStream = await navigator.mediaDevices.getUserMedia(constraints3);
+                } catch (err3) {
+                    console.error("Camera Error (Final Fallback):", err3);
+                    let errorMessage = 'Could not access the camera. Please ensure you have given permission and are using a secure (https) connection.';
+                    if (err3.name === 'NotReadableError') {
+                        errorMessage += ' Another application (like Skype, Zoom, or another browser tab) might be using the camera. Please close it and try again.';
+                    } else if (err3.name === 'NotFoundError') {
+                        errorMessage = 'No camera was found on your device.';
+                    } else if (err3.name === 'NotAllowedError') {
+                        errorMessage = 'You have denied camera access. Please enable it in your browser settings for this site.';
+                    }
+                    showError(errorMessage);
+                    cameraStream = null; // Ensure stream is null on failure
+                    return;
+                }
+            }
+        }
+        video.srcObject = cameraStream;
+    }
+
+    captureBtn.addEventListener('click', async () => {
+        resultContainer.classList.add('hidden');
+        errorContainer.classList.add('hidden');
+        loadingSpinner.classList.remove('hidden');
+        captureBtn.disabled = true;
+        freezeCameraBtn.disabled = true;
+
+        const canvas = document.createElement('canvas');
+        const imageSource = isFrozen ? frozenFrame : video;
+        
+        const sourceWidth = isFrozen ? imageSource.width : imageSource.videoWidth;
+        const sourceHeight = isFrozen ? imageSource.height : imageSource.videoHeight;
+
+        if (!sourceWidth || !sourceHeight) {
+            showError("Cannot capture image, camera is not ready or frozen frame is empty.");
+            loadingSpinner.classList.add('hidden');
+            captureBtn.disabled = false;
+            freezeCameraBtn.disabled = false;
+            return;
+        }
+
+        canvas.width = sourceWidth;
+        canvas.height = sourceHeight;
+        const context = canvas.getContext('2d');
+        context.drawImage(imageSource, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(async (blob) => {
+            const formData = new FormData();
+            formData.append('image', blob, 'capture.jpg');
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText} (Status: ${response.status})`);
+                }
+
+                const data = await response.json();
+
+                if (data.status === 'success' && data.class) {
+                    showResult(data.class);
+                } else {
+                    throw new Error(data.error || 'The API returned an unexpected response.');
+                }
+
+            } catch (err) {
+                console.error("API Fetch Error:", err);
+                showError(`Failed to get a result. ${err.message}`);
+            } finally {
+                loadingSpinner.classList.add('hidden');
+                captureBtn.disabled = false;
+                freezeCameraBtn.disabled = false;
+            }
+        }, 'image/jpeg');
+    });
+
+    function showResult(className) {
+        resultText.textContent = className;
+        resultContainer.classList.remove('hidden');
+    }
+
+    function showError(message) {
+        errorText.textContent = message;
+        errorContainer.classList.remove('hidden');
+    }
+
+    startCamera();
+</script>
+{{ end }}
