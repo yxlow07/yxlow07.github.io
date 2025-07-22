@@ -217,7 +217,7 @@
         }
       } catch (err) {
         console.error("API Fetch Error:", err);
-        showError(`Failed to get a result. ${err.message}`);
+        showError(`API is not currently online. Please download the model and run it locally.`);
       } finally {
         loadingSpinner.classList.add("hidden");
         captureBtn.disabled = false;

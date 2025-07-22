@@ -1,9 +1,16 @@
 [[competitions]]
-name = "Codeforces"
-achievement = "Specialist (1429 rating)"
-year = "Current"
-description = "Reached Specialist Rank. Participated in various contests and solved problems in competitive programming."
-icon = "fa-duotone fa-solid fa-code"
+name = "National Artificial Intelligence Competition (NAIC)"
+achievement = "1st Runner Up"
+year = "2025"
+description = "Develop an AI model to classify kuih and investigated its application in the real world"
+icon = "fa-duotone fa-solid fa-microchip-ai"
+
+[[competitions]]
+name = "LingHacks VI Hackathon"
+achievement = "Best Beginner Project + 3rd Runner Up"
+year = "2025"
+description = "Applied NLP technology and graph theory to create a journal capable of analyzing emotions and suggesting help"
+icon = "fa-duotone fa-solid fa-pencil"
 
 [[competitions]]
 name = "Malaysia Artificial Intelligence Olympiad (MAIO)"
@@ -11,6 +18,13 @@ achievement = "Gold Medal"
 year = "2025"
 description = "Solve problem regarding the use of artificial intelligence such as image processing, natural language processing, etc."
 icon = "fa-duotone fa-solid fa-microchip-ai"
+
+[[competitions]]
+name = "Codeforces"
+achievement = "Specialist (1429 rating)"
+year = "Current"
+description = "Reached Specialist Rank. Participated in various contests and solved problems in competitive programming."
+icon = "fa-duotone fa-solid fa-code"
 
 [[competitions]]
 name = "Malaysia Computing Olympiad (MCO)"
@@ -25,13 +39,6 @@ achievement = "Silver Medal"
 year = "Fall 2024"
 description = "Solved 5+ problems regarding euler tour, binary search and dynamic programming."
 icon = "fa-duotone fa-solid fa-award"
-
-[[competitions]]
-name = "Kuiz Kimia Kebangsaan"
-achievement = "Cemerlang"
-year = "2024"
-description = "Solved problems related to chemistry"
-icon = "fa-duotone fa-solid fa-atom-simple"
 
 [[competitions]]
 name = "Malaysia Computing Challenge (MCC)"

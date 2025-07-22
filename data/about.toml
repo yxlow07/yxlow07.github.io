@@ -1,6 +1,11 @@
 title = "About Me"
 
 [[features]]
+icon = "fa-duotone fa-solid fa-microchip-ai"
+title = "Machine Learning Engineer"
+description = "I am passionate about machine learning and artificial intelligence. I have experience in using libraries like <i>TensorFlow</i>, <i>PyTorch</i>, and <i>Scikit-learn</i>. I am currently exploring the field of <i>Open World Generalization</i> and <i>Natural Language Processing</i>."
+
+[[features]]
 icon = "fa-duotone fa-solid fa-code"
 title = "Competitive Coder"
 description = "Active participant in programming contests on platforms like CodeForces, Atcoder. Currently a <i>Specialist</i> on Codeforces, with a rating of <i>1429</i>, <i>6 Kyu</i> on Atcoder, with a rating of <i>810</i>."
@@ -10,13 +15,7 @@ icon = "fa-duotone fa-solid fa-laptop-code"
 title = "Software Developer"
 description = "Leveraging my skills to build solutions, specialising in backend development. Some of my proficient programming languages include <i>Python</i>, <i>C++</i>, <i>PHP</i>, <i>Dart</i> and <i>JavaScript</i>. I have experience in using frameworks like <i>Django</i>, <i>Laravel</i>, and <i>Flutter</i> for building web and mobile applications."
 
-[[features]]
-icon = "fa-duotone fa-solid fa-microchip-ai"
-title = "Machine Learning Enthusiast"
-description = "I am passionate about machine learning and artificial intelligence. I have experience in using libraries like <i>TensorFlow</i>, <i>PyTorch</i>, and <i>Scikit-learn</i>. I am currently exploring the field of <i>Open World Generalization</i>."
-
-
 [current]
 icon = "fa-duotone fa-solid fa-clock"
 title = "My Current Focus"
-description = "I am currently working on enhancing my competitive programming skills, exploring novel ways to solve problems using machine learning and contributing my knowledge to teach others. I am a <b>Code In Place 2025 Section Leader</b>, where I teach Python to students from all around the globe. I am also a student at <b>INTI International College Penang</b> where I am studying Cambridge A-Level."
+description = "I am currently working on enhancing my deep learning skills, exploring novel ways to solve problems using machine learning and contributing my knowledge to teach others. I am currently the Technical Director of <b>AMISO</b>, specializing in building a platform for the organization. I am also a student at <b>INTI International College Penang</b> where I am studying Cambridge A-Level. I am always on the lookout for a hackathon!"

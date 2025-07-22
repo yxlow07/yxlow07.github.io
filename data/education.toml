@@ -5,7 +5,7 @@ location = "Penang, Malaysia"
 period = "2020 - 2024"
 achievements = [
   "9A+, 1A",
-  "Yearly Ranking Top 2",
+  "2nd in Year",
   "Best Student Graduate Award"
 ]
 extracurricular = [
@@ -15,9 +15,9 @@ extracurricular = [
 ]
 
 [[education]]
-degree = "Cambridge A Levels"
+degree = "Cambridge A Level"
 school = "INTI International College Penang"
 location = "Penang, Malaysia"
 period = "2025 - 2026"
 achievements = []
-extracurricular = ["Intake Representative"]
+extracurricular = ["Intake Representative", "Student Government"]
