@@ -10,7 +10,7 @@ authorImage: "profile.png"
 math: false
 tags: ["AI", "image classification", "competition", "education", "EfficientNetV2", "machine learning", "problem solving"]
 ---
-This is the blog detailing how our team, **KThxByte**, managed to get **1st Runner Up** in the **Technical Track** of the National Artificial Intelligence Competition 2025.
+This is the blog detailing how our team, **KThxByte**, managed to get **1st Runner-Up** in the **Technical Track** of the National Artificial Intelligence Competition 2025.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ This is the blog detailing how our team, **KThxByte**, managed to get **1st Runn
 7. [Evaluation and Results](#evaluation-and-results)
 8. [Conclusion and Future Work](#conclusion-and-future-work)
 
-If you are looking for the link to the classifier, [click here](/kuih-classifier). The model currently is **not** hosted online but you can download it from [this repository](https://github.com/yxlow07/naic-model-2025) and run it locally.
+If you are looking for the link to the classifier, [click here](/kuih-classifier). The model currently is **not** hosted online, but you can download it from [this repository](https://github.com/yxlow07/naic-model-2025) and run it locally.
 
 ## Introduction and Task Description <a name="introduction"></a>
 
@@ -34,7 +34,7 @@ A summary of the task is to create a *kuih classifier* capable of identifying th
 
 ## Collecting Data <a name="collecting-data"></a>
 
-There is a saying in the machine learning (ML) community: **Garbage in, Garbage out**. This means that the quality of the data we feed the model affects the quality of the model. Our primary focus is to curate and collect a high-quality dataset that is devoid of noise and bias. Some of the sources we used were **Google Images**, **cooking blogs and forums**, **publicly available datasets** and most importantly **kuihs we bought**.
+There is a saying in the machine learning (ML) community: **Garbage in, Garbage out**. This means that the quality of the data we feed the model affects the quality of the model. Our primary focus is to curate and collect a high-quality dataset that is devoid of noise and bias. Some of the sources we used were **Google Images**, **cooking blogs and forums**, **publicly available datasets** and most importantly, **kuihs we bought**.
 
 In total, we are able to collect over `17,000` images with *kuihs* in various angles, backgrounds, positions, etc., to create a rich dataset.
 
@@ -42,7 +42,7 @@ In total, we are able to collect over `17,000` images with *kuihs* in various an
 
 ## Data Preprocessing <a name="data-preprocessing"></a>
 
-The next step is to preprocess the data. Without preprocessing, we will face a lot of issues, such as images with extremely high resolutions, different image colour channels, colour spaces, formats, etc. We had to **learn this the hard way** as we initially thought we could just feed the images into the model. Without preprocessing, the images would also trigger `CUDA out of memory` errors, as some of our phone cameras take images with pixel counts larger than the limit of [`89478485 pixels`](https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.MAX_IMAGE_PIXELS). A short snippet of code to convert the images to a standard format (`512x512, RGB, PNG`) is shown below:
+The next step is to preprocess the data. Without preprocessing, we will face a lot of issues, such as images with extremely high resolutions, different image colour channels, colour spaces, formats, etc. We had to **learn this the hard way**, as we initially thought we could just feed the images into the model. Without preprocessing, the images would also trigger `CUDA out of memory` errors, as some of our phone cameras take images with pixel counts larger than the limit of [`89478485 pixels`](https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.MAX_IMAGE_PIXELS). A short snippet of code to convert the images to a standard format (`512x512, RGB, PNG`) is shown below:
 
 ```python
 try:
@@ -67,11 +67,11 @@ except Exception as e:
     print(f"Error processing {source_path}: {e}")  
 ```
 
-> **Key Takeaway:** Standardizing and preprocessing makes your life _a ton_ better
+> **Key Takeaway:** Standardising and preprocessing makes your life _a ton_ better
 
 ## Data Augmentation <a name="data-augmentation"></a>
 
-Augmentation is a crucial step if you want your model to generalise well. We chose a few techniques, including `random flips and rotation`, `colour jittering` and `random erasing`. This is done using the torchvision library, as it provides all the augmentation techniques we need. The code snippet and image below shows how we implemented the augmentation:
+Augmentation is a crucial step if you want your model to generalise well. We chose a few techniques, including `random flips and rotation`, `colour jittering` and `random erasing`. This is done using the torchvision library, as it provides all the augmentation techniques we need. The code snippet and image below show how we implemented the augmentation:
 
 ```python
 transform_flip_rotate = transforms.Compose([
@@ -94,7 +94,7 @@ transform_random_erasing = transforms.Compose([
 
 ![Augmentation Example](/images/naic-augmentations.png)
 
-During the competition, we learnt that many people applied <red>**a whole list of augmentations**</red>. However, this is <red>**counterproductive**</red> as most of what they used were just noise, making the model hard to converge. By keeping it simple, we were able to achieve greater accuracy and performance.
+During the competition, we learnt that many people applied <red>**a whole list of augmentations**</red>. However, this is <red>**counterproductive**</red> as most of what they used was just noise, making the model hard to converge. By keeping it simple, we were able to achieve greater accuracy and performance.
 
 > **Key Takeaway**: **don't overdo it**. Sometimes, less is more.
 
@@ -106,9 +106,9 @@ Next up is finally going into the machine learning part. We had a few requiremen
 2. The model should be "complex enough" to learn the features of the kuihs.
 3. The model should exceed our baseline accuracy (more on this later).
 
-The easiest way to train a model to classify kuihs is through **transfer learning**. Training a model from scratch requires hyperparameter tuning, modiying the layers of the neural network to improve performance, etc., which is why we ultimately decided against it.
+The easiest way to train a model to classify kuihs is through **transfer learning**. Training a model from scratch requires hyperparameter tuning, modifying the layers of the neural network to improve performance, etc., which is why we ultimately decided against it.
 
-Before we even start deciding the model, we should train a **baseline** in order to assess the *improvement* of our model. We went with **Teachable Machine by Google**, which lets us setup and train in less than 10 minutes. With some runs, the best we manage to get is `57% testing accuracy`, given `~100 images` per kuih class.
+Before we even start deciding the model, we should train a **baseline** to assess the *improvement* of our model. We went with **Teachable Machine by Google**, which lets us set up and train in less than 10 minutes. With some runs, the best we manage to get is `57% testing accuracy`, given `~100 images` per kuih class.
 
 Selecting a model is a simple task that is quite *common* in competitions like these. We repeat a simple process to determine the best model for our data and usage.
 
@@ -118,7 +118,7 @@ Selecting a model is a simple task that is quite *common* in competitions like t
 4. Evaluate the model (`accuracy` is the simplest metric)
 5. Repeat steps `2-4` with different models
 
-Some of the models we tried were `ResNet34`, `RestNet50`, `EfficientNetV2`, `Vision Transformers (ViT)`. Through this process, we were able to determine that `EfficientNetV2` is the best at this task. Its model architecture is shown below.
+Some of the models we tried were `ResNet34`, `RestNet50`, `EfficientNetV2` and `Vision Transformers (ViT)`. Through this process, we were able to determine that `EfficientNetV2` is the best at this task. Its model architecture is shown below.
 
 ![](/images/naic-efficientnetv2.png)
 <cent>EfficientNetV2 Model Architecture</cent>
@@ -158,19 +158,19 @@ optimizer = optim.AdamW([
 ```
 
 #### Class Imbalances
-Due to the dataset being collected from various sources, we noticed there were some classes having less images than others. To fix this, we used the confusion matrix from the testing to determine the class weights. In the end, `2.5` weight was applied to 2 kuihs while the rest remain `1.0`. 
+Due to the dataset being collected from various sources, we noticed there were some classes having fewer images than others. To fix this, we used the confusion matrix from the testing to determine the class weights. In the end, `2.5` weight was applied to 2 kuihs while the rest remain `1.0`. 
 
 #### Transfer Learning
 
-Since this model is trained through transfer learning, we first split the training into two phases: **train the final output layer**, **fine-tuning deeper layers**. 
+Since this model is trained through transfer learning, we first split the training into two phases: **training the final output layer** and **fine-tuning deeper layers**. 
 
 #### Training the output layer
-In this phase, we only train the final output layer. `GradScaler` is used to prevent overflowing the gradients, common in large model trainings. With `17 epochs`, we noticed that the model stabilises at around `87%` and we manually stopped the training. 
+In this phase, we only train the final output layer. `GradScaler` is used to prevent overflowing the gradients, which is common in large model trainings. With `17 epochs`, we noticed that the model stabilises at around `87%` and we manually stopped the training. 
 
 ![](/images/naic-initial-training.png)
 
 #### Fine-tuning deeper layers
-To acheive better performance, there is two main ways, the first is to tuning the model's hyperparameters, while the second is to fine-tune the deeper layers. We chose the latter as it is easier to implement and faster to train. 
+To achieve better performance, there are two main ways: the first is to tune the model's hyperparameters, while the second is to fine-tune the deeper layers. We chose the latter as it is easier to implement and faster to train. 
 
 ```py
 # Unfreezing block 4 onwards
@@ -199,18 +199,18 @@ With just `2 epochs`, we managed to achieve `98% validation accuracy`.
 
 ## Evaluation and Results <a name="evaluation-and-results"></a>
 
-We managed to achieve `validation accuracy` of `98%` and `test accuracy` of `100%`. Classification report and confusion matrix is shown below:
+We managed to achieve `validation accuracy` of `98%` and `test accuracy` of `100%`. The classification report and confusion matrix are shown below:
 
 ![](/images/naic-validation-classification-report.png)
 
 ![](/images/naic-validation-batch-test.png)
 
 ## Conclusion and Future Work <a name="conclusion-and-future-work"></a>
-We were extremely satisfied with the results of our model, huge shout out to my teammates who gathered this insane amount of data, helped with market research and brought us _kuih_ at 6.30 a.m. for our presentation. 
+We were extremely satisfied with the results of our model; huge shout out to my teammates who gathered this insane amount of data, helped with market research and brought us _kuih_ at 6.30 a.m. for our presentation. 
 
-#### Market Value and etc.
+#### Market Value etc.
 
-In _kuihs_ shop in Malaysia, we notice there is a lack of manpower in the kitchen, as there is a need for a lot of manpower handling the payments as not all employees are proficient with kuih recognising. By talking to a few shop owners around KL and Penang, they expressed interest in this project as it helps automate the process of buying _kuihs_, allowing more workers to focus on producing high quality _kuihs_.
+In the _kuihs_ shop in Malaysia, we notice there is a lack of manpower in the kitchen, as there is a need for a lot of manpower handling the payments, as not all employees are proficient with kuih recognition. By talking to a few shop owners around KL and Penang, they expressed interest in this project as it helps automate the process of buying _kuihs_, allowing more workers to focus on producing high-quality _kuihs_.
 
 #### GitHub Repository
 
