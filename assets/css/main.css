@@ -5,21 +5,33 @@ i {
     @apply font-mono
 }
 
+red {
+    @apply text-red-500
+}
+
+blue {
+    @apply text-blue-500
+}
+
+cent {
+    @apply w-full flex justify-center items-center text-center italic text-gray-500
+}
+
 .blog-content {
     h1 {
-        @apply text-4xl font-bold mb-4
+        @apply text-4xl font-bold mb-4 mt-12
     }
     h2 {
-        @apply text-3xl font-bold mb-4
+        @apply text-3xl font-bold mb-4 mt-12
     }
     h3 {
-        @apply text-2xl font-bold mb-4
+        @apply text-2xl font-bold mb-4 mt-12
     }
     h4 {
-        @apply text-xl font-bold mb-4
+        @apply text-xl font-bold mb-4 mt-12
     }
     h5 {
-        @apply text-lg font-bold mb-4
+        @apply text-lg font-bold mb-4 mt-12
     }
     ul {
         @apply list-disc list-inside mb-4

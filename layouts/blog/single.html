@@ -43,7 +43,7 @@
   </div>
 
   <!-- Blog content -->
-  <div class="container mx-auto px-4 py-12 md:px-8">
+  <div class="container mx-auto px-4 py-12 md:px-8 z-50">
     <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols">
       <!-- Main content -->
       <div>
@@ -123,6 +123,9 @@
     </div>
   </div>
 </main>
+<button id="back-to-top" class="hidden w-8 h-8 hover:cursor-pointer items-center justify-center fixed bottom-8 right-8 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 z-50">
+    <i class="fas fa-arrow-up"></i>
+</button>
 {{ $script := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $script.RelPermalink }}"></script>
 {{ end }}

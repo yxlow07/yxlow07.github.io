@@ -19,7 +19,7 @@ title = "Yu Xuan's Portfolio"
     formAction = "https://formspree.io/f/mrbqlvkj"
   [params.contact.mentorship]
     title = "Coding Mentorship"
-    description = "I offer mentorship for aspiring programmers, competitive or not. Whether you're just starting or looking to improve your skills, I can help guide your learning journey."
+    description = "I offer mentorship for aspiring programmers, machine learning enthusiast or just someone breaking into AI. Whether you're just starting or looking to improve your skills, I can help guide your learning journey."
     buttonText = "Inquire about Mentorship"
     inquiryLink = "mailto:yuxuanlow013@gmail.com?subject=Mentorship%20Inquiry"
 
@@ -74,11 +74,6 @@ style = "onedark"
     name = "Blog"
     url = "/blog"
     weight = 3
-
-[[menu.main]]
-    name = "Kuih Classifier"
-    url = "/kuih-classifier"
-    weight = 4
   [[menu.main]]
     name = "Contact"
     url = "/#contact"

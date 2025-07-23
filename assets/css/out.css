@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-100: oklch(93.6% 0.032 17.717);
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-amber-500: oklch(76.9% 0.188 70.08);
@@ -35,6 +36,7 @@
     --color-slate-800: oklch(27.9% 0.041 260.031);
     --color-slate-900: oklch(20.8% 0.042 265.755);
     --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-gray-800: oklch(27.8% 0.033 256.848);
@@ -276,11 +278,17 @@
   .right-1\/4 {
     right: calc(1/4 * 100%);
   }
+  .right-8 {
+    right: calc(var(--spacing) * 8);
+  }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
   .bottom-1\/4 {
     bottom: calc(1/4 * 100%);
+  }
+  .bottom-8 {
+    bottom: calc(var(--spacing) * 8);
   }
   .-left-4 {
     left: calc(var(--spacing) * -4);
@@ -296,6 +304,9 @@
   }
   .z-10 {
     z-index: 10;
+  }
+  .z-20 {
+    z-index: 20;
   }
   .z-50 {
     z-index: 50;
@@ -805,6 +816,9 @@
   .bg-gray-600 {
     background-color: var(--color-gray-600);
   }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
+  }
   .bg-indigo-50\/50 {
     background-color: color-mix(in srgb, oklch(96.2% 0.018 272.314) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1291,6 +1305,13 @@
       }
     }
   }
+  .hover\:cursor-pointer {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
   .hover\:bg-blue-700 {
     &:hover {
       @media (hover: hover) {
@@ -1479,8 +1500,24 @@ i {
   font-style: normal;
   font-family: var(--font-mono);
 }
+red {
+  color: var(--color-red-500);
+}
+blue {
+  color: var(--color-blue-500);
+}
+cent {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-gray-500);
+  font-style: italic;
+}
 .blog-content {
   h1 {
+    margin-top: calc(var(--spacing) * 12);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
@@ -1488,6 +1525,7 @@ i {
     font-weight: var(--font-weight-bold);
   }
   h2 {
+    margin-top: calc(var(--spacing) * 12);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
@@ -1495,6 +1533,7 @@ i {
     font-weight: var(--font-weight-bold);
   }
   h3 {
+    margin-top: calc(var(--spacing) * 12);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -1502,6 +1541,7 @@ i {
     font-weight: var(--font-weight-bold);
   }
   h4 {
+    margin-top: calc(var(--spacing) * 12);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
@@ -1509,6 +1549,7 @@ i {
     font-weight: var(--font-weight-bold);
   }
   h5 {
+    margin-top: calc(var(--spacing) * 12);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));

@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+<header class="{{ if not (and (eq .Type "blog") .IsPage) }}sticky top-0 {{ end }}z-20 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm">
   <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
     <div class="flex items-center gap-2">
       <!-- CodeIcon SVG -->
