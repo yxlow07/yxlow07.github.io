@@ -46,21 +46,23 @@
           {{ if .Params.lastMod }}
             <p class="mt-2 text-sm text-slate-500 italic">Last updated: {{ .Params.lastMod.Format "January 2, 2006" }}</p>
           {{ end }}
-          <div class="mt-4 flex items-center justify-between">
-            <div class="flex flex-wrap gap-2">
-              {{ range .Params.tags }}
-              <a
-                href="{{ (print "/tags/" . "/") | relURL }}"
-                class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200"
-              >
-                {{ . }}
+          <div class="mt-4">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex flex-wrap gap-2 flex-1 min-w-0">
+                {{ range .Params.tags }}
+                <a
+                  href="{{ (print "/tags/" . "/") | relURL }}"
+                  class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200"
+                >
+                  {{ . }}
+                </a>
+                {{ end }}
+              </div>
+              <a href="{{ .RelPermalink }}" class="text-sm font-medium text-blue-600 hover:underline whitespace-nowrap flex-shrink-0">
+                Read more
+                <i class="fa-solid fa-arrow-right ml-1"></i>
               </a>
-              {{ end }}
             </div>
-            <a href="{{ .RelPermalink }}" class="text-sm font-medium text-blue-600 hover:underline">
-              Read more
-              <i class="fa-solid fa-arrow-right ml-1"></i>
-            </a>
           </div>
         </article>
         {{ end }}

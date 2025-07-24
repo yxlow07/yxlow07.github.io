@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+    background-color: white !important;
+}
+
 i {
     font-style: normal;
     @apply font-mono
@@ -18,6 +22,19 @@ cent {
 }
 
 .blog-content {
+    @media (max-width: 640px) {
+        .highlight {
+            max-width: 85vw;
+        }
+        img {
+            max-width: 85vw;
+        }
+    }
+    @media (max-width: 1080px) {
+        .highlight {
+            max-width: max-content;
+        }
+    }
     h1 {
         @apply text-4xl font-bold mb-4 mt-12
     }
