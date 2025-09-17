@@ -22,6 +22,8 @@ cent {
 }
 
 .blog-content {
+    @apply max-w-screen;
+
     @media (max-width: 640px) {
         .highlight {
             max-width: 85vw;
@@ -81,4 +83,51 @@ cent {
 
 a.highlightedLinks {
     @apply text-blue-600 hover:text-blue-800 hover:underline
+}
+
+.link-preview {
+    @apply border rounded-lg shadow-sm my-4 overflow-hidden mx-auto;
+    max-width: 85vw;
+
+    h3 {
+        margin: 0 !important;
+    }
+
+    a {
+        @apply flex flex-col gap-4 p-4 transition hover:bg-gray-50;
+        /* Desktop layout (screens >= 640px) */
+        @apply sm:flex-row sm:items-center;
+
+        text-decoration: none !important;
+    }
+
+    img {
+        @apply w-full h-40 object-cover rounded-md;
+        /* Desktop layout: fixed size */
+        @apply sm:w-32 sm:h-20 sm:flex-shrink-0;
+    }
+
+    .link-preview-content {
+        @apply flex flex-col min-w-0;
+    }
+
+    .link-preview-title {
+        @apply text-lg font-semibold text-gray-900;
+    }
+
+    .link-preview-description {
+        @apply text-sm text-gray-600 mt-1;
+    }
+
+    .link-preview-url {
+        @apply text-xs text-blue-600 mt-2 inline-block hover:underline truncate;
+    }
+
+    blockquote {
+        @apply p-3 text-sm font-bold font-medium text-yellow-800 border-t border-yellow-200 bg-yellow-50 m-2;
+
+        p {
+            @apply m-0 p-0;
+        }
+    }
 }

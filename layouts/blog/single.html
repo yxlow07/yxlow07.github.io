@@ -44,9 +44,9 @@
 
   <!-- Blog content -->
   <div class="container mx-auto px-4 py-12 md:px-8 z-50">
-    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols">
+    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
       <!-- Main content -->
-      <div>
+      <div class="md:col-span-2">
         <div class="blog-content text-slate-800 leading-relaxed space-y-6 break-words">
           {{ .Content }}
         </div>
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Sidebar -->
-      <div class="hidden space-y-8 md:block">
+      <div class="hidden space-y-8 md:block md:col-span-2">
         <!-- Author info -->
         {{ if .Params.author }}
         <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">
@@ -126,6 +126,49 @@
 <button id="back-to-top" class="hidden w-8 h-8 hover:cursor-pointer items-center justify-center fixed bottom-8 right-8 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 z-50">
     <i class="fas fa-arrow-up"></i>
 </button>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Use a unique identifier for each shortcode invocation to avoid reprocessing.
+    const descriptions = document.querySelectorAll('.link-preview-description:not([data-processed])');
+    const wordLimit = 40;
+
+    descriptions.forEach(desc => {
+        desc.setAttribute('data-processed', 'true');
+        const fullText = desc.textContent.trim();
+        const words = fullText.split(/\s+/).filter(w => w.length > 0);
+
+        if (words.length > wordLimit) {
+            const truncatedText = words.slice(0, wordLimit).join(' ');
+            const remainingText = words.slice(wordLimit).join(' ');
+
+            // Sanitize for inclusion in innerHTML
+            const safeTruncated = truncatedText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const safeRemaining = remainingText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            desc.innerHTML = `
+                ${safeTruncated}<span class="ellipsis">... </span>
+                <span class="more-text" style="display: none;">${safeRemaining}</span>
+                <a href="#" class="read-more" style="cursor: pointer; text-decoration: underline; padding: 0 !important;">Read more</a>
+            `;
+
+            const readMoreLink = desc.querySelector('.read-more');
+            readMoreLink.addEventListener('click', function(event) {
+                // Prevent the click from navigating the parent <a> tag
+                event.preventDefault();
+                event.stopPropagation();
+
+                const moreTextSpan = desc.querySelector('.more-text');
+                const ellipsisSpan = desc.querySelector('.ellipsis');
+
+                // Expand the text and hide the "Read more" link
+                if (moreTextSpan) moreTextSpan.style.display = 'inline';
+                if (ellipsisSpan) ellipsisSpan.style.display = 'none';
+                readMoreLink.style.display = 'none';
+            }, { once: true }); // The event should only fire once
+        }
+    });
+});
+</script>
 {{ $script := resources.Get "js/main.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $script.RelPermalink }}"></script>
 {{ end }}

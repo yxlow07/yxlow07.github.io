@@ -1,0 +1,25 @@
+{{ $url := .Get "url" }}
+{{ $notes := .Get "notes"}}
+{{ $data := index site.Data.linkpreviews $url }}
+
+{{ if $url }}
+<div class="link-preview">
+  <a href="{{ $url }}" target="_blank" rel="noopener">
+    {{ with $data.image }}
+      <img src="{{ . }}" alt="{{ $data.title }}" loading="lazy"/>
+    {{ else }}
+      <img src="/images/link-placeholder.png" alt="Placeholder image"/>
+    {{ end }}
+    <div class="link-preview-content">
+      <h3 class="link-preview-title">{{ $data.title }}</h3>
+      <p class="link-preview-description">{{ $data.description }}</p>
+      <span class="link-preview-url">{{ $url }}</span>
+    </div>
+  </a>
+   {{ if $notes }}
+    <blockquote>
+      <p>{{ $notes }}</p>
+    </blockquote>
+  {{ end }}
+</div>
+{{ end }}
