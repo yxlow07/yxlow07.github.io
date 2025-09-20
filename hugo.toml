@@ -55,6 +55,10 @@ style = "onedark"
 
 [menu]
   [[menu.main]]
+    name = "Exam Timer"
+    url = "/exam-timer"
+    weight=10
+  [[menu.main]]
     name = "About"
     url = "/#about"
     weight = 10

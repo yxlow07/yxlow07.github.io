@@ -1,0 +1,563 @@
+{{ define "main" }}
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  body {
+    font-family: "Inter", sans-serif;
+  }
+  /* Simple animation for new timers */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .timer-card {
+    animation: fadeIn 0.5s ease-out;
+  }
+  /* Custom scrollbar for better aesthetics */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  #timers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+</style>
+<div class="w-full max-w-6xl mx-auto">
+  <header class="text-center mb-8">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mt-4">
+      Exam Countdown Timers
+    </h1>
+    <p class="text-gray-400 mt-2 text-lg">
+      Lock in and keep grinding!
+    </p>
+  </header>
+
+  <main>
+    <!-- Container for displaying timers -->
+    <div
+      id="timers-container"
+    >
+      <!-- Timers will be injected here by JavaScript -->
+    </div>
+    <!-- Form and Import/Export Sections -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <!-- Import/Export Section -->
+      <div class="bg-gray-200 p-6 rounded-2xl shadow-lg border border-gray-700">
+        <h2 class="text-2xl font-semibold mb-4">Manage Timers</h2>
+        <div class="flex flex-col md:flex-row gap-4">
+          <button
+            id="export-btn"
+            class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Export Timers
+          </button>
+          <button
+            id="import-btn"
+            class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Import Timers
+          </button>
+          <button
+            id="remove-all-btn"
+            class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Remove All
+          </button>
+          <input
+            type="file"
+            id="import-file-input"
+            class="hidden"
+            accept=".json"
+          />
+        </div>
+        <div class="flex flex-col gap-2 mt-4">
+          <button
+            id="import-preset-1"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Import AS Fmt, Mth, Chm, Phy
+          </button>
+          <button
+            id="import-preset-2"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Import AS Mth, Bio, Chm, Phy
+          </button>
+        </div>
+        <div
+          id="import-export-status"
+          class="text-green-400 mt-3 text-sm h-4"
+        ></div>
+      </div>
+
+      <!-- Form for adding new timers -->
+      <div class="bg-gray-200 p-6 rounded-2xl shadow-lg border border-gray-700">
+        <h2 class="text-2xl font-semibold mb-4">Add a New Countdown</h2>
+        <form id="add-timer-form" class="space-y-4">
+          <input
+            type="text"
+            id="exam-name"
+            placeholder="E.g., Math Final"
+            class="w-full bg-gray-200 placeholder-gray-400 border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            required
+          />
+          <input
+            type="datetime-local"
+            id="exam-date"
+            step="60"
+            class="w-full bg-gray-200 border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            required
+          />
+          <button
+            type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md"
+          >
+            Add Timer
+          </button>
+        </form>
+        <div id="form-error" class="text-red-400 mt-3 text-sm h-4"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+  // --- DOM Elements ---
+  const addTimerForm = document.getElementById("add-timer-form");
+  const examNameInput = document.getElementById("exam-name");
+  const examDateInput = document.getElementById("exam-date");
+  const timersContainer = document.getElementById("timers-container");
+  const formErrorEl = document.getElementById("form-error");
+  const exportBtn = document.getElementById("export-btn");
+  const importBtn = document.getElementById("import-btn");
+  const importFileInput = document.getElementById("import-file-input");
+  const importPreset1Btn = document.getElementById("import-preset-1");
+  const importPreset2Btn = document.getElementById("import-preset-2");
+  const removeAllBtn = document.getElementById("remove-all-btn");
+  const importExportStatusEl = document.getElementById("import-export-status");
+
+  // --- App State ---
+  let timers = [];
+
+  // --- Functions ---
+
+  /**
+   * Initialize the app by loading timers from localStorage and starting clocks.
+   */
+  function initialize() {
+    loadTimers();
+    startClocks();
+  }
+
+  /**
+   * Loads timers from localStorage.
+   */
+  function loadTimers() {
+    const stored = localStorage.getItem("examTimers");
+    if (stored) {
+      timers = JSON.parse(stored);
+    }
+    renderTimers();
+  }
+
+  /**
+   * Saves timers to localStorage.
+   */
+  function saveTimers() {
+    localStorage.setItem("examTimers", JSON.stringify(timers));
+  }
+
+  /**
+   * Renders the timer cards to the DOM.
+   */
+  function renderTimers() {
+    timersContainer.innerHTML = "";
+    if (timers.length === 0) {
+      timersContainer.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">
+                    <p class="text-xl">No countdowns yet.</p>
+                    <p>Add your first exam using the form above!</p>
+                 </div>`;
+      return;
+    }
+    // Sort timers by the closest target date first
+    timers.sort((a, b) => new Date(a.targetDate) - new Date(b.targetDate));
+    timers.forEach((timer, index) => {
+      const timerEl = document.createElement("div");
+      timerEl.className =
+        "timer-card bg-gray-100 p-5 py-8 rounded-xl shadow-lg border border-gray-300 flex flex-col relative";
+      timerEl.dataset.index = index;
+      timerEl.dataset.targetDate = timer.targetDate;
+
+      timerEl.innerHTML = `
+                    <button class="delete-btn absolute top-2 right-2 w-6 h-6 bg-red-300 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition duration-200 opacity-75 hover:opacity-100" title="Delete timer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold truncate">${escapeHTML(
+                          timer.name
+                        )}</h3>
+                        <p class="text-sm text-gray-400 mb-4">${new Date(
+                          timer.targetDate
+                        ).toLocaleString([], {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}</p>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div>
+                                <div class="text-3xl font-semibold time-days">00</div>
+                                <div class="text-xs text-gray-400">Days</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-semibold time-hours">00</div>
+                                <div class="text-xs text-gray-400">Hours</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-semibold time-minutes">00</div>
+                                <div class="text-xs text-gray-400">Mins</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+      timersContainer.appendChild(timerEl);
+    });
+  }
+
+  /**
+   * Updates the countdown display for all timers.
+   */
+  function updateCountdowns() {
+    const now = new Date().getTime();
+    document.querySelectorAll(".timer-card").forEach((card) => {
+      const targetDate = new Date(card.dataset.targetDate).getTime();
+      const distance = targetDate - now;
+
+      if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        card.querySelector(".time-days").textContent = String(days).padStart(
+          2,
+          "0"
+        );
+        card.querySelector(".time-hours").textContent = String(hours).padStart(
+          2,
+          "0"
+        );
+        card.querySelector(".time-minutes").textContent = String(
+          minutes
+        ).padStart(2, "0");
+      } else {
+        card.querySelector(".time-days").textContent = "00";
+        card.querySelector(".time-hours").textContent = "00";
+        card.querySelector(".time-minutes").textContent = "00";
+        // Optionally, change style to indicate completion
+        if (!card.classList.contains("opacity-50")) {
+          card.classList.add("opacity-50", "bg-green-900/50");
+          card.querySelector("h3").textContent += " - Time's up!";
+        }
+      }
+    });
+  }
+
+  /**
+   * Starts all the intervals for updating clocks.
+   */
+  function startClocks() {
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+  }
+
+  /**
+   * Sanitizes HTML to prevent XSS.
+   * @param {string} str The string to escape.
+   * @returns {string} The escaped string.
+   */
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  /**
+   * Clears a status message after a delay.
+   * @param {HTMLElement} element The HTML element to clear.
+   */
+  function clearStatus(element) {
+    setTimeout(() => {
+      element.textContent = "";
+    }, 3000);
+  }
+
+  /**
+   * Imports timers from a JSON string.
+   * @param {string} jsonString The JSON string containing timer data.
+   * @param {string} presetName The name of the preset for status messages.
+   */
+  function importFromJsonString(jsonString, presetName) {
+    try {
+      const importedTimers = JSON.parse(jsonString);
+      if (!Array.isArray(importedTimers)) {
+        throw new Error("JSON is not an array.");
+      }
+
+      let newTimersAdded = 0;
+      for (const timer of importedTimers) {
+        // Basic validation for imported timer object
+        if (
+          timer.name &&
+          timer.targetDate &&
+          new Date(timer.targetDate) > new Date()
+        ) {
+          // Prevent duplicates
+          const isDuplicate = timers.some(
+            (existing) =>
+              existing.name === timer.name &&
+              existing.targetDate === timer.targetDate
+          );
+          if (!isDuplicate) {
+            timers.push({
+              name: timer.name,
+              targetDate: timer.targetDate,
+            });
+            newTimersAdded++;
+          }
+        }
+      }
+      if (newTimersAdded > 0) {
+        saveTimers();
+        renderTimers();
+      }
+
+      importExportStatusEl.textContent = `Successfully imported ${newTimersAdded} timers from ${presetName}.`;
+      importExportStatusEl.className = "text-green-400 mt-3 text-sm h-4";
+    } catch (error) {
+      console.error("Import error:", error);
+      importExportStatusEl.textContent = `Import failed for ${presetName}. Invalid JSON format.`;
+      importExportStatusEl.className = "text-red-400 mt-3 text-sm h-4";
+    } finally {
+      clearStatus(importExportStatusEl);
+    }
+  }
+
+  // --- Event Listeners ---
+
+  /**
+   * Handles form submission to add a new timer.
+   */
+  addTimerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = examNameInput.value.trim();
+    const targetDate = examDateInput.value;
+
+    // Basic validation
+    if (!name || !targetDate) {
+      formErrorEl.textContent = "Please fill in all fields.";
+      return;
+    }
+    if (new Date(targetDate) <= new Date()) {
+      formErrorEl.textContent = "Please select a future date and time.";
+      clearStatus(formErrorEl);
+      return;
+    }
+
+    formErrorEl.textContent = "";
+
+    timers.push({ name, targetDate });
+    saveTimers();
+    renderTimers();
+    examNameInput.value = "";
+    examDateInput.value = "";
+  });
+
+  /**
+   * Handles clicks on the delete button for a timer.
+   */
+  timersContainer.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+      const card = e.target.closest(".timer-card");
+      const index = parseInt(card.dataset.index);
+      if (!isNaN(index)) {
+        timers.splice(index, 1);
+        saveTimers();
+        renderTimers();
+      }
+    }
+  });
+
+  /**
+   * Handles exporting timers to a JSON file.
+   */
+  exportBtn.addEventListener("click", () => {
+    if (timers.length === 0) {
+      importExportStatusEl.textContent = "No timers to export.";
+      importExportStatusEl.className = "text-yellow-400 mt-3 text-sm h-4";
+      clearStatus(importExportStatusEl);
+      return;
+    }
+
+    const timersToExport = timers.map(({ name, targetDate }) => ({
+      name,
+      targetDate,
+    }));
+    const jsonString = JSON.stringify(timersToExport, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "exam-timers.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    importExportStatusEl.textContent = `Exported ${timers.length} timers successfully.`;
+    importExportStatusEl.className = "text-green-400 mt-3 text-sm h-4";
+    clearStatus(importExportStatusEl);
+  });
+
+  /**
+   * Triggers the hidden file input when the import button is clicked.
+   */
+  importBtn.addEventListener("click", () => {
+    importFileInput.click();
+  });
+
+  /**
+   * Handles the file selection and initiates the import process.
+   */
+  importFileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        const importedTimers = JSON.parse(event.target.result);
+        if (!Array.isArray(importedTimers)) {
+          throw new Error("JSON is not an array.");
+        }
+
+        let newTimersAdded = 0;
+        for (const timer of importedTimers) {
+          // Basic validation for imported timer object
+          if (
+            timer.name &&
+            timer.targetDate &&
+            new Date(timer.targetDate) > new Date()
+          ) {
+            // Prevent duplicates
+            const isDuplicate = timers.some(
+              (existing) =>
+                existing.name === timer.name &&
+                existing.targetDate === timer.targetDate
+            );
+            if (!isDuplicate) {
+              timers.push({
+                name: timer.name,
+                targetDate: timer.targetDate,
+              });
+              newTimersAdded++;
+            }
+          }
+        }
+        if (newTimersAdded > 0) {
+          saveTimers();
+          renderTimers();
+        }
+
+        importExportStatusEl.textContent = `Successfully imported ${newTimersAdded} new timers.`;
+        importExportStatusEl.className = "text-green-400 mt-3 text-sm h-4";
+      } catch (error) {
+        console.error("Import error:", error);
+        importExportStatusEl.textContent =
+          "Import failed. Invalid JSON file format.";
+        importExportStatusEl.className = "text-red-400 mt-3 text-sm h-4";
+      } finally {
+        // Reset file input to allow importing the same file again
+        importFileInput.value = "";
+        clearStatus(importExportStatusEl);
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  /**
+   * Handles preset 1 import button click.
+   */
+  importPreset1Btn.addEventListener("click", () => {
+    // TODO: Replace with actual JSON string for "AS Fmt, Mth, Chm, Phy"
+    const presetJson =
+      '[{"name": "Math P1", "targetDate": "2025-10-08T08:30"},{"name": "Math P5", "targetDate": "2025-10-16T08:30"},{"name": "Further Maths P1", "targetDate": "2025-10-08T12:30"},{"name": "Further Maths P3", "targetDate": "2025-10-10T12:30"},{"name": "Chem P1", "targetDate": "2025-11-13T08:30"},{"name": "Chem P2", "targetDate": "2025-10-10T08:30"},{"name": "Chem P3", "targetDate": "2025-10-28T08:30"},{"name": "Physics P1", "targetDate": "2025-11-12T08:30"},{"name": "Physics P2", "targetDate": "2025-10-15T08:30"},{"name": "Physics P3", "targetDate": "2025-10-23T08:30"}]';
+    importFromJsonString(presetJson, "AS Fmt, Mth, Chm, Phy");
+  });
+
+  /**
+   * Handles preset 2 import button click.
+   */
+  importPreset2Btn.addEventListener("click", () => {
+    // TODO: Replace with actual JSON string for "AS Mth, Bio, Chm, Phy"
+    const presetJson =
+      '[{"name": "Biology P1", "targetDate": "2025-11-11T08:30"}, {"name": "Biology P2", "targetDate": "2025-10-21T08:30"}, {"name": "Biology P3", "targetDate": "2025-10-28T10:30"}, {"name": "Math P1", "targetDate": "2025-10-08T08:30"}, {"name": "Math P5", "targetDate": "2025-10-16T08:30"}, {"name": "Chem P1", "targetDate": "2025-11-13T08:30"}, {"name": "Chem P2", "targetDate": "2025-10-10T08:30"}, {"name": "Chem P3", "targetDate": "2025-10-28T08:30"}, {"name": "Physics P1", "targetDate": "2025-11-12T08:30"}, {"name": "Physics P2", "targetDate": "2025-10-15T08:30"}, {"name": "Physics P3", "targetDate": "2025-10-23T08:30"}]';
+    importFromJsonString(presetJson, "AS Mth, Bio, Chm, Phy");
+  });
+
+  /**
+   * Handles remove all timers button click.
+   */
+  removeAllBtn.addEventListener("click", () => {
+    if (timers.length === 0) {
+      importExportStatusEl.textContent = "No timers to remove.";
+      importExportStatusEl.className = "text-yellow-400 mt-3 text-sm h-4";
+      clearStatus(importExportStatusEl);
+      return;
+    }
+
+    // Confirm before removing all timers
+    if (
+      confirm(`Are you sure you want to remove all ${timers.length} timers?`)
+    ) {
+      timers = [];
+      saveTimers();
+      renderTimers();
+      importExportStatusEl.textContent = "All timers removed successfully.";
+      importExportStatusEl.className = "text-green-400 mt-3 text-sm h-4";
+      clearStatus(importExportStatusEl);
+    }
+  });
+
+  // --- App Initialization ---
+  initialize();
+</script>
+{{ end }}
