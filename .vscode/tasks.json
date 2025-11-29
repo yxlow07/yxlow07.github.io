@@ -14,7 +14,9 @@
           "reveal": "always",
           "panel": "dedicated"
         },
-        "auto": true
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
       },
       {
         "label": "Run TailwindCSS",
@@ -29,7 +31,9 @@
           "reveal": "always",
           "panel": "dedicated"
         },
-        "auto": true
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
       }
     ]
   }
