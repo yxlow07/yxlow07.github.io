@@ -16,7 +16,7 @@
     </div>
     <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {{ range $.Site.Data.projects.projects }}
-      <div class="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div class="group relative overflow-hidden rounded-lg border border-slate-200/60 bg-white/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
         <div class="relative h-48 overflow-hidden">
           <img src="{{ $.Site.Params.staticImagePath }}/{{ .image }}" alt="{{ .title }}" class="h-full w-full transform object-contain object-center transition-transform duration-300 group-hover:scale-110" />

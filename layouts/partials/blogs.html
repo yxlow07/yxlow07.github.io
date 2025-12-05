@@ -13,7 +13,7 @@
       {{ if gt (len $posts) 0 }}
         {{ range first 3 (sort $posts ".Params.lastMod" "desc") }}
           <article
-                  class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200/60 bg-white/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
             <a
                     href="{{ .RelPermalink }}"

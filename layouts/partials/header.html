@@ -152,6 +152,45 @@
       updateMobileNav();
     });
 
+    // Intersection Observer for scroll-based indicator updates
+    if (window.location.pathname === '/') {
+      const sections = [];
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href.startsWith('/#')) {
+          const sectionId = href.substring(2); // Get 'about' from '/#about'
+          const section = document.getElementById(sectionId);
+          if (section) {
+            sections.push({ id: sectionId, element: section, link: link });
+          }
+        }
+      });
+
+      if (sections.length > 0) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '-20% 0px -60% 0px', // Trigger when section is in upper-middle of viewport
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const sectionData = sections.find(s => s.element === entry.target);
+              if (sectionData) {
+                moveIndicatorTo(sectionData.link);
+                updateMobileNav('/#' + sectionData.id);
+              }
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(section => {
+          observer.observe(section.element);
+        });
+      }
+    }
+
     // Mobile menu toggle
     if (menuButton && mobileMenu && menuIcon && xIcon) {
       menuButton.addEventListener('click', () => {
