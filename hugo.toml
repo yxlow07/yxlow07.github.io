@@ -55,10 +55,6 @@ style = "onedark"
 
 [menu]
   [[menu.main]]
-    name = "Exam Timer"
-    url = "/exam-timer"
-    weight=10
-  [[menu.main]]
     name = "About"
     url = "/#about"
     weight = 10
@@ -75,10 +71,15 @@ style = "onedark"
     url = "/#achievements"
     weight = 40
   [[menu.main]]
-    name = "Blog"
-    url = "/blog"
-    weight = 3
-  [[menu.main]]
     name = "Contact"
     url = "/#contact"
+    weight = 50
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog"
     weight = 60
+  [[menu.main]]
+    name = "Exam Timer"
+    url = "/exam-timer"
+    weight = 70
+  

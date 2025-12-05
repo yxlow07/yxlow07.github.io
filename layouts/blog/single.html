@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="bg-white">
   <!-- Hero section with featured image -->
-  <div class="relative h-[40vh] min-h-[300px] bg-slate-900">
+  <div class="relative min-h-[350px] bg-slate-900 pt-28 pb-16 md:pt-36">
     {{ if .Params.image }}
     <img
       src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
@@ -10,7 +10,7 @@
     />
     {{ end }}
     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-    <div class="container relative mx-auto flex h-full flex-col items-center justify-end px-4 pb-16 text-center md:px-8">
+    <div class="container relative mx-auto flex h-full flex-col items-center justify-end px-4 text-center md:px-8">
       <a
         href="{{ $.Site.BaseURL }}/blog"
         class="mb-8 inline-flex items-center self-start rounded-full bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm transition-colors hover:bg-white/20"
