@@ -78,8 +78,3 @@ style = "onedark"
     name = "Blog"
     url = "/blog"
     weight = 60
-  [[menu.main]]
-    name = "Exam Timer"
-    url = "/exam-timer"
-    weight = 70
-  
