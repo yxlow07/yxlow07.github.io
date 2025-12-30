@@ -152,7 +152,123 @@ quill.on('text-change', function (delta, oldDelta, source) {
         }
     }
 
-    // 2. Check for block-level shortcuts (on space or # or *)
+    // 2. Check for inline bold **text** and italic *text*
+    if (char === '*') {
+        const textBefore = lineText.substring(0, cursorInLine);
+
+        // Check for **bold** first (closing **)
+        // Pattern: **something**
+        if (textBefore.length >= 4 && textBefore.endsWith('**')) {
+            // Find opening **
+            const searchText = textBefore.slice(0, -2); // Remove closing **
+            const openingIndex = searchText.lastIndexOf('**');
+            if (openingIndex !== -1) {
+                const boldText = searchText.substring(openingIndex + 2);
+                if (boldText.length > 0 && !boldText.includes('*')) {
+                    setTimeout(() => {
+                        const startPos = lineStart + openingIndex;
+                        quill.deleteText(startPos, boldText.length + 4);
+                        quill.insertText(startPos, boldText, 'bold', true);
+                        quill.setSelection(startPos + boldText.length, 0);
+                        quill.format('bold', false);
+                    }, 0);
+                    return;
+                }
+            }
+        }
+
+        // Check for *italic* (single asterisks, not double)
+        // Only if we don't have ** at the end
+        if (!textBefore.endsWith('**') && textBefore.length >= 2) {
+            // Find opening * that is not part of **
+            const searchText = textBefore.slice(0, -1); // Remove closing *
+            let openingIndex = -1;
+
+            // Search backwards for a single * not preceded by another *
+            for (let i = searchText.length - 1; i >= 0; i--) {
+                if (searchText[i] === '*') {
+                    // Check if this is a single * (not part of **)
+                    const prevChar = i > 0 ? searchText[i - 1] : '';
+                    const nextChar = i < searchText.length - 1 ? searchText[i + 1] : '';
+                    if (prevChar !== '*' && nextChar !== '*') {
+                        openingIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (openingIndex !== -1) {
+                const italicText = searchText.substring(openingIndex + 1);
+                if (italicText.length > 0 && !italicText.includes('*')) {
+                    setTimeout(() => {
+                        const startPos = lineStart + openingIndex;
+                        quill.deleteText(startPos, italicText.length + 2);
+                        quill.insertText(startPos, italicText, 'italic', true);
+                        quill.setSelection(startPos + italicText.length, 0);
+                        quill.format('italic', false);
+                    }, 0);
+                    return;
+                }
+            }
+        }
+    }
+
+    // 3. Check for _italic_ and __bold__ with underscores
+    if (char === '_') {
+        const textBefore = lineText.substring(0, cursorInLine);
+
+        // Check for __bold__ first (closing __)
+        if (textBefore.length >= 4 && textBefore.endsWith('__')) {
+            const searchText = textBefore.slice(0, -2);
+            const openingIndex = searchText.lastIndexOf('__');
+            if (openingIndex !== -1) {
+                const boldText = searchText.substring(openingIndex + 2);
+                if (boldText.length > 0 && !boldText.includes('_')) {
+                    setTimeout(() => {
+                        const startPos = lineStart + openingIndex;
+                        quill.deleteText(startPos, boldText.length + 4);
+                        quill.insertText(startPos, boldText, 'bold', true);
+                        quill.setSelection(startPos + boldText.length, 0);
+                        quill.format('bold', false);
+                    }, 0);
+                    return;
+                }
+            }
+        }
+
+        // Check for _italic_ (single underscores)
+        if (!textBefore.endsWith('__') && textBefore.length >= 2) {
+            const searchText = textBefore.slice(0, -1);
+            let openingIndex = -1;
+
+            for (let i = searchText.length - 1; i >= 0; i--) {
+                if (searchText[i] === '_') {
+                    const prevChar = i > 0 ? searchText[i - 1] : '';
+                    const nextChar = i < searchText.length - 1 ? searchText[i + 1] : '';
+                    if (prevChar !== '_' && nextChar !== '_') {
+                        openingIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (openingIndex !== -1) {
+                const italicText = searchText.substring(openingIndex + 1);
+                if (italicText.length > 0 && !italicText.includes('_')) {
+                    setTimeout(() => {
+                        const startPos = lineStart + openingIndex;
+                        quill.deleteText(startPos, italicText.length + 2);
+                        quill.insertText(startPos, italicText, 'italic', true);
+                        quill.setSelection(startPos + italicText.length, 0);
+                        quill.format('italic', false);
+                    }, 0);
+                    return;
+                }
+            }
+        }
+    }
+
+    // 4. Check for block-level shortcuts (on space or #)
     if (char === ' ' || char === '#' || char === '*' || char === '-') {
         // For space, check with the space included
         const textBefore = char === ' ' ? lineText.substring(0, cursorInLine) : lineText.substring(0, cursorInLine - 1) + char;
@@ -167,9 +283,7 @@ quill.on('text-change', function (delta, oldDelta, source) {
             { regex: /^1\. $/, format: { list: 'ordered' }, len: 3, trigger: ' ' },
             { regex: /^#/, format: { header: 1 }, len: 1, trigger: '#' },
             { regex: /^##/, format: { header: 2 }, len: 2, trigger: '#' },
-            { regex: /^###/, format: { header: 3 }, len: 3, trigger: '#' },
-            { regex: /^\*(?!\*)/, format: { list: 'bullet' }, len: 1, trigger: '*' },
-            { regex: /^-(?!-)/, format: { list: 'bullet' }, len: 1, trigger: '-' }
+            { regex: /^###/, format: { header: 3 }, len: 3, trigger: '#' }
         ];
 
         for (const pattern of patterns) {
@@ -380,6 +494,8 @@ function updateAutosaveStatus(status) {
 
     const statusText = elements.autosaveStatus.querySelector('span');
     const statusIcon = elements.autosaveStatus.querySelector('i');
+
+    if (!statusText || !statusIcon) return;
 
     switch (status) {
         case 'saving':
