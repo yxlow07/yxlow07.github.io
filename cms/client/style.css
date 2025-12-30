@@ -130,7 +130,7 @@
 }
 
 /* Tags dropdown */
-.tags-dropdown.active {
+#tags-dropdown.active {
     display: block !important;
 }
 

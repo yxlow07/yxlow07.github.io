@@ -430,7 +430,9 @@ function initAutosave() {
 // ========================================
 async function loadTagsFromPosts() {
     try {
+        console.log('Fetching posts for tags...');
         const result = await fetchPosts();
+        console.log('Posts result:', result);
         if (result.success && result.posts) {
             const allTags = new Set();
             result.posts.forEach(post => {
@@ -439,6 +441,9 @@ async function loadTagsFromPosts() {
                 }
             });
             AVAILABLE_TAGS = Array.from(allTags).sort();
+            console.log('Loaded tags:', AVAILABLE_TAGS);
+        } else {
+            console.warn('No posts found or failed to load posts for tags.');
         }
     } catch (e) {
         console.error('Failed to load tags from posts:', e);
@@ -660,8 +665,9 @@ function showTagsDropdown() {
 
 function filterTagsDropdown() {
     const query = elements.tagsInput.value.toLowerCase().trim();
-    
+
     // Filter available tags that haven't been selected yet and match the query
+    console.log('Filtering tags. Query:', query, 'Available:', AVAILABLE_TAGS);
     const availableTags = AVAILABLE_TAGS.filter(tag => {
         const lowerTag = tag.toLowerCase();
         const isSelected = selectedTags.some(st => st.toLowerCase() === lowerTag);
@@ -687,7 +693,7 @@ function filterTagsDropdown() {
     }
 
     elements.tagsDropdown.innerHTML = html;
-    
+
     // Ensure dropdown is visible when filtering
     elements.tagsDropdown.classList.add('active');
 
@@ -701,11 +707,7 @@ function filterTagsDropdown() {
         });
     });
 }
-            elements.tagsInput.value = '';
-            elements.tagsDropdown.classList.remove('active');
-        });
-    });
-}
+
 
 function handleTagKeydown(e) {
     if (e.key === 'Enter') {
@@ -1163,7 +1165,9 @@ async function init() {
     initAutosave();
 
     // Load tags from existing posts
+    console.log('About to call loadTagsFromPosts...');
     await loadTagsFromPosts();
+    console.log('loadTagsFromPosts completed. AVAILABLE_TAGS:', AVAILABLE_TAGS);
 
     // Event listeners
     elements.postForm.addEventListener('submit', handleFormSubmit);

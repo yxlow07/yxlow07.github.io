@@ -8,14 +8,7 @@ image: "cp.webp"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
 math: true
-tags:
-  [
-    "algorithms",
-    "competitive programming",
-    "dynamic programming",
-    "graph theory",
-    "ad hoc",
-  ]
+tags: ["algorithms", "competitive programming", "dynamic programming", "graph theory", "ad hoc"]
 ---
 
 ## Introduction

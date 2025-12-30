@@ -84,11 +84,28 @@ function parseFrontmatter(content) {
     }
 
     // Parse tags array
-    const tagsMatch = yamlContent.match(/tags:\s*\[\s*([\s\S]*?)\s*\]/);
+    const tagsMatch = yamlContent.match(/tags:\s*\[([\s\S]*?)\]/);
     if (tagsMatch) {
         const tagsContent = tagsMatch[1];
-        const tagMatches = tagsContent.matchAll(/"([^"]+)"/g);
-        frontmatter.tags = Array.from(tagMatches, m => m[1]);
+        // Split by comma and clean up quotes and whitespace
+        // Also remove trailing comma if present
+        const extractedTags = tagsContent.split(',').map(t => {
+            return t.trim().replace(/^["']|["']$/g, '').replace(/,$/, '');
+        }).filter(t => t.length > 0);
+        frontmatter.tags = extractedTags;
+    } else {
+        // Handle alternative array format
+        // tags:
+        //   - tag1
+        //   - tag2
+        const listMatch = yamlContent.match(/tags:\s*\n((?:\s*-\s*.*(?:\n|$))+)/);
+        if (listMatch) {
+            const listContent = listMatch[1];
+            const extractedTags = listContent.split('\n').map(l => {
+                return l.replace(/^\s*-\s*/, '').trim().replace(/^["']|["']$/g, '');
+            }).filter(t => t.length > 0);
+            frontmatter.tags = extractedTags;
+        }
     }
 
     return { frontmatter, content: bodyContent.trim() };
@@ -108,12 +125,15 @@ router.get('/', async (req, res) => {
             const { frontmatter } = parseFrontmatter(content);
             const slug = file.replace('.md', '');
 
+            console.log(`[${file}] Extracted tags:`, frontmatter.tags);
+
             return {
                 filename: file,
                 slug,
                 title: frontmatter.title || file,
                 date: frontmatter.date || 'Unknown',
-                draft: frontmatter.draft || false
+                draft: frontmatter.draft || false,
+                tags: frontmatter.tags || []
             };
         }));
 

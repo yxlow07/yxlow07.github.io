@@ -8,7 +8,7 @@ image: "todo.png"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
 math: false
-tags: 
+tags: []
 ---
 
 ### Projects List (In Progress / Ideation Stage)

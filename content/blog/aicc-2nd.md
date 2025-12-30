@@ -8,11 +8,7 @@ image: "aicc2.png"
 author: "Yu Xuan Low"
 authorImage: "profile.png"
 math: true
-tags:
-  [
-    "algorithms",
-    "competitive ai",
-  ]
+tags: ["algorithms", "competitive ai"]
 ---
 
 # Intro
