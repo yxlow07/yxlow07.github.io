@@ -1,7 +1,7 @@
 ---
-lastMod: "2025-05-26T21:11:31"
+lastMod: "2025-05-26T21:11:31+08:00"
 title: "CSES Editorials"
-date: 2025-05-11T12:00:00-00:00
+date: 2025-05-11T12:00:00+08:00
 draft: false
 description: "A collection of editorials for CSES Problemset."
 image: "cp.webp"

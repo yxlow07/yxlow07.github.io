@@ -2,6 +2,7 @@ name = "Portfolio Site"
 homepage = "https://yxlow07.github.io/"
 languageCode = "en-us"
 title = "Yu Xuan's Portfolio"
+timeZone = "Asia/Singapore"
 
 [params]
   staticPath = ""

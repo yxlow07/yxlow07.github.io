@@ -1,7 +1,7 @@
 ---
-lastMod: "2025-06-01T11:25:20"
+lastMod: "2025-06-01T11:25:20+08:00"
 title: "Projects List"
-date: 2025-05-16T12:00:00-00:00
+date: 2025-05-16T12:00:00+08:00
 draft: false
 description: "A list of all projects I'm currently working on or is done."
 image: "todo.png"

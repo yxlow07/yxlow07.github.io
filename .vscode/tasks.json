@@ -1,40 +1,56 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Run Hugo Serve",
-        "type": "shell",
-        "command": "hugo serve",
-        "problemMatcher": [],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "presentation": {
-          "reveal": "always",
-          "panel": "dedicated"
-        },
-        "runOptions": {
-          "runOn": "folderOpen"
-        }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Hugo Serve",
+      "type": "shell",
+      "command": "hugo serve",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
-      {
-        "label": "Run TailwindCSS",
-        "type": "shell",
-        "command": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/out.css --watch",
-        "problemMatcher": [],
-        "group": {
-          "kind": "build",
-          "isDefault": false
-        },
-        "presentation": {
-          "reveal": "always",
-          "panel": "dedicated"
-        },
-        "runOptions": {
-          "runOn": "folderOpen"
-        }
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
       }
-    ]
-  }
-  
+    },
+    {
+      "label": "Run TailwindCSS",
+      "type": "shell",
+      "command": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/out.css --watch",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Run CMS Server",
+      "type": "shell",
+      "command": "cd cms/server && npm install && npm start",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

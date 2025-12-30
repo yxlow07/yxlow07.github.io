@@ -2,7 +2,7 @@
 date: '2025-05-28T22:11:17+08:00'
 draft: false
 title: 'Study Scroll'
-lastMod: "2025-05-28T22:41:37"
+lastMod: "2025-05-28T22:41:37+08:00"
 description: "Doom Scrolling, but for A Level Students."
 image: "a-levels.jpg"
 author: "Yu Xuan Low"

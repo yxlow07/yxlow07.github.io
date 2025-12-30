@@ -1,7 +1,7 @@
 ---
-lastMod: "2025-08-18T12:00:00"
+lastMod: "2025-08-18T12:00:00+08:00"
 title: "Resources I Used"
-date: 2025-08-18T12:00:00
+date: 2025-08-18T12:00:00+08:00
 draft: false
 description: "A collection of all the resources I'm using, sorted by fields, for personal use only."
 image: "locked.png"

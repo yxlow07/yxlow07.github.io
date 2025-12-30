@@ -1,7 +1,7 @@
 ---
-lastMod: "2025-07-28T12:00:00"
+lastMod: "2025-07-28T12:00:00+08:00"
 title: "Interesting Integration Problems"
-date: 2025-05-15T12:00:00-00:00
+date: 2025-05-15T12:00:00+08:00
 draft: false
 description: "A collection of interesting integration problems with solutions attached."
 image: "integration.png"
