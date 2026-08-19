@@ -1,7 +1,7 @@
 ---
 lastMod: "2025-12-28T12:00:00+08:00"
 title: "2nd AICC Competition Editorials (Unofficial)"
-date: 2025-12-30T17:00:00+08:00
+date: 2025-12-29T17:00:00+08:00
 draft: false
 description: "An unofficial collection of editorials for the 2nd AICC competition with solutions by me"
 image: "aicc2.png"
