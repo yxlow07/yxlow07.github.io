@@ -1,81 +1,57 @@
-<section id="blog" class="relative overflow-hidden bg-slate-50 py-16 md:py-24">
-  <div class="absolute inset-0">
-    <div class="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-blue-100/30"></div>
-  </div>
-  <div class="container relative mx-auto px-4 md:px-8">
-    <div class="mx-auto max-w-full text-center px-4">
-      <h2 class="bg-gradient-to-r leading-snug from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
-        Latest Blog Posts
-      </h2>
+<section id="blog" class="relative w-full bg-white py-16 sm:py-20 border-b border-zinc-200/70">
+  <div class="container relative mx-auto px-4 sm:px-6 md:px-8 max-w-4xl">
+    <!-- Section Header -->
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950">
+          Recent Articles
+        </h2>
+      </div>
+
+      <a
+        href="/blog"
+        class="text-xs font-bold text-zinc-800 hover:text-zinc-950 hover:underline inline-flex items-center gap-1"
+      >
+        <span>All articles</span>
+        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </a>
     </div>
-    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+    <!-- Clean Post List -->
+    <div class="mt-8 divide-y divide-zinc-200">
       {{ $posts := where site.RegularPages "Section" "blog" }}
       {{ if gt (len $posts) 0 }}
         {{ range first 3 (sort $posts ".Params.lastMod" "desc") }}
-          <article
-                  class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200/60 bg-white/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <a
-                    href="{{ .RelPermalink }}"
-                    class="aspect-video overflow-hidden"
-            >
-              {{ if .Params.image }}
-              <img
-                      src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
-                      alt="{{ .Title }}"
-                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-              {{ else }}
-              <div class="flex h-full w-full items-center justify-center bg-slate-100">
-                <i class="fa-solid fa-file-lines text-4xl text-slate-400"></i>
-              </div>
-              {{ end }}
+        <article class="py-4 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+          <div class="flex-1 min-w-0 pr-4">
+            <a href="{{ .RelPermalink }}" class="group inline-flex items-center gap-1.5">
+              <h3 class="text-sm sm:text-base font-bold text-zinc-950 group-hover:text-zinc-700 group-hover:underline transition-colors">
+                {{ .Title }}
+              </h3>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-zinc-600 group-hover:text-zinc-950 transition-colors flex-shrink-0"></i>
             </a>
-            <div class="flex flex-1 flex-col p-6">
-              <div class="flex items-center gap-4 text-sm text-slate-600">
-                      <span class="flex items-center gap-1">
-                        <i class="fa-solid fa-clock h-4 w-4 mt-1"></i>
-                        {{ .ReadingTime }} min read
-                      </span>
-                      <span>Updated {{ .Params.lastMod.Format "Jan 2, 2006" }}</span>
-              </div>
-              <a href="{{ .RelPermalink }}">
-                <h3 class="mt-4 text-xl font-bold leading-tight text-slate-900 group-hover:text-blue-600">
-                  {{ .Title }}
-                </h3>
-              </a>
-              <p class="mt-3 flex-1 text-sm text-slate-600 leading-snug">
-                {{ with .Description }}{{ . | truncate 160 }}{{ else }}{{ .Summary | truncate 160 }}{{ end }}
-              </p>
-              <div class="mt-4 flex flex-wrap gap-2">
-                {{ range .Params.tags }}
-                <span class="inline-flex items-center rounded-full bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600">
-                        <i class="fa-solid mt-1 fa-tag mr-1 h-3 w-3"></i>
-                        {{ . }}
-                      </span>
-                {{ end }}
-              </div>
-              <a
-                      href="{{ .RelPermalink }}"
-                      class="mt-6 flex items-center text-sm font-medium text-blue-600"
-              >
-                Read More
-                <i class="fa-solid mt-1.5 fa-arrow-right ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"></i>
-              </a>
-            </div>
-          </article>
+            <p class="mt-1 text-xs text-zinc-700 leading-relaxed line-clamp-2">
+              {{ with .Description }}{{ . | truncate 130 }}{{ else }}{{ .Summary | truncate 130 }}{{ end }}
+            </p>
+            {{ if .Params.tags }}
+            <p class="mt-1.5 text-[11px] font-mono font-medium text-zinc-600">
+              {{ delimit .Params.tags " · " }}
+            </p>
+            {{ end }}
+          </div>
+
+          <div class="text-xs font-mono font-medium text-zinc-700 flex-shrink-0 mt-1 sm:mt-0">
+            <span>{{ .Params.lastMod.Format "Jan 2, 2006" }}</span>
+            <span class="text-zinc-400 font-sans mx-1">·</span>
+            <span>{{ .ReadingTime }} min</span>
+          </div>
+        </article>
         {{ end }}
       {{ else }}
-        <div class="col-span-full py-12 text-center">
-          <p class="text-slate-500">No blog posts available yet.</p>
+        <div class="py-6 text-xs text-zinc-600 font-medium">
+          No articles published yet.
         </div>
       {{ end }}
-    </div>
-    <div class="mt-12 text-center">
-      <a href="/blog" class="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700">
-        View All Posts
-        <i class="fa-solid fa-arrow-right ml-2"></i>
-      </a>
     </div>
   </div>
 </section>

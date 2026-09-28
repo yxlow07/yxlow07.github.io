@@ -1,73 +1,63 @@
 {{ define "main" }}
-<main class="bg-white min-h-[80vh]">
-  <!-- Hero section -->
-  <div class="relative min-h-[300px] w-full bg-slate-900 pt-36 pb-16 md:pt-48">
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-    <div class="container relative mx-auto flex h-full flex-col items-center justify-end px-4 text-center md:px-8">
-      <h1 class="max-w-4xl text-3xl font-bold text-white md:text-5xl">
-        Blog Posts
+<div class="w-full bg-white pt-28 pb-20 sm:pt-36 sm:pb-24 border-b border-zinc-200/70 min-h-[70vh]">
+  <div class="container relative mx-auto px-4 sm:px-6 md:px-8 max-w-4xl">
+    <!-- Header -->
+    <div class="pb-8 border-b border-zinc-200">
+      <a
+        href="/"
+        class="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-700 hover:text-zinc-950 mb-4 transition-colors"
+      >
+        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+        <span>Home</span>
+      </a>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950">
+        Articles & Notes
       </h1>
-      <p class="mt-4 text-white/80">
-        Insights on programming, competitive coding, and more
+      <p class="mt-2 text-sm sm:text-base text-zinc-800 leading-relaxed max-w-2xl">
+        Technical writeups, AI competition post-mortems, and engineering notes.
       </p>
     </div>
-  </div>
 
-  <!-- Blog listing -->
-  <div class="container mx-auto px-4 py-12 md:px-8">
-    <div class="mx-auto max-w-3xl">
-      <!-- Posts list -->
-      <div class="divide-y divide-slate-100">
-        {{ $pages := .Pages }}
-        {{ $sortedPages := sort $pages ".Params.lastMod" "desc" }}
-        {{ if eq (index $sortedPages 0).Params.lastMod 0 }}
-          {{ $sortedPages = sort $pages "Date" "desc" }}
-        {{ end }}
-        {{ range $sortedPages }}
-        <article class="py-6">
-          <div class="flex items-center gap-2 text-sm text-slate-500">
-            <time>{{ .Date.Format "January 2, 2006" }}</time>
-            <span>•</span>
-            <span>{{ .ReadingTime }} min read</span>
-          </div>
-          <h2 class="mt-2 text-xl font-bold">
-            <a href="{{ .RelPermalink }}" class="text-slate-800 hover:text-blue-600">
+    <!-- Posts list -->
+    <div class="mt-8 divide-y divide-zinc-200">
+      {{ $pages := .Pages }}
+      {{ $sortedPages := sort $pages ".Params.lastMod" "desc" }}
+      {{ if eq (index $sortedPages 0).Params.lastMod 0 }}
+        {{ $sortedPages = sort $pages "Date" "desc" }}
+      {{ end }}
+      {{ range $sortedPages }}
+      <article class="py-6 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="flex-1 min-w-0 pr-4">
+          <a href="{{ .RelPermalink }}" class="group inline-flex items-center gap-1.5">
+            <h2 class="text-base sm:text-lg font-bold text-zinc-950 group-hover:text-zinc-700 group-hover:underline transition-colors">
               {{ .Title }}
-            </a>
-          </h2>
-          <p class="mt-2 text-slate-600">
+            </h2>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-zinc-600 group-hover:text-zinc-950 transition-colors flex-shrink-0"></i>
+          </a>
+
+          <p class="mt-1.5 text-xs sm:text-sm text-zinc-800 leading-relaxed">
             {{ if .Description }}
               {{ .Description }}
             {{ else }}
               {{ .Summary | truncate 160 }}
             {{ end }}
           </p>
-          <br>
-          {{ if .Params.lastMod }}
-            <p class="mt-2 text-sm text-slate-500 italic">Last updated: {{ .Params.lastMod.Format "January 2, 2006" }}</p>
-          {{ end }}
-          <div class="mt-4">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex flex-wrap gap-2 flex-1 min-w-0">
-                {{ range .Params.tags }}
-                <a
-                  href="{{ (print "/tags/" . "/") | relURL }}"
-                  class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200"
-                >
-                  {{ . }}
-                </a>
-                {{ end }}
-              </div>
-              <a href="{{ .RelPermalink }}" class="text-sm font-medium text-blue-600 hover:underline whitespace-nowrap flex-shrink-0">
-                Read more
-                <i class="fa-solid fa-arrow-right ml-1"></i>
-              </a>
-            </div>
+
+          {{ if .Params.tags }}
+          <div class="mt-2 text-xs font-mono font-medium text-zinc-600">
+            {{ delimit .Params.tags " · " }}
           </div>
-        </article>
-        {{ end }}
-      </div>
+          {{ end }}
+        </div>
+
+        <div class="text-xs font-mono font-medium text-zinc-700 flex-shrink-0 mt-1 sm:mt-0 flex sm:flex-col items-center sm:items-end gap-1">
+          <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+          <span class="text-zinc-400 font-sans sm:hidden">·</span>
+          <span>{{ .ReadingTime }} min read</span>
+        </div>
+      </article>
+      {{ end }}
     </div>
   </div>
-</main>
+</div>
 {{ end }}

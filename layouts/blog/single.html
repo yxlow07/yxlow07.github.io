@@ -1,110 +1,96 @@
 {{ define "main" }}
-<main class="bg-white">
-  <!-- Hero section with featured image -->
-  <div class="relative min-h-[350px] bg-slate-900 pt-28 pb-16 md:pt-36">
-    {{ if .Params.image }}
-    <img
-      src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
-      alt="{{ .Title }}"
-      class="absolute inset-0 h-full w-full object-cover opacity-60"
-    />
-    {{ end }}
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-    <div class="container relative mx-auto flex h-full flex-col items-center justify-end px-4 text-center md:px-8">
-      <a
-        href="{{ $.Site.BaseURL }}/blog"
-        class="mb-8 inline-flex items-center self-start rounded-full bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-      >
-        <i class="fa-solid fa-arrow-left mr-2"></i>
-        Back to all posts
-      </a>
-      <h1 class="max-w-4xl text-3xl font-bold text-white md:text-5xl">
+<div class="w-full bg-white pt-28 pb-20 sm:pt-36 sm:pb-24 border-b border-zinc-200/70">
+  <div class="container relative mx-auto px-4 sm:px-6 md:px-8 max-w-3xl">
+    <!-- Back to Articles Navigation -->
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-700 hover:text-zinc-950 mb-6 transition-colors"
+    >
+      <i class="fa-solid fa-arrow-left text-[10px]"></i>
+      <span>All articles</span>
+    </a>
+
+    <!-- Article Header -->
+    <header class="pb-6 border-b border-zinc-200">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 leading-tight">
         {{ .Title }}
       </h1>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-white/60">
+
+      <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-mono font-medium text-zinc-700">
         {{ if .Date }}
-        <div class="flex items-center">
-          <i class="fa-solid fa-calendar mr-2"></i>
-          Published on {{ .Date.Format "January 2, 2006" }}
-        </div>
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-calendar text-[11px] text-zinc-600"></i>
+          {{ .Date.Format "Jan 2, 2006" }}
+        </span>
         {{ end }}
+
         {{ if .Params.lastMod }}
-        <div class="flex items-center mx-3">
-          <i class="fa-solid fa-pen-to-square mr-2"></i>
-          Updated on {{ .Params.lastMod.Format "January 2, 2006" }}
-        </div>
+        <span class="text-zinc-400 font-sans">•</span>
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-pen-to-square text-[11px] text-zinc-600"></i>
+          Updated {{ .Params.lastMod.Format "Jan 2, 2006" }}
+        </span>
         {{ end }}
-        <div class="flex items-center">
-          <i class="fa-solid fa-clock mr-2"></i>
+
+        <span class="text-zinc-400 font-sans">•</span>
+        <span class="inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-clock text-[11px] text-zinc-600"></i>
           {{ .ReadingTime }} min read
-        </div>
+        </span>
+
+        {{ if .Params.author }}
+        <span class="text-zinc-400 font-sans">•</span>
+        <span class="font-sans font-bold text-zinc-900">
+          {{ .Params.author }}
+        </span>
+        {{ end }}
+      </div>
+
+      <!-- Plain Text Tags (no pills) -->
+      {{ if .Params.tags }}
+      <div class="mt-3 text-xs font-mono font-medium text-zinc-600">
+        {{ delimit .Params.tags " · " }}
+      </div>
+      {{ end }}
+    </header>
+
+    <!-- Optional Featured Image -->
+    {{ if .Params.image }}
+    <div class="my-8 aspect-video max-h-[420px] w-full overflow-hidden rounded-2xl border border-zinc-300 bg-zinc-100">
+      <img
+        src="{{ $.Site.Params.staticImagePath }}/{{ .Params.image }}"
+        alt="{{ .Title }}"
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+    {{ end }}
+
+    <!-- Article Content -->
+    <article class="mt-8">
+      <div class="blog-content text-zinc-800 leading-relaxed space-y-6 break-words text-sm sm:text-base">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <!-- Author Sign-off Box -->
+    {{ if .Params.author }}
+    <div class="mt-12 pt-6 border-t border-zinc-200 flex items-center gap-3">
+      {{ if .Params.authorImage }}
+      <img
+        src="{{ $.Site.Params.staticImagePath }}/{{ .Params.authorImage }}"
+        alt="{{ .Params.author }}"
+        class="h-10 w-10 rounded-xl object-cover border border-zinc-300"
+      />
+      {{ end }}
+      <div>
+        <p class="text-xs text-zinc-500 uppercase tracking-wider font-semibold">Written by</p>
+        <p class="text-sm font-bold text-zinc-950">{{ .Params.author }}</p>
       </div>
     </div>
-  </div>
+    {{ end }}
 
-  <!-- Blog content -->
-  <div class="container mx-auto px-4 py-12 md:px-8 z-50">
-    <div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-      <!-- Main content -->
-      <div class="md:col-span-2">
-        <div class="blog-content text-slate-800 leading-relaxed space-y-6 break-words">
-          {{ .Content }}
-        </div>
-        <!-- Tags -->
-        {{ if .Params.tags }}
-        <div class="mt-12">
-          <h3 class="mb-4 text-lg font-semibold">Tags</h3>
-          <div class="flex flex-wrap gap-2">
-            {{ range .Params.tags }}
-            <span class="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">
-              {{ . }}
-            </span>
-            {{ end }}
-          </div>
-        </div>
-        {{ end }}
-
-        <!-- Author info (mobile only) -->
-        {{ if .Params.author }}
-        <div class="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-6 md:hidden">
-          <div class="flex items-center">
-            {{ if .Params.authorImage }}
-            <img
-              src="{{ $.Site.Params.staticImagePath }}/{{ .Params.authorImage }}"
-              alt="{{ .Params.author }}"
-              class="h-12 w-12 rounded-full object-cover"
-            />
-            {{ end }}
-            <div class="ml-4">
-              <div class="text-sm text-slate-500">Written by</div>
-              <div class="font-semibold">{{ .Params.author }}</div>
-            </div>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-
-      <!-- Sidebar -->
-      <div class="hidden space-y-8 md:block md:col-span-2">
-        <!-- Author info -->
-        {{ if .Params.author }}
-        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <h3 class="mb-4 text-lg font-semibold">Authored By:</h3>
-          <div class="flex items-center">
-            {{ if .Params.authorImage }}
-            <img
-              src="{{ $.Site.Params.staticImagePath }}/{{ .Params.authorImage }}"
-              alt="{{ .Params.author }}"
-              class="h-12 w-12 rounded-full object-cover"
-            />
-            {{ end }}
-            <div class="ml-4 font-semibold">{{ .Params.author }}</div>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-    <div class="mx-auto max-w-3xl mt-3">
+    <!-- Giscus Comments -->
+    <div class="mt-14 pt-8 border-t border-zinc-200">
       <script src="https://giscus.app/client.js"
         data-repo="yxlow07/yxlow07.github.io"
         data-repo-id="R_kgDOOn_g4g"
@@ -122,13 +108,10 @@
         async></script>
     </div>
   </div>
-</main>
-<button id="back-to-top" class="hidden w-8 h-8 hover:cursor-pointer items-center justify-center fixed bottom-8 right-8 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 z-50">
-    <i class="fas fa-arrow-up"></i>
-</button>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Use a unique identifier for each shortcode invocation to avoid reprocessing.
     const descriptions = document.querySelectorAll('.link-preview-description:not([data-processed])');
     const wordLimit = 40;
 
@@ -141,30 +124,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const truncatedText = words.slice(0, wordLimit).join(' ');
             const remainingText = words.slice(wordLimit).join(' ');
 
-            // Sanitize for inclusion in innerHTML
             const safeTruncated = truncatedText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             const safeRemaining = remainingText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
             desc.innerHTML = `
                 ${safeTruncated}<span class="ellipsis">... </span>
                 <span class="more-text" style="display: none;">${safeRemaining}</span>
-                <a href="#" class="read-more" style="cursor: pointer; text-decoration: underline; padding: 0 !important;">Read more</a>
+                <a href="#" class="read-more font-semibold text-zinc-900 underline ml-1 cursor-pointer">Read more</a>
             `;
 
             const readMoreLink = desc.querySelector('.read-more');
             readMoreLink.addEventListener('click', function(event) {
-                // Prevent the click from navigating the parent <a> tag
                 event.preventDefault();
                 event.stopPropagation();
 
                 const moreTextSpan = desc.querySelector('.more-text');
                 const ellipsisSpan = desc.querySelector('.ellipsis');
 
-                // Expand the text and hide the "Read more" link
                 if (moreTextSpan) moreTextSpan.style.display = 'inline';
                 if (ellipsisSpan) ellipsisSpan.style.display = 'none';
                 readMoreLink.style.display = 'none';
-            }, { once: true }); // The event should only fire once
+            }, { once: true });
         }
     });
 });

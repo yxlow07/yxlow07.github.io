@@ -1,48 +1,101 @@
-<section class="relative w-full overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-28 pb-20 md:pt-36 md:pb-28">
-  <!-- Floating geometric shapes -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute -left-4 top-1/4 h-16 w-16 animate-float rounded-full bg-blue-500/10 backdrop-blur-xl"></div>
-    <div class="absolute right-1/4 top-1/3 h-24 w-24 animate-float-delayed rounded-full bg-indigo-500/10 backdrop-blur-xl"></div>
-    <div class="absolute bottom-1/4 right-1/3 h-20 w-20 animate-float rounded-lg bg-cyan-500/10 backdrop-blur-xl"></div>
-  </div>
-
-  <div class="container relative mx-auto px-4 md:px-8">
-    <div class="mx-auto max-w-4xl flex flex-col md:flex-row md:items-center md:justify-center md:gap-16">
-      <!-- Profile picture column -->
-      <div class="flex justify-center animate-fade-in-up md:flex-shrink-0">
-        <img src="/images/profile-small.jpg" data-high-res="/images/profile-medium.png" alt="Profile picture" class="lazy h-64 w-64 rounded-full shadow-lg object-cover" />
-      </div>
-      <!-- Content column -->
-      <div class="mt-6 md:mt-0 text-center md:flex md:flex-col md:items-center md:justify-center">
-        <h1 class="animate-fade-in-up bg-gradient-to-r leading-snug from-white via-blue-100 to-white bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-6xl [text-wrap:balance] dark:text-white">
-          {{ $.Site.Data.hero.headline }}
-        </h1>
-        <div class="mt-1 inline-flex animate-fade-in-up items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm text-blue-400 backdrop-blur-sm">
-          <!-- TrophyIcon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 h-4 w-4"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
-          <span>{{ $.Site.Data.hero.achievement }}</span>
+<section class="relative w-full bg-white pt-28 pb-16 sm:pt-36 sm:pb-20 md:pt-36 md:pb-20 border-b border-zinc-200/70">
+  <div class="container relative mx-auto px-4 sm:px-6 md:px-8 max-w-4xl">
+    <div class="grid items-center gap-8 md:grid-cols-12 md:gap-10">
+      <!-- Text & Bio (Left, col 8) -->
+      <div class="md:col-span-8 flex flex-col items-start text-left">
+        <!-- Live Status Line -->
+        <div class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-800">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-600"></span>
+          </span>
+          <span>Available for AI/ML Research & Software Roles</span>
         </div>
-        <p class="mt-3 animate-fade-in-up text-lg text-blue-100">{{ .Site.Data.hero.description }}</p>
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <!--   Download resume     -->
-          <a href="{{ $.Site.Data.hero.cvLink }}" class="group relative inline-flex animate-fade-in-up items-center overflow-hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
-            <span class="relative z-10">View CV</span>
-            <div class="absolute inset-0 -z-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
-            <i class="fa-duotone fa-solid fa-download ml-2 mt-1"></i>
+
+        <!-- Headline -->
+        <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-zinc-950 sm:text-5xl">
+          {{ $.Site.Data.hero.headline | default "Low Yu Xuan" }}
+        </h1>
+
+        <!-- Title -->
+        <p class="mt-1.5 text-base sm:text-lg font-semibold text-zinc-800">
+          Computer Science (Data Science & AI) @ <span class="text-zinc-950 font-bold">University College Dublin</span>
+        </p>
+
+        <!-- Executive Summary -->
+        <p class="mt-3.5 max-w-xl text-sm sm:text-base leading-relaxed text-zinc-800">
+          Award-winning competitor in international AI Olympiads with a proven track record of building end-to-end machine learning architectures and production backend services. Passionate about applied computer vision, NLP, and intelligent software systems.
+        </p>
+
+        <!-- Accolades Inline Strip -->
+        <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-zinc-800">
+          <span class="font-bold text-zinc-950 inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-trophy text-amber-600 text-[11px]"></i>
+            IOAI '26 Bronze Medalist
+          </span>
+          <span class="text-zinc-400">/</span>
+          <span class="font-bold text-zinc-950 inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-medal text-blue-600 text-[11px]"></i>
+            NAIC '26 Champion
+          </span>
+          <span class="text-zinc-400">/</span>
+          <span class="text-zinc-900 font-semibold">USACO Gold</span>
+          <span class="text-zinc-400">/</span>
+          <span class="text-zinc-900 font-semibold">MAIO Fellow</span>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a href="{{ $.Site.Data.hero.cvLink }}" target="_blank" class="inline-flex items-center gap-2 rounded-lg bg-zinc-950 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-2xs transition-all hover:bg-zinc-800">
+            <span>View CV</span>
+            <i class="fa-solid fa-arrow-down text-[10px]"></i>
           </a>
-          <a href="#projects" class="group relative inline-flex animate-fade-in-up items-center overflow-hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-transform hover:scale-105">
-            <span class="relative z-10">View Projects</span>
-            <div class="absolute inset-0 -z-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 transition-opacity group-hover:opacity-100"></div>
-            <i class="fa-duotone fa-solid fa-arrow-right-to-arc ml-2 mt-1"></i>
+          <a href="#projects" class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-900 shadow-2xs transition-all hover:bg-zinc-50 hover:border-zinc-400">
+            <span>Explore Work</span>
+            <i class="fa-solid fa-arrow-right text-[10px] text-zinc-600"></i>
           </a>
-          <a href="#contact" class="group inline-flex animate-fade-in-up items-center rounded-md border border-blue-500/30 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-transform hover:scale-105">
-            Get in Touch
-            <i class="fa-duotone fa-solid fa-phone-rotary ml-2 mt-1"></i>
+          <a href="#contact" class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-900 shadow-2xs transition-all hover:bg-zinc-50 hover:border-zinc-400">
+            <span>Contact</span>
+            <i class="fa-solid fa-envelope text-[11px] text-zinc-500"></i>
           </a>
+        </div>
+
+        <!-- Meta / Location -->
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-zinc-700 pt-4 border-t border-zinc-200 w-full">
+          <span class="inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-zinc-600 text-[11px]"></i>
+            Dublin, Ireland
+          </span>
+          <span class="text-zinc-400">•</span>
+          <a href="mailto:{{ .Site.Params.social.email }}" class="inline-flex items-center gap-1.5 hover:text-zinc-950 transition-colors font-medium">
+            <i class="fa-solid fa-envelope text-zinc-600 text-[11px]"></i>
+            {{ .Site.Params.social.email }}
+          </a>
+          <span class="text-zinc-400">•</span>
+          <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium">
+            {{ .Site.Params.social.phone | default "+353 87 031 6497" }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Avatar / Portrait (Right, col 4) -->
+      <div class="md:col-span-4 flex flex-col items-center md:items-end">
+        <div class="w-44 sm:w-52 md:w-56">
+          <img
+            src="/images/profile-small.jpg"
+            data-high-res="/images/profile-medium.png"
+            alt="Low Yu Xuan"
+            class="lazy aspect-square w-full rounded-2xl object-cover object-center border border-zinc-300 shadow-xs"
+          />
+          <div class="mt-2 px-0.5 flex items-center justify-between text-[11px] text-zinc-700">
+            <span class="font-bold text-zinc-900">Yu Xuan Low</span>
+            <span class="font-mono text-zinc-600 font-medium">UCD CS & AI</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const progressiveImage = document.querySelector('.lazy');

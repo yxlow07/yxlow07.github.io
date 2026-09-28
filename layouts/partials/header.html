@@ -1,47 +1,58 @@
-<header class="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-6">
-  <div class="w-[95%] rounded-3xl border border-slate-200/50 bg-white/70 shadow-lg backdrop-blur-xl transition-all duration-300 ease-in-out sm:w-auto">
-    <div class="flex h-16 items-center justify-between gap-8 px-6 sm:justify-center">
+<header class="fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-6">
+  <div class="w-full max-w-4xl rounded-2xl border border-zinc-200/80 bg-white/90 px-4 py-2 shadow-sm backdrop-blur-md transition-all duration-300">
+    <div class="flex h-11 items-center justify-between gap-6">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-blue-600"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-        <span class="text-xl font-bold tracking-tight text-slate-900">{{ .Site.Params.logoText | default .Site.Title }}</span>
+      <a href="/" class="flex items-center gap-2.5 group">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-950 text-[11px] font-bold text-white transition-colors group-hover:bg-zinc-800">
+          YX
+        </span>
+        <span class="text-sm font-semibold tracking-tight text-zinc-900">Yu Xuan Low</span>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav id="desktop-nav" class="relative hidden items-center gap-1 rounded-full bg-slate-100/50 p-1 sm:flex">
+      <nav id="desktop-nav" class="relative hidden items-center gap-0.5 rounded-full bg-zinc-100/70 p-1 md:flex">
         <!-- Sliding indicator -->
-        <div id="nav-indicator" class="absolute bottom-1 top-1 rounded-full bg-white shadow-sm transition-all duration-300 ease-out" style="left: 0; width: 0; opacity: 0;"></div>
+        <div id="nav-indicator" class="absolute bottom-1 top-1 rounded-full bg-white shadow-xs transition-all duration-200 ease-out" style="left: 0; width: 0; opacity: 0;"></div>
         {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" data-nav-link class="nav-link relative z-10 rounded-full px-4 py-1.5 text-sm font-medium text-slate-600 transition-colors duration-300 hover:text-blue-600">
+        <a href="{{ .URL }}" data-nav-link class="nav-link relative z-10 rounded-full px-3 py-1 text-xs font-semibold text-zinc-700 transition-colors duration-200 hover:text-zinc-950">
           {{ .Name }}
         </a>
         {{ end }}
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" class="rounded-full p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span class="sr-only">Open main menu</span>
-        <!-- Menu Icon -->
-        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-        <!-- X Icon (hidden by default) -->
-        <svg id="x-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <!-- Right Action / Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <a href="{{ $.Site.Data.hero.cvLink | default "/CV_Low_Yu_Xuan.pdf" }}" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-xs font-bold text-zinc-900 shadow-2xs hover:bg-zinc-50 hover:text-zinc-950 transition-colors">
+          <span>CV</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-zinc-600"></i>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="rounded-lg p-1.5 text-zinc-800 hover:bg-zinc-100 hover:text-zinc-950 focus:outline-none md:hidden" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="sr-only">Open main menu</span>
+          <svg id="menu-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="x-icon" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out sm:hidden">
+    <div id="mobile-menu" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out md:hidden">
       <div class="overflow-hidden">
-        <div class="border-t border-slate-200/50 px-4 pb-4 pt-2">
+        <div class="border-t border-zinc-200 px-1 pb-3 pt-2 mt-2">
           <div class="space-y-1">
             {{ range .Site.Menus.main }}
-            <a href="{{ .URL }}" data-mobile-nav-link class="mobile-nav-link block rounded-xl px-3 py-2 text-base font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900">
+            <a href="{{ .URL }}" data-mobile-nav-link class="mobile-nav-link block rounded-lg px-3 py-1.5 text-sm font-semibold text-zinc-800 transition-colors hover:bg-zinc-100 hover:text-zinc-950">
               {{ .Name }}
             </a>
             {{ end }}
+            <a href="{{ $.Site.Data.hero.cvLink | default "/CV_Low_Yu_Xuan.pdf" }}" target="_blank" class="mt-2 block rounded-lg bg-zinc-900 px-3 py-2 text-center text-xs font-semibold text-white">
+              Download CV
+            </a>
           </div>
         </div>
       </div>
@@ -79,12 +90,12 @@
       
       // Update all link styles
       navLinks.forEach(l => {
-        l.classList.remove('text-blue-600');
-        l.classList.add('text-slate-600');
+        l.classList.remove('text-zinc-950', 'font-semibold');
+        l.classList.add('text-zinc-500', 'font-medium');
       });
       
-      link.classList.add('text-blue-600');
-      link.classList.remove('text-slate-600');
+      link.classList.add('text-zinc-950', 'font-semibold');
+      link.classList.remove('text-zinc-500');
       
       indicator.style.left = link.offsetLeft + 'px';
       indicator.style.width = link.offsetWidth + 'px';
@@ -115,11 +126,11 @@
         const isActive = activeHref ? href === activeHref : isLinkActive(href);
         
         if (isActive) {
-          link.classList.add('bg-blue-50', 'text-blue-600');
-          link.classList.remove('text-slate-600');
+          link.classList.add('bg-zinc-100', 'text-zinc-950', 'font-semibold');
+          link.classList.remove('text-zinc-500');
         } else {
-          link.classList.remove('bg-blue-50', 'text-blue-600');
-          link.classList.add('text-slate-600');
+          link.classList.remove('bg-zinc-100', 'text-zinc-950', 'font-semibold');
+          link.classList.add('text-zinc-500');
         }
       });
     }
