@@ -2,20 +2,20 @@ title = "About Me"
 
 [[features]]
 icon = "fa-duotone fa-solid fa-microchip-ai"
-title = "Machine Learning Engineer"
-description = "I am passionate about machine learning and artificial intelligence. I have experience in using libraries like <i>TensorFlow</i>, <i>PyTorch</i>, and <i>Scikit-learn</i>. I am currently exploring the field of <i>Open World Generalization</i> and <i>Natural Language Processing</i>."
+title = "Machine Learning & AI"
+description = "Hands-on experience in applied machine learning across <i>Computer Vision</i>, <i>NLP</i>, and predictive modeling. Experienced with <i>PyTorch</i>, <i>Hugging Face Transformers</i>, <i>OpenCV</i>, and <i>Scikit-learn</i>, spanning model fine-tuning, data pipeline engineering, and benchmarking."
 
 [[features]]
-icon = "fa-duotone fa-solid fa-code"
-title = "Competitive Coder"
-description = "Active participant in programming contests on platforms like CodeForces, Atcoder. Currently a <i>Specialist</i> on Codeforces, with a rating of <i>1429</i>, <i>6 Kyu</i> on Atcoder, with a rating of <i>810</i>."
+icon = "fa-duotone fa-solid fa-trophy"
+title = "AI Olympiad & Competitive Programming"
+description = "Award-winning competitor in international Olympiads and algorithmic contests. Bronze Medalist at the <i>International Olympiad in Artificial Intelligence (IOAI 2026)</i>, Honorable Mention at <i>APOAI 2026</i>, Champion at <i>NAIC 2026</i>, and <i>USACO Gold</i> competitor."
 
 [[features]]
 icon = "fa-duotone fa-solid fa-laptop-code"
-title = "Software Developer"
-description = "Leveraging my skills to build solutions, specialising in backend development. Some of my proficient programming languages include <i>Python</i>, <i>C++</i>, <i>PHP</i>, <i>Dart</i> and <i>JavaScript</i>. I have experience in using frameworks like <i>Django</i>, <i>Laravel</i>, and <i>Flutter</i> for building web and mobile applications."
+title = "Software & Backend Development"
+description = "Track record of building end-to-end ML systems and production backend services. Proficient in <i>Python</i>, <i>C++</i>, <i>JavaScript</i>, <i>SQL</i>, and <i>PHP</i>, utilizing frameworks like <i>Django</i>, <i>Node.js</i>, <i>Next.js</i>, <i>Supabase</i>, and mobile development in <i>Flutter</i>."
 
 [current]
-icon = "fa-duotone fa-solid fa-clock"
+icon = "fa-duotone fa-solid fa-compass"
 title = "My Current Focus"
-description = "I am currently working on enhancing my deep learning skills, exploring novel ways to solve problems using machine learning and contributing my knowledge to teach others. I am currently the Technical Director of <b>AMISO</b>, specializing in building a platform for the organization. I am also a student at <b>INTI International College Penang</b> where I am studying Cambridge A-Level. I am always on the lookout for a hackathon!"
+description = "I am a Computer Science student specializing in Data Science and Artificial Intelligence at <b>University College Dublin</b>. I train Malaysian students for international AI Olympiads with the <b>Malaysian AI Olympiad Fellowship (MAIO)</b> and serve as Technical Director at <b>AMISO</b>. Seeking software development and AI/ML research opportunities to build intelligent, real-world systems."

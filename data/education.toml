@@ -1,23 +1,38 @@
 [[education]]
-degree = "Sijil Pelajaran Malaysia (SPM)"
-school = "Chung Ling High School"
+degree = "Computer Science with Data Science and Artificial Intelligence"
+school = "University College Dublin"
+location = "Dublin, Ireland"
+period = "Sep 2026 – Present"
+achievements = [
+  "Specializing in Data Science & Artificial Intelligence"
+]
+extracurricular = []
+
+[[education]]
+degree = "Cambridge A Levels"
+school = "INTI International College Penang"
 location = "Penang, Malaysia"
-period = "2020 - 2024"
+period = "Apr 2025 – Jun 2026"
+achievements = [
+  "4A* (Mathematics, Further Mathematics, Physics, Chemistry)"
+]
+extracurricular = [
+  "Vice President of Activities, 21st INTIMA",
+  "Intake Representative"
+]
+
+[[education]]
+degree = "Sijil Pelajaran Malaysia (SPM)"
+school = "Chung Ling High School Penang"
+location = "Penang, Malaysia"
+period = "Jan 2020 – Dec 2024"
 achievements = [
   "9A+, 1A",
-  "2nd in Year",
-  "Best Student Graduate Award"
+  "Ranked 2/441 in Year",
+  "Best Graduate of 2024"
 ]
 extracurricular = [
   "Chief Executive of International Student Camp",
   "Vice President of i-CreatorZ (Maker's Club)",
   "Secretary of Graduation Magazine"
 ]
-
-[[education]]
-degree = "Cambridge A Level"
-school = "INTI International College Penang"
-location = "Penang, Malaysia"
-period = "2025 - 2026"
-achievements = []
-extracurricular = ["Intake Representative", "Student Government"]

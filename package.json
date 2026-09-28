@@ -14,5 +14,8 @@
     "glob": "^11.0.3",
     "js-yaml": "^4.1.0",
     "node-fetch": "^2.7.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.1": true
   }
 }

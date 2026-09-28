@@ -1,62 +1,69 @@
 [[competitions]]
+name = "International Olympiad in Artificial Intelligence (IOAI)"
+achievement = "Bronze Medal"
+year = "2026"
+description = "Represented Malaysia internationally and awarded Bronze Medal at the International Olympiad in Artificial Intelligence."
+icon = "fa-duotone fa-solid fa-earth-americas"
+
+[[competitions]]
+name = "Asia Pacific Olympiad in Artificial Intelligence (APOAI)"
+achievement = "Honorable Mention"
+year = "2026"
+description = "Awarded Honorable Mention in the premier Asia Pacific Olympiad in Artificial Intelligence."
+icon = "fa-duotone fa-solid fa-award"
+
+[[competitions]]
 name = "National Artificial Intelligence Competition (NAIC)"
-achievement = "1st Runner Up"
-year = "2025"
-description = "Develop an AI model to classify kuih and investigated its application in the real world"
-icon = "fa-duotone fa-solid fa-microchip-ai"
+achievement = "Champion (2026), 1st Runner Up (2025)"
+year = "2026, 2025"
+description = "Champion in 2026 engineering an ensemble AI for diabetic retinopathy screening; 1st Runner Up in 2025 developing an EfficientNetV2 kuih classifier."
+icon = "fa-duotone fa-solid fa-trophy"
+
+[[competitions]]
+name = "Northern Eurasia Olympiad in Artificial Intelligence"
+achievement = "Rank 4 / 188 (Day 1)"
+year = "2026"
+description = "Secured Rank 4 out of 188 international participants on Day 1 of the Northern Eurasia Olympiad in Artificial Intelligence."
+icon = "fa-duotone fa-solid fa-brain"
+
+[[competitions]]
+name = "Malaysia Artificial Intelligence Olympiad (MAIO)"
+achievement = "Rank 1 (2026 Qualifiers), Gold Medal (2025)"
+year = "2026, 2025"
+description = "Rank 1 in 2026 National Qualifiers and Gold Medal in 2025 solving challenging Olympiad problems across computer vision, NLP, and audio."
+icon = "fa-duotone fa-solid fa-medal"
+
+[[competitions]]
+name = "USA Computing Olympiad (USACO)"
+achievement = "Gold Division"
+year = "2026"
+description = "Advanced to the Gold Division of the prestigious USA Computing Olympiad, solving advanced algorithmic and data structure problems."
+icon = "fa-duotone fa-solid fa-code"
 
 [[competitions]]
 name = "LingHacks VI Hackathon"
 achievement = "Best Beginner Project + 3rd Runner Up"
 year = "2025"
-description = "Applied NLP technology and graph theory to create a journal capable of analyzing emotions and suggesting help"
+description = "Applied NLP technology and graph theory to create JotMe, a digital journaling platform analyzing emotions and suggesting wellness interventions."
 icon = "fa-duotone fa-solid fa-pencil"
-
-[[competitions]]
-name = "Malaysia Artificial Intelligence Olympiad (MAIO)"
-achievement = "Gold Medal"
-year = "2025"
-description = "Solve problem regarding the use of artificial intelligence such as image processing, natural language processing, etc."
-icon = "fa-duotone fa-solid fa-microchip-ai"
 
 [[competitions]]
 name = "Codeforces"
 achievement = "Specialist (1429 rating)"
 year = "Current"
-description = "Reached Specialist Rank. Participated in various contests and solved problems in competitive programming."
-icon = "fa-duotone fa-solid fa-code"
+description = "Reached Specialist Rank. Active competitive programmer participating in contests and solving algorithmic problems."
+icon = "fa-duotone fa-solid fa-keyboard"
 
 [[competitions]]
 name = "Malaysia Computing Olympiad (MCO)"
 achievement = "Silver Medal"
 year = "2025"
-description = "Solved problems involving dynamic connectivity, fibonacci sequences and dynamic programming."
+description = "Solved problems involving dynamic connectivity, graph theory, and dynamic programming."
 icon = "fa-duotone fa-solid fa-award"
 
 [[competitions]]
 name = "California Informatics Competition (CALICO)"
 achievement = "Silver Medal"
 year = "Fall 2024"
-description = "Solved 5+ problems regarding euler tour, binary search and dynamic programming."
+description = "Solved 5+ problems regarding Euler tour trees, binary search, and dynamic programming."
 icon = "fa-duotone fa-solid fa-award"
-
-[[competitions]]
-name = "Malaysia Computing Challenge (MCC)"
-achievement = "Gold Medal (2024), Bronze Medal (2023)"
-year = "2024, 2023"
-description = "Participated in an online computing competition testing computational and algorithmic thinking."
-icon = "fa-duotone fa-solid fa-award"
-
-[[competitions]]
-name = "Kangaroo Math Competition"
-achievement = "Gold Medal (2024), Silver Medal (2023)"
-year = "2024, 2023"
-description = "Participated in an mathematics competition focusing on logical combination and problem-solving."
-icon = "fa-duotone fa-solid fa-calculator"
-
-[[competitions]]
-name = "Singapore & Asians Math Olympiad (SASMO)"
-achievement = "Silver Medal (2024), Bronze Medal (2023), Bronze Medal (2022)"
-year = "2024, 2023, 2022"
-description = "Participated in a large mathematics Olympiad in Asia aimed at enhancing math skills and higher-order thinking."
-icon = "fa-duotone fa-solid fa-calculator"

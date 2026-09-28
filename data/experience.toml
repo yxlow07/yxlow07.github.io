@@ -1,0 +1,50 @@
+[[experience]]
+role = "Fellowship Trainer & Fellow"
+organization = "Malaysian AI Olympiad Fellowship (MAIO)"
+location = "Remote"
+period = "Aug 2026 – Present"
+points = [
+  "Plan 14+ trainings for Malaysian students on Olympiad AI, involving ML, CV, NLP and Audio domains",
+  "Brainstorm and refine 2+ task ideas to ensure Malaysian students are trained and exposed to challenging problems"
+]
+url = "https://www.aiolympiad.my/"
+icon = "fa-duotone fa-solid fa-chalkboard-user"
+category = "AI Mentorship & Training"
+
+[[experience]]
+role = "Vice President of Activities"
+organization = "21st INTIMA, INTI"
+location = "Penang / Remote"
+period = "Nov 2025 – Present"
+points = [
+  "Review and manage 84+ events across campus by societies and 28+ events and initiatives by INTIMA",
+  "Ensure wellbeing and constitutional compliance of 37 societies; established 2 new societies in students' interests"
+]
+icon = "fa-duotone fa-solid fa-users"
+category = "Student Governance"
+
+[[experience]]
+role = "Technical Director"
+organization = "AMISO"
+location = "Remote"
+period = "Jun 2025 – Present"
+points = [
+  "Coordinate a team of 5 developers across Malaysia to expand outreach and maintain 100% website uptime",
+  "Develop a blueprint for a mobile application to promote International Science Olympiads"
+]
+url = "https://amiso.my/about/"
+icon = "fa-duotone fa-solid fa-laptop-code"
+category = "Technical Leadership"
+
+[[experience]]
+role = "Section Leader"
+organization = "Stanford Code in Place 2025"
+location = "Remote"
+period = "Apr 2025 – Jun 2025"
+points = [
+  "Taught 15+ students Python from all around the world from scratch",
+  "Conducted 2 TeachNow sessions to help students identify bugs and improve programming skills"
+]
+url = "https://codeinplace.stanford.edu/"
+icon = "fa-duotone fa-solid fa-code"
+category = "Computer Science Education"

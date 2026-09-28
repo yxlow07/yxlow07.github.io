@@ -1,28 +1,52 @@
 [[projects]]
+title = "Embrace Study"
+description = "Built secure participant-tracking infrastructure for a 200+ person prospective study on maternal-infant postpartum psychological adjustment. Developed with Next.js, ShadCN, and Supabase, ensuring interpretable insights and robust data protection."
+tags = ["Next.js", "ShadCN", "Supabase", "Infrastructure", "Data Protection"]
+image = "locked.png"
+isNDA = true
+period = "Aug 2026"
+showSource = false
+showBlog = false
+
+[[projects]]
+title = "Diabetic Retinopathy Screening"
+description = "Engineered a preprocessing pipeline (CLAHE, Graham's Method, Feature Adaptive Cropping) for retinal image analysis and trained an ensemble model (ResNet-34, EfficientNetB4, RandomForest) reaching 91% accuracy on limited, unbalanced data. Champion at NAIC 2026."
+tags = ["Computer Vision", "PyTorch", "OpenCV", "Scikit-learn", "Transformers"]
+image = "diabetic-retinopathy.jpg"
+period = "Jun 2026"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/NAIC2026"
+showBlog = false
+
+[[projects]]
+title = "Byte of Kuih"
+description = "Curated and cleaned a 16,000+ image dataset to train an EfficientNetV2 classifier recognizing 8 classes of Malaysian traditional kuih. Fine-tuned the model with PyTorch and Hugging Face to reach 98% validation accuracy and 100% test accuracy."
+tags = ["PyTorch", "Hugging Face", "Transformers", "EfficientNetV2", "Computer Vision"]
+image = "naic-kuih.png"
+period = "Jul 2025"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/naic-model-2025"
+showBlog = true
+blogUrl = "naic"
+
+[[projects]]
+title = "JotMe"
+description = "A mental-health journaling platform with interactive ChartJS mood visualizations and an NLP backend combining KeyBERT keyword extraction with emotion-detection models and graph-based contextual sentiment analysis (NetworkX)."
+tags = ["NLP", "Transformers", "KeyBERT", "NetworkX", "ChartJS", "Python"]
+image = "linghacks.png"
+period = "Jun 2025"
+showSource = true
+sourceUrl = "https://github.com/yxlow07/jotme/"
+showBlog = true
+blogUrl = "linghacks-vi"
+
+[[projects]]
 title = "GUIDE-SHARK"
-description = "Short for Generative User Interface for Differential Evaluation via Symptom Analysis and Record Keeping, applied machine learning algorithms to provide faster diagnoses for patients in a rush."
-tags = ["Flutter", "Django", "Machine Learning", "REST API"]
+description = "A full-stack health-diagnostics app with a Flutter frontend and a Django REST backend, applying clean architecture and separation-of-concerns design. Integrated an AI model to analyze patient symptoms and generate rapid preliminary diagnoses."
+tags = ["Flutter", "Django", "PyTorch", "REST API", "Scikit-learn"]
 image = "guide-shark.jpg"
+period = "Mar 2025"
 showSource = true
 sourceUrl = "https://github.com/yxlow07/guide-shark-frontend"
 showBlog = true
-blogUrl = "/current-projects#3-generative-user-interface-for-differential-evaluation-via-symptom-analysis-and-record-keeping"
-
-[[projects]]
-title = "Study Scroll"
-description = "Social Media, but it helps you revise A Levels"
-tags = ["Flutter", "education", "app development", "social media", "AI"]
-image = "a-levels.jpg"
-showSource = true
-sourceUrl = "https://github.com/yxlow07/study-scroll"
-showBlog = true
-blogUrl = "/study-scroll"
-
-[[projects]]
-title = "Maker Kehadiran"
-description = "A web application built using a custom MVC framework in PHP, designed for managing attendance records. It allows users to create, read, update, and delete attendance data efficiently."
-tags = ["PHP", "MVC", "SQL", "Tailwindcss"]
-image = "maker-kehadiran.png"
-showSource = true
-sourceUrl = "https://github.com/yxlow07/maker-kehadiran/"
-showDemo = false
+blogUrl = "current-projects#3-generative-user-interface-for-differential-evaluation-via-symptom-analysis-and-record-keeping"

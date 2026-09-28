@@ -1,8 +1,15 @@
 [[certification]]
+title = "Project Management Fundamentals"
+provider = "Professional Credential"
+date = "Jun 2025"
+skills = ["Technical Leadership", "Project Management", "Team Coordination", "Strategic Planning"]
+badge = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0"
+
+[[certification]]
 title = "Neural Networks and Deep Learning"
 provider = "DeepLearning.ai"
-date = "2025"
-skills = ["Neural Networks", "Mathematical Modelling", "Differential Equations", "Machine Learning"]
+date = "May 2025"
+skills = ["Neural Networks", "Deep Learning", "Mathematical Modelling", "Machine Learning"]
 badge = "https://images.unsplash.com/photo-1644088379091-d574269d422f?q=80&w=1993&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 url = "https://www.coursera.org/account/accomplishments/verify/OY5LWS79RBNR"
 

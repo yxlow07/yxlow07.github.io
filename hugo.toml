@@ -16,6 +16,8 @@ timeZone = "Asia/Singapore"
     linkedin = "https://linkedin.com/in/low-yu-xuan/"
     email = "yuxuanlow013@gmail.com"
     instagram = "https://www.instagram.com/_yu_xuan_07/"
+    location = "Dublin, Ireland"
+    phone = "+353 87 031 6497"
   [params.contact]
     formAction = "https://formspree.io/f/mrbqlvkj"
   [params.contact.mentorship]
@@ -64,18 +66,22 @@ style = "onedark"
     url = "/#education"
     weight = 20
   [[menu.main]]
+    name = "Experience"
+    url = "/#experience"
+    weight = 30
+  [[menu.main]]
     name = "Projects"
     url = "/#projects"
-    weight = 30
+    weight = 40
   [[menu.main]]
     name = "Achievements"
     url = "/#achievements"
-    weight = 40
+    weight = 50
   [[menu.main]]
     name = "Contact"
     url = "/#contact"
-    weight = 50
+    weight = 60
   [[menu.main]]
     name = "Blog"
     url = "/blog"
-    weight = 60
+    weight = 70

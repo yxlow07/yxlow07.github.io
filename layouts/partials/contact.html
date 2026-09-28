@@ -68,26 +68,42 @@
         <div class="overflow-hidden rounded-2xl border border-white/40 bg-white/50 p-6 md:p-8 shadow-xl backdrop-blur-md">
           <h3 class="mb-6 text-xl font-semibold">Contact Information</h3>
           <div class="space-y-4">
+            {{ with .Site.Params.social.location }}
             <div class="flex items-center">
-              <i class="fa-duotone fa-solid fa-envelope mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <i class="fa-duotone fa-solid fa-location-dot mr-3 h-5 w-5 text-blue-600 mt-1"></i>
+              <span class="text-slate-700">
+                {{ . }}
+              </span>
+            </div>
+            {{ end }}
+            {{ with .Site.Params.social.phone }}
+            <div class="flex items-center">
+              <i class="fa-duotone fa-solid fa-phone mr-3 h-5 w-5 text-blue-600 mt-1"></i>
+              <a href="tel:{{ . }}" class="text-slate-700 hover:text-blue-600 highlightedLinks">
+                {{ . }}
+              </a>
+            </div>
+            {{ end }}
+            <div class="flex items-center">
+              <i class="fa-duotone fa-solid fa-envelope mr-3 h-5 w-5 text-blue-600 mt-1"></i>
               <a href="mailto:{{ .Site.Params.social.email }}" class="text-slate-700 hover:text-blue-600 highlightedLinks">
                 {{ .Site.Params.social.email }}
               </a>
             </div>
             <div class="flex items-center">
-              <i class="fa-duotone fab fa-solid fa-github mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <i class="fa-duotone fab fa-solid fa-github mr-3 h-5 w-5 text-blue-600 mt-1"></i>
               <a href="{{ .Site.Params.social.github }}" target="_blank" class="text-slate-700 hover:text-blue-600 highlightedLinks">
                 {{ .Site.Params.social.github }}
               </a>
             </div>
             <div class="flex items-center">
-              <i class="fa-duotone fab fa-solid fa-linkedin mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <i class="fa-duotone fab fa-solid fa-linkedin mr-3 h-5 w-5 text-blue-600 mt-1"></i>
               <a href="{{ .Site.Params.social.linkedin }}" target="_blank" class="text-slate-700 hover:text-blue-600 highlightedLinks">
                 {{ .Site.Params.social.linkedin }}
               </a>
             </div>
             <div class="flex items-center">
-              <i class="fa-duotone fab fa-solid fa-instagram mr-3 h-5 w-5 text-blue-600 mt-2"></i>
+              <i class="fa-duotone fab fa-solid fa-instagram mr-3 h-5 w-5 text-blue-600 mt-1"></i>
               <a href="{{ .Site.Params.social.instagram }}" target="_blank" class="text-slate-700 hover:text-blue-600 break-all w-full highlightedLinks">
                 {{ .Site.Params.social.instagram }}
               </a>              
